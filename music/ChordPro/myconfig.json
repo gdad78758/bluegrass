@@ -1,0 +1,312 @@
+// Configuration for ChordPro.
+//
+// This is a relaxed JSON document, so comments are possible.
+//
+// This is an incremental config and can be used on top of other
+// configurations.
+
+{
+    // General settings.
+    "settings" : {
+      // Suppress empty chord lines.
+      "suppress-empty-chords" : true,
+      // Chords inline.
+      // May be a string containing pretext %s posttext.
+      // Defaults to "[%s]" if true.
+      "inline-chords" : true,
+    },
+
+    // Show chord diagrams.
+    "diagrams" : {
+	"show" : "all"
+    },
+		
+		"chords" : [
+			{
+			"name" : "Am6",
+			"frets" : [2, 0, 2, 0],
+			},
+			{
+			"name" : "AmMaj7",
+			"frets" : [1, 0, 0, 0],
+			},
+			{
+			"name" : "A7+5",
+			"frets" : [0, 1, 1, 0],
+			},
+			{
+			"name" : "A7sus4",
+			"frets" : [0, 2, 0, 0],
+			},
+			{
+			"name" : "Ew",
+			"base" : 4,
+			"frets" : [1, 1, 1, 4],
+			},
+			{
+			"name" : "G/B",
+			"frets" : [4, 2, 3, 2],
+			},
+			{
+			"name" : "C/B",
+			"frets" : [4, 4, 3, 3],
+			},
+			{
+			"name" : "Dm9",
+			"frets" : [2, 0, 1, 0],
+			},
+			{
+			"name" : "Fm6",
+			"frets" : [1, 2, 1, 3],
+			},
+			{
+			"name" : "Cm6",
+			"frets" : [2, 3, 3, 3],
+			},
+			{
+			"name" : "D6",
+			"frets" : [2, 2, 2, 2],
+			},
+			{
+			"name" : "Edim7",
+			"frets" : [0, 1, 0, 1],
+			},
+			{
+			"name" : "Em",
+			"frets" : [0, 4, 3, 2],
+			},
+			{
+			"name" : "Em6",
+			"frets" : [0, 1, 0, 2],
+			},
+			{
+			"name" : "Em9",
+			"frets" : [0, 4, 2, 2],
+			},
+			{
+			"name" : "E7sus4",
+			"base" : 4,
+			"frets" : [1, 1, 2, 2],
+			},
+			{
+			"name" : "Fadd9",
+			"frets" : [0, 0, 1, 0],
+			},
+			{
+			"name" : "F#m7b5",
+			"frets" : [2, 4, 2, 3],
+			},
+			{
+			"name" : "C7_2",
+			"frets" : [3, 4, 3, 3],
+			},
+			{
+			"name" : "C_2",
+			"frets" : [3, 2, 1, 1],
+			"base" : 3,
+			},
+			{
+			"name" : "Dm7_2",
+			"frets" : [3, 3, 3, 3],
+			"base" : 3
+			},
+			{
+			"name" : "B_2",
+			"frets" : [4, 3, 2, 2],
+			},
+			{
+			"name" : "F#7_2",
+			"frets" : [3, 4, 2, 4],
+			},
+			{
+			"name" : "Gm6",
+			"frets" : [0, 2, 0, 1],
+			},
+			{
+			"name" : "G7_2",
+			"frets" : [2, 3, 1, 3],
+			"base" : 3
+			},
+			{
+			"name" : "G7_3",
+			"frets" : [3, 3, 3, 4],
+			"base" : 5
+			},
+			{
+			"name" : "C_3",
+			"frets" : [3, 1, 2, 1],
+			"base" : 7
+			},
+			{
+			"name" : "C7+5",
+			"frets" : [1, 0, 0, 1],
+			},
+			{
+			"name" : "F#dim",
+			"frets" : [2, 0, 2, 0],
+			},
+			{
+			"name" : "Gdim",
+			"frets" : [3, 1, 3, 1],
+			},
+			{
+			"name" : "Gdim7",
+			"frets" : [0, 1, 0, 1],
+			},
+			{
+			"name" : "G/A",
+			"frets" : [0, 2, 5, 2],
+			},
+			{
+			"name" : "Ebaug",
+			"frets" : [0, 3, 3, 2],
+			},
+			{
+			"name" : "Dm6",
+			"frets" : [2, 2, 1, 2],
+			},
+			{
+			"name" : "Em/C#",
+			"frets" : [0, 1, 3, 2],
+			},
+			{
+			"name" : "F#mmaj7",
+			"frets" : [2, 1, 1, 0],
+			},
+			{
+			"name" : "F#7",
+			"frets" : [3, 4, 2, 4],
+			},
+			{
+			"name" : "Bbdim7",
+			"frets" : [0, 1, 0, 1],
+			},
+
+			{
+			"name" : "C_0003",
+			"frets" : [0, 0, 0, 3],
+			},
+			{
+			"name" : "C_0503",
+			"base" : 3,
+			"frets" : [0, 3, 0, 1],
+			},
+			{
+			"name" : "C_0311",
+			"base" : 3,
+			"frets" : [0, 3, 1, 1],
+			},
+			{
+			"name" : "C_0310",
+			"base" : 3,
+			"frets" : [0, 3, 1, 0],
+			},
+			{
+			"name" : "C_0007",
+			"base" : 7,
+			"frets" : [0, 0, 0, 1],
+			},
+			{
+			"name" : "C_0507",
+			"base" : 5,
+			"frets" : [0, 1, 0, 3],
+			},
+			{
+			"name" : "C_0980",
+			"base" : 7,
+			"frets" : [0, 3, 2, 0],
+			},
+			{
+			"name" : "C_0988",
+			"base" : 7,
+			"frets" : [0, 3, 2, 2],
+			},
+			{
+			"name" : "C_098_10",
+			"base" : 7,
+			"frets" : [0, 3, 2, 4],
+			},
+			{
+			"name" : "C_0770",
+			"base" : 7,
+			"frets" : [0, 1, 1, 0],
+			},
+			{
+			"name" : "C_0750",
+			"base" : 5,
+			"frets" : [0, 3, 1, 0],
+			},
+			{
+			"name" : "C7+",
+			"frets" : [1, 0, 0, 1],
+			},
+			{
+			"name" : "D7",
+			"frets" : [2, 0, 2, 0],
+			},
+			{
+			"name" : "Am/C",
+			"frets" : [2, 0, 0, 3],
+			},
+			{
+			"name" : "B7",
+			"frets" : [4, 3, 2, 0],
+			},
+			{
+			"name" : "Am6/9",
+			"frets" : [2, 0, 2, 2],
+			},
+			{
+			"name" : "Am9",
+			"frets" : [2, 0, 3, 2],
+			},
+		],
+
+    // Layout definitions for PDF output.
+
+    "pdf" : {
+
+	// Slightly larger diagrams.
+	"diagrams" : {
+	    "show"     :  "top",
+	    "width"    :  8,
+  	    "height"   :  8,
+	    "hspace"   :  3.95,
+	    "vspace"   :  3,
+  	    "vcells"   :  4,
+	    "linewidth" : 0.1,
+	},
+
+	"section" : {
+		"hello" : "comment",
+		"fallback" : "comment",
+	},
+
+	"papersize" : "a4",
+//  "papersize" : [600,1020],
+
+	// Fonts.
+
+	"fonts" : {
+	    "title" : {
+		"name" : "Helvetica-Bold",
+		"size" : 12
+	    },
+	    "text" : {
+		"name" : "Helvetica",
+		"size" : 11
+	    },
+	    "chord" : {
+		"name" : "Helvetica-bold",
+		"color" : "red",
+		"size" : 11
+	    },
+	    "comment" : {
+		"name" : "Helvetica-bold",
+		"color" : "red",
+		"size" : 11
+	    },
+	},
+    },
+}
+// End of config.

@@ -1,0 +1,46 @@
+Website Song Project
+
+
+================================
+NOTES ABOUT DISCUSSIONS
+================================
+9/3/2020
+
+Question:
+  - will the json file be kept?  Or is it discarded once Paul M. has pulled the info into
+     the database?
+
+Marty's naming convention proposal:
+
+ - Each unique song gets a unique filename:
+    "song_name_xx_yy"  with it's associated filetype, where xx is version of song, yy is key
+
+   Each 'xx' is intended to separate songs of the same name from one another as well as
+     major differences between artists
+
+9/2/2020
+
+ - Initial Zoom meeting:  Paul Butler, Paul Maine, Walter, Marty
+
+  Major work item:  come up with content of the metadata and establish naming conventions
+    for files.
+================================
+CURRENT STATE OF DECISIONS
+================================
+  
+  File naming conventions:
+    In general, the file name is "name_of_song_xx_yy".filename where
+      1. name_of_song is the name of the song, but omitting any leading articles ('A', 'The', 
+         or 'An')
+      2. The first song in a series can either provide xx or leaves out '_xx'. For 
+           example the first chordpro file of the song of "A Summer Song" in C would be either
+           'summer_song_01_C.cho' or 'summer_song_C.cho'
+      3. Second song with the same name is either a completely different song or the 
+         same song but with enough changes to warrant a separate file and follows
+         the format of 'name_of_song_02_yy'.filename.  Example: a second chordpro file of a song 
+         called "A Summer Song" in the key of A would be 'summer_song_02_A.cho'
+      4. ???? Do we want to allow for the case where the key is not provided?  
+
+  json file structure:
+
+=================================
