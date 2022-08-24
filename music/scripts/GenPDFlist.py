@@ -41,7 +41,8 @@ for p in Path(musicFolder).rglob('*.jpg'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.jpeg'):
   allFiles.append(p)
-
+for p in Path(musicFolder).rglob('*.jpeg'):
+  allFiles.append(p)
 
 def findMatchingBasename(files, basename):
   matches = [f for f in files if f[0].lower() == l(basename).lower()]
