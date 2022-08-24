@@ -38,6 +38,7 @@ for p in Path(musicFolder).rglob('*.aif'):
 for p in Path(musicFolder).rglob('*.mscz'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.jpg'):
+  allFiles.append(p)
 for p in Path(musicFolder).rglob('*.jpeg'):
   allFiles.append(p)
 
