@@ -1,0 +1,314 @@
+Bluegrass songs:
+
+Group list:
+
+Focus:
+  Angeline the Baker
+  Bill Cheatham
+  Devil's Dream
+  Red Haired Boy
+  Soldier's Joy
+On the radar:
+  Salt Creek
+  Blue Ridge Cabin Home
+  Bury Me Beneath the Willow
+---------------------------------------------------------
+*Angeline the Baker - Key D
+  A Part
+    | 1             | 1          | 1          | 4       |
+    | 5 6 8 5       | 6  8       | 5 6 8 5    | 6       |
+    | 1             | 1          | 1      4   | 1       | repeat
+    | 5 6 8 2+      | 3+ 2+ 8 2+ | 3+ 2+ 8+ 6 | 5       |
+   B Part
+    | 1             | 1          | 1          | 4       |
+    | 5+ 3+ 2+ 8 2+ | 3+ 2+ 8    | 5+ 3+ 2+ 8 | 6       |
+    | 1             | 1          | 1      1   | 1       | repeat
+    | 5+ 3+ 2+ 8 2+ | 3+ 2+ 8 2+ | 3+ 2+ 8 6  | 5       | 
+  
+---------------------------------------------------------  
+Big Sciota - Key G (Eddie's version)
+  A Part
+    | 1   5   | 1      | 1   5  | 1     |
+    | 1       | 4      | 5      | 1     |
+  B Part
+    | 1       | 5      | 5      | 4     |
+    | 5       | 6m     | 5      | 1     |
+	
+---------------------------------------------------------	
+*Bill Cheatham - Key A
+  A Part
+     | 1               | 1                  | 4               | 4               |
+       5- 3 3 5  6     | 3 2 1 3 2 1 6- 5-  | 4- 7- 7- 7- 1   | 6 7 8 6 5 3 2 1 |
+     | 1               | 1                  | 4               | 1)5       4     | 2)5       4     |
+       5- 3 3 1 2      | 3 2 1 3 2 1 2 3    |   2 1 2 3 1     |   2 1 2 3 1     |   2 1 2 3 1 8 6 |
+  B Part
+     | 1       4       | 5           1      | 1       4       | 1        5      |
+       5 3 5 8 6 4 6 8 | 7 5 6 7     8 8 6  | 5 3 5 8 6 4 6 8 | 5 6 5 3  2 8 6  |
+     | 1       4       | 5           1      | 1       4       | 1)5      1      | 2)5     1 |
+       5 3 5 8 6 4 6 8 | 7 5 6 7 8   5 6 7 | 8 6 8 5  6 7 8 6 | 5 3 2 3  1 8 6  | 5 3 2 3 1 |
+	
+---------------------------------------------------------	
+Blackberry Blossom - Key G
+  A Part
+      | 1   5   | 4   1   | 4   1   | 1    5  |
+      | 1   5   | 4   1   | 4   1   |1) 5  1  |2) 5   1 |
+  B Part
+      | 6m      | 6m      | 6m      | 3-7     |
+      | 6m      | 6m      | 4   1   |1) 5   1 |2) 5   1 |
+	
+---------------------------------------------------------	
+*Blue Ridge Cabin Home - Key A 
+       banjo intro / sing verse 1 and chorus / guitar solo / sing verse 2 and chorus 
+	   / mandolin solo / sing verse 3 and chorus
+         | 1           | 1         | 4           | 4              |
+ There's a well bea-ten path in the  old moun-tain side, where I
+         | 5           | 5         | 1           | 1              |
+           wan- dered   when I was a lad;                   and I
+         | 1           | 1         | 4           | 4              |
+          wan - dered a-lone from the place I call home, in these
+         | 5           | 5         | 1           | 1              |
+		  blue  ridge   hills far a -way
+	Chorus
+	        Oh I love those hills of old Virginia
+		    From those Blueridge hills I did roam
+		    When I die won't you bury me on the mountain
+		    Far awy near my Blueridge mountain home
+		
+	    Now my thoughts wander back to that ramshackle shack
+		In those blue ridge hills far away
+		Where my mother and dad were laid there to rest
+		They are sleeping in peace together there
+		
+		I return to that old cabin home with the sigh
+		I've been longing for days gone by
+		When I die won't your bury me on that old mountain side
+		Make my resting place upon the hills so high
+---------------------------------------------------------		  
+*Bury Me Beneath The Willow - Key G 
+       banjo intro / sing verse 1 and chorus / guitar solo / sing verse 2 and chorus 
+	   / mandolin solo / sing verse 3 and chorus
+    Chorus - all verses same chords
+        | 1                 | 4               | 1                          | 5       5-7   |
+	  Oh, Bu-ry me be        -neath the willow, under the weeping willow     tree,
+	    | 1                 | 4               | 1            5             | 1             |
+	   So she will know where I am sleeping,    and per-haps she'll weep for me.
+	 Verses
+	    1. My heart is sad I am lonely, for the only one I love,
+	       When shall I see her, oh no never, 'til we meet in heaven above.
+	    2. She told me that she dearly loved me, how-could I believe it untrue,
+	       Until the angels softly whispered, she will prove untrue to you.
+	    3. Tomorrow was to be our wedding day, God, oh God where can she be,
+	       She's out a courting with another, and no longer cares for me.
+		
+---------------------------------------------------------		
+Country Roads - Key G
+  [Intro]
+  1  1/5  x4
+ 
+  [Verse 1]
+  1              6m             5                       4          1
+  Almost Heaven, West Virginia, Blue Ridge Mountains, Shenandoah River.
+  1                    6m                    5                           4
+  Life is old there, older than the trees, younger than the mountains, blowin' 
+         1
+  like a breeze.
+ 
+  [Chorus]
+          1              5-7          6m        4
+  Country Roads, take me home, to the place I belong
+          1               5             4             1
+  West Virginia, mountain mama, take me home, country roads.
+ 
+  [Verse 2]
+  1               6m                 5               4                1
+  All my memories  gather 'round her, miner's lady, stranger to blue water.
+  1                 6m                  5                         4              1
+  Dark and dusty, painted on the sky, misty taste of moonshine, teardrop in my eye.
+ 
+  [Chorus]
+          1              5-7          6m        4
+  Country Roads, take me home, to the place I belong
+          1               5             4             1
+  West Virginia, mountain mama, take me home, country roads.
+ 
+  [Bridge]
+  6m          5/7           1
+   I hear her voice, in the mornin' hour she calls me.
+      4       1              5
+  The radio reminds me of my home far away.
+      6m               b7 [F]       4              1
+  And drivin' down the road I get a feelin' that I should have been home 
+  5                5-7
+  yesterday, yesterday.
+ 
+  [Chorus]
+          1              5-7          6m        4
+  Country Roads, take me home, to the place I belong
+          1               5             4             1
+  West Virginia, mountain mama, take me home, country roads.
+ 
+  [Repeat Chorus]
+ 
+  [Outro]
+          5                    1
+  Take me home, (down) country roads.
+          5                    1
+  Take me home, (down) country roads.
+---------------------------------------------------------
+Cripple Creek - Key A
+         | 1           | 4    1    | 1           | 5      1       | repeat
+         | 1           | 1         | 1           | 5      1       | repeat
+---------------------------------------------------------
+*Devil's Dream - Key A
+  A Part
+    | 1               | 1               | 2m              | 2m      5       |
+    | 8 7 8 5 8 7 8 5 | 8 7 8 5 6 5 4 3 | 4 6 2 6 4 6 2 6 | 4 6 2 6 8 7 6 5 |
+    | 1               | 1               | 2m              | 2m       5      | repeat
+    | 8 7 8 5 8 7 8 5 | 8 7 8 5 6 5 4 3 | 4 6 5 4 3 5 4 3 | 2 1 7- 2 1 1    |
+  B Part
+    | 1               | 1               | 2m              | 2m      5       |
+    |   5 1 5 3 5 1 5 | 3 5 1 5 6 5 4 3 | 4 6 2 6 4 6 2 6 | 4 6 2 6 8 7 6 5 |
+    | 1               | 1               | 2m              | 2m       5      | repeat
+    | 3 5 1 5 3 5 1 5 | 3 5 1 5 6 5 4 3 | 4 6 5 4 3 5 4 3 | 2 1 7- 2 1  1   |
+
+---------------------------------------------------------
+Dooley - Key A
+         | 1                 | 4               | 1                   | 5             | 
+		   Doo - ley  was a    good old man, he  lived be-low the      mill.
+		   One gal watched the boil-er, the      oth-er watched the    spout.
+         | 1                 | 4               | 1      5            | 1             | repeat
+		   Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
+		   Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
+    Chorus
+		 | 1                 | 1               | 4                   | 4             |
+		   Dooley, Slippin' up the holler,       Dooley, tryin' to make a dollar.
+		 | 1                 | 1               | 5                   | 1             |
+		   Dooley, give me a swaller,            And I'll pay you back some day.
+	Verse 2 
+		 The revenuers came for him, a slippin' through the woods.
+		 Dooley kept behind them all and never lost his goods.
+		 Dooley was a trader when into town he come,
+		 Sugar by the bushel and molasses by the ton.
+    Verse 3
+	     I remember very well the day old Dooley died,
+		 The woman folk looked sorry, the men stood around and cried.
+		 Now Dooley's on the mountain, he lies there all alone,
+		 They put a jug beside him and a barrel for a stone.		 
+---------------------------------------------------------		 
+Fox on the Run - Key G
+    written by Tony Hazzard
+
+    (Chorus)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    1                 5           2m           3
+    She walks through the corn leading down to the river
+        2m              5           4           1
+    Her hair shone like gold in the hot mornin' sun
+        1            5           2m             4
+    She took all the love that a poor boy could give her
+        2m         5          4          1
+    And left me to die like a fox on the run
+           4                                    1
+    Like a fox, (like a fox, like a fox) on the run
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  4                  1         5              1
+  Out here everybody knows the reason for the fall
+       4             1          2-7       5
+  When woman tempted me down in paradise hall
+       4             1           5             1
+  This woman tempted me then she took me for a ride
+      4             1           5               1
+  But like a lonely fox, boys I need a place to hide
+
+  (repeat chorus)
+
+  4                      1            5            1
+  We'll drink a glass of wine boys to fortify our souls
+        4              1          2-7                5
+  We'll talk about the world and friends we used to know
+  4                 1              5             1
+  I see a string of girls who have put me on the floor
+      4              1            5                1
+  The game is nearly over and the hounds are at my door
+
+  (repeat chorus)
+            
+---------------------------------------------------------
+Midnight Rider - Key D
+ 
+  [Verse 1]
+  [D]I got to run to keep from hiding,
+  [D] And I'm bound to keep on riding,
+  [D] And I've got one more silver dollar,
+  But I'm [Gm7] not gonna’ let them catch me, no,
+  [C] Not gonna’ let them catch the midnight [D] rider.
+ 
+  [Verse 2]
+  [D] I don't own the clothes I'm wearing,
+  [D] And the road goes on forever,
+  [D] And I've got one more silver dollar,
+  But I'm [Gm7] not gonna’ let them catch me, no,
+  [C] Not gonna’ let them catch the midnight [D] rider.
+ 
+ [Bridge]
+  D  D  D  D  C  Bb  C  Bb  C  Bb  Bb
+  D  D  D  D
+ 
+  [Verse 3]
+  [D] I've gone past the point of caring,
+  [D]Some old bed I'll soon be sharing,
+  [D]And I've got one more silver dollar,
+  But I'm [Gm7] not gonna’ let them catch me, no,
+  [C] Not gonna’ let them catch the midnight [D] rider.
+
+  [Outro]
+  No, I'm [Gm7] not gonna’ let them catch me, no,
+  [Am7] Not gonna’ let them catch the midnight [D] rider.
+  No, I'm [Gm7] not gonna’ let them catch me, no,
+  [C] Not gonna’ let them catch the midnight [D] rider.
+
+
+---------------------------------------------------------
+*Red Haired Boy - Key A
+  A Part
+      | 1               | 1       4      | 1               | 5             |
+	5- 6- 1 2 1 3 4 | 5 6 5 3 4 3 4  | 5 1 1 2 3 1     | 2 1 7-        |
+      | 1               | 1       4      | 1                 | 1)5    1    | 2)5     1     |
+	5-6- 1 2 1 3 4  |5 6 5 3 4 3 4   | 5 8 8 6 5 4 3 1 1 |   3 1  1    |   3 1   1 5 6 |
+  B Part
+      | 5               | 4              | 1               | 5             |
+	7 6 5 6 7 6 5 6 | 7 6 5 3 4 3 4  | 5 1    1 2 3 1  | 2 7-          |
+      | 1               | 1       4      | 1               | 1)5     1     | 2)5     1     |
+	5- 6- 1 2 1 3 4 | 5 6 5 3 4  3 4 | 5  8   8 6 5 4  |   3 1   1 5 6 |   3 1   1
+
+---------------------------------------------------------
+*Salt Creek - Key A
+  A Part
+         | 1               | 1      4         | 7              | 7       5       |
+         | 1               | 1      4         | 7              | 5       1       | repeat
+  B Part
+         | 1               | 1               | 7              | 7                |
+         | 1               | 1               | 7              | 5        1       | repeat
+---------------------------------------------------------
+Salty Dog Blues - Key G
+         | 1       | 6       | 2      | 2     |
+         | 5       | 5       | 1      | 1     |
+
+---------------------------------------------------------
+*Soldier's Joy - Key D
+  A Part
+         | 1                   | 1              | 1                     | 5                |
+     8 6 | 5 3 1 3 5 3 1 3     | 5 8 8 6        | 5 3 1 3      5 3 1 3  | 4  2  2   3 4    |
+	 | 1                   | 1              | 1          5          | 1)1              | 2)1            |
+	 | 5 3 1 3 5 3 1 3     | 5 8 8 2+       | 3+ 5+ 3+ 8 2+ 4+ 2+ 7 |   8 8 8 8 8 6    |   8 8 8 8 8 2+ |
+  B Part
+         | 1                   | 4              | 1                     | 5                |
+	 | 3+ 3+ 3+ 4+ 5+ 5 3+ | 2+2+2+3+4+4+2+ | 3+2+2+4+5+5+3+        | 4+ 3+ 2+ 8 7 6 5 |
+	 | 1                   | 4              | 1        5            | 1)1              | 2)1            |
+	 | 3+ 3+ 3+ 4+ 5+ 5+ 3+| 2+2+2+3+4+4+2+ | 3+ 5+ 3+ 8 3+ 4+ 2+ 7 |   8 8 8 8 8 2+   |   8 8 8        |
+	
+---------------------------------------------------------
+Scales     1   2   3   4   5   6   7   8
+  A major  A   B   C#  D   E   F#  G#  A
+  D major  D   E   F#  G   A   B   C#  D
+  G major  G   A   B   C   D   E   F#  G
+           1   2   3   4   5   6   7   8
