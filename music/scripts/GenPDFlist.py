@@ -1,6 +1,13 @@
 from pathlib import Path
 from posixpath import basename, splitext
 import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("musicFolder")
+args = parser.parse_args()
+
+musicFolder = args.musicFolder
 
 # lambda l accepts a path and returns just the filename without an extension
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
@@ -16,15 +23,15 @@ def dictCompare(s):
   else:
     return s
 
-with open("music/scripts/HTMLheader.txt", "r") as headerText:
+with open(musicFolder + "/scripts/HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 allFiles = []
-for p in Path("./").rglob('*.pdf'):
+for p in Path(musicFolder).rglob('*.pdf'):
   allFiles.append(p)
-for p in Path("./").rglob('*.chopro'):
+for p in Path(musicFolder).rglob('*.chopro'):
   allFiles.append(p)
-for p in Path("./").rglob('*.cho'):
+for p in Path(musicFolder).rglob('*.cho'):
   allFiles.append(p)
 
 def findMatchingBasename(files, basename):
