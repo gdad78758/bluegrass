@@ -37,6 +37,8 @@ for p in Path(musicFolder).rglob('*.aif'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.mscz'):
   allFiles.append(p)
+for p in Path(musicFolder).rglob('*.jpg'):
+  allFiles.append(p)
 
 
 def findMatchingBasename(files, basename):
