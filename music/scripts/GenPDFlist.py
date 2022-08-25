@@ -35,6 +35,8 @@ for p in Path(musicFolder).rglob('*.cho'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.aif'):
   allFiles.append(p)
+for p in Path(musicFolder).rglob('*.mp3'):
+  allFiles.append(p)
 for p in Path(musicFolder).rglob('*.mscz'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.jpg'):
