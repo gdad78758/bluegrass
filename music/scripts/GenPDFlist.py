@@ -83,10 +83,20 @@ with open("PDFLinks.html", "w") as htmlOutput:
       htmlOutput.write(f"  <td>{f[0]}</td>\n<td>")
       # the remainder of f's elements are files that match the title in f[0]
       for i in f[1:]:
-        if ext(i) != ".pdf":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        else:
+#        if ext(i) != ".pdf":
+#          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+#       else:
+#         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+#
+      match i:
+        case ".pdf":
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+        case ".html":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        case ".chopro":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        case ".mscz":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
