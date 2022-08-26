@@ -92,7 +92,7 @@ with open("PDFLinks.html", "w") as htmlOutput:
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i) == ".mscz":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i): == ".mp3":
+        elif ext(i) == ".mp3":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
