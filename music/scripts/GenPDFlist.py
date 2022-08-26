@@ -90,13 +90,28 @@ with open("PDFLinks.html", "w") as htmlOutput:
 #
         if ext(i) == ".pdf":
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i) == ".mscz":
+        elif ext(i) == ".chopro":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".cho":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".aif":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i) == ".mp3":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".mscz":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".jpg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".jpeg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")      
+        elif ext(i) == ".txt":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".png":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i) == ".html":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
