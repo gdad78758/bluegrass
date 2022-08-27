@@ -17,7 +17,7 @@ def dictCompare(s):
   else:
     return s
 
-with open("scripts/HTMLheader.txt", "r") as headerText:
+with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 allFiles = []
