@@ -27,27 +27,27 @@ with open(musicFolder + "/scripts/HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 allFiles = []
-for p in Path(musicFolder).rglob('*.pdf'):
+for p in Path(musicFolder).rglob('*.[Pp][Dd][Ff]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.chopro'):
+for p in Path(musicFolder).rglob('*.[Cc][Hh][Oo][Pp][Rr][Oo]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.cho'):
+for p in Path(musicFolder).rglob('*.[Cc][Hh][Oo]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.aif'):
+for p in Path(musicFolder).rglob('*.[Aa][Ii][Ff]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.mp3'):
+for p in Path(musicFolder).rglob('*.[Mm][Pp]3'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.mscz'):
+for p in Path(musicFolder).rglob('*.[Mm][Ss][Cc][Zz]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.jpg'):
+for p in Path(musicFolder).rglob('*.[Jj][Pp][Gg]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.jpeg'):
+for p in Path(musicFolder).rglob('*.[Jj][Pp][Ee][Gg]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.txt'):
+for p in Path(musicFolder).rglob('*.[Tt][Xx][Tt]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.png'):
+for p in Path(musicFolder).rglob('*.[Pp][Nn][Gg]'):
   allFiles.append(p)
-for p in Path(musicFolder).rglob('*.html'):
+for p in Path(musicFolder).rglob('*.[Hh][Tt][Mm][Ll]'):
   allFiles.append(p)
 
 def findMatchingBasename(files, basename):
@@ -88,27 +88,27 @@ with open("PDFLinks.html", "w") as htmlOutput:
 #       else:
 #         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
 #
-        if ext(i) == ".pdf":
+        if ext(i).lower() == ".pdf":
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i) == ".chopro":
+        elif ext(i).lower() == ".chopro":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".cho":
+        elif ext(i).lower() == ".cho":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".aif":
+        elif ext(i).lower() == ".aif":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".mp3":
+        elif ext(i).lower() == ".mp3":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".mscz":
+        elif ext(i).lower() == ".mscz":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".jpg":
+        elif ext(i).lower() == ".jpg":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".jpeg":
+        elif ext(i).lower() == ".jpeg":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")      
-        elif ext(i) == ".txt":
+        elif ext(i).lower() == ".txt":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".png":
+        elif ext(i).lower() == ".png":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i) == ".html":
+        elif ext(i).lower() == ".html":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
