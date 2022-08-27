@@ -103,7 +103,7 @@ with open("PDFLinks.html", "w") as htmlOutput:
         elif ext(i).lower() == ".jpg":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".jpeg":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")      
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".txt":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".png":
