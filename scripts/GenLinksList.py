@@ -13,11 +13,17 @@ args = parser.parse_args()
 
 inputLinksFileName = args.inputLinksFileName
 
+
+
+
 with open(inputLinksFileName, "r") as inputLinksFile:
   inputText = inputLinksFile.readlines()
 
 HtmlFileName = 'GeneratedLinksList.html'
 with open(HtmlFileName, "w") as HtmlFile:
+
+
+  
   Titleline = "Links:"
   HtmlFile.write(Titleline)
   HtmlFile.write('<br /><br />')
