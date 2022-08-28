@@ -13,7 +13,9 @@ args = parser.parse_args()
 
 inputLinksFileName = args.inputLinksFileName
 
-
+#added these 2 lines
+with open("HTMLheader.txt", "r") as headerText:
+  header = headerText.readlines()
 
 
 with open(inputLinksFileName, "r") as inputLinksFile:
@@ -22,7 +24,8 @@ with open(inputLinksFileName, "r") as inputLinksFile:
 HtmlFileName = 'GeneratedLinksList.html'
 with open(HtmlFileName, "w") as HtmlFile:
 
-
+# added this line
+  HtmlFile.writelines(header)
   
   Titleline = "Links:"
   HtmlFile.write(Titleline)
