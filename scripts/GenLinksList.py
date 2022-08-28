@@ -16,7 +16,7 @@ inputLinksFileName = args.inputLinksFileName
 with open(inputLinksFileName, "r") as inputLinksFile:
   inputText = inputLinksFile.readlines()
 
-HtmlFileName = 'LinksList.html'
+HtmlFileName = 'Generated/LinksList.html'
 with open(HtmlFileName, "w") as HtmlFile:
   Titleline = "Links:"
   HtmlFile.write(Titleline)
