@@ -73,7 +73,7 @@ for p in allFiles:
     allTitles.append([l(p), str(p)])
 
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("PDFLinks.html", "w") as htmlOutput:
+with open("SongList.html", "w") as htmlOutput:
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
