@@ -1,4 +1,8 @@
-from pathlib import Path
+#
+# Invoke with:
+#   python3 GenSongslist.py SongsFolder
+# from pathlib import Path
+
 from posixpath import basename, splitext
 import os
 import argparse
