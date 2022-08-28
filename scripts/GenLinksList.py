@@ -1,5 +1,5 @@
 # invoke with: 
-# python3 formatHTML.py InputTextFileName.txt
+# python3 formatHTML.py InputLinksFileName.txt
 #
 from pathlib import Path
 from posixpath import basename, splitext
@@ -8,15 +8,15 @@ import argparse
 import re
 
 parser = argparse.ArgumentParser()
-parser.add_argument("inputTextFileName")
+parser.add_argument("inputLinksFileName")
 args = parser.parse_args()
 
-inputTextFileName = args.inputTextFileName
+inputLinksFileName = args.inputLinksFileName
 
-with open(inputTextFileName, "r") as inputTextFile:
-  inputText = inputTextFile.readlines()
+with open(inputLinksFileName, "r") as inputLinksFile:
+  inputText = inputLinksFile.readlines()
 
-HtmlFileName = 'Links.html'
+HtmlFileName = 'LinksList.html'
 with open(HtmlFileName, "w") as HtmlFile:
   Titleline = "Links:"
   HtmlFile.write(Titleline)
