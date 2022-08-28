@@ -1,3 +1,6 @@
+# invoke with: 
+# python3 formatHTML.py InputTextFileName.txt
+#
 from pathlib import Path
 from posixpath import basename, splitext
 import os
