@@ -100,21 +100,21 @@ with open("GeneratedSongList.html", "w") as htmlOutput:
         elif ext(i).lower() == ".cho":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".aif":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".mp3":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".mscz":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".jpg":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".jpeg":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".txt":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".png":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".html":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         else:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
 
