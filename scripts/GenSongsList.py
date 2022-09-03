@@ -1,6 +1,6 @@
 #
 # Invoke with:
-#   python3 GenSongslist.py SongsFolder
+#   python3 GenSongsList.py SongsFolder
 # from pathlib import Path
 
 from pathlib import Path
