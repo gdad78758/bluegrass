@@ -1,5 +1,5 @@
 # invoke with: 
-# python3 formatHTML.py InputLinksFileName.txt
+# python3 GenLinksList.py InputLinksFileName.txt
 #
 from pathlib import Path
 from posixpath import basename, splitext
