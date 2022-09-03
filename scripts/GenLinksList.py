@@ -1,5 +1,5 @@
 # invoke with: 
-# python3 GenLinksList.py InputLinksFileName.txt
+# python3 path/GenLinksList.py Path/Links.txt
 #
 from pathlib import Path
 from posixpath import basename, splitext
