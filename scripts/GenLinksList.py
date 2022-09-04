@@ -34,5 +34,5 @@ with open(HtmlFileName, "w") as HtmlFile:
   for line in inputText:
     HtmlLine = line
     HtmlLine = re.sub("^(.*)(http.*)", f"<a href=\"\\2\"> \\1 </a> <br>", HtmlLine)
-    HtmlFile.write('<br />')
+   
     HtmlFile.write(HtmlLine.rstrip())
