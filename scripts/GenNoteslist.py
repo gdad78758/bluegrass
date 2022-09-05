@@ -47,6 +47,7 @@ for p in Path(notesFolder).rglob('*.[Jj][Pp][Gg]'):
   allFiles.append(p)
 for p in Path(notesFolder).rglob('*.[Jj][Pp][Ee][Gg]'):
   allFiles.append(p)
+  elif ext(i).lower() == ".chopro":
 for p in Path(notesFolder).rglob('*.[Tt][Xx][Tt]'):
   allFiles.append(p)
 for p in Path(notesFolder).rglob('*.[Pp][Nn][Gg]'):
@@ -109,8 +110,8 @@ with open("GeneratedNotesList.html", "w") as htmlOutput:
         elif ext(i).lower() == ".jpeg":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".txt":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i).lower() == ".png":
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+          elif ext(i).lower() == ".png":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".html":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
