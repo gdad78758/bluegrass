@@ -14,7 +14,7 @@ How to sync everything:
 
 
 - To update the RPi computer (69.5.217.253):
-        ssh into it:   ssh user@69.5.217.253
+        ssh into it:   ssh marty@69.5.217.253
 		*** Look in the SyncWithMartyOffice folder and fix it up to conform to       ***
 		*** Marty-Office computer's /mnt/c/git/bluegrass/SyncWithMartyOffice folder. ***
 		*** You will have to manually removed and reorganize anything that's wrong   ***
