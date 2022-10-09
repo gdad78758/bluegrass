@@ -1,6 +1,6 @@
 #
 # Invoke with:
-#   python3 GenMLPList.py MLP Folder
+#   python3 GenMLPList.py MLPFolder
 # from pathlib import Path
 
 from pathlib import Path
