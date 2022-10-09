@@ -1,6 +1,6 @@
 #
 # Invoke with:
-#   python3 GenSongsList.py SongsFolder
+#   python3 GenMLPList.py MLP Folder
 # from pathlib import Path
 
 from pathlib import Path
@@ -78,7 +78,7 @@ for p in allFiles:
     allTitles.append([l(p), str(p)])
 
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("GeneratedSongsList.html", "w") as htmlOutput:
+with open("GeneratedMLPList.html", "w") as htmlOutput:
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
