@@ -3,46 +3,57 @@ How to sync everything:
 - Make any changes in the bluegrass/links and bluegrass/music folders
 - Add everything you don't want to be followed by git to the SyncWithMartyOffice folder
   on the Marty-Office computer
+- Keep track of anything you delete from the SyncWithMartyOffice folder because you'll 
+  have to delete them manually on the RPi
 - use Visual Studio Code and make sure everything is up to date
 - invoke syncblue.sh  - on the Marty-Office computer, use the windows ubuntu app which
                         will give you a linux like terminal on the windows machine.
 						Then cd /mnt/c/git
 						Then invoke the update script:   ./syncblue.sh
 - This takes everything on the Marty-Office computer sends it to the RPi
+
+
 - To update the RPi computer (69.5.217.253):
-                        ssh into it:   ssh user@69.5.217.253
-						within the home folder /home/marty invoke the shell script
-						./update_bluegrass.sh
-						Log out of the RPi computer - exit
+        ssh into it:   ssh user@69.5.217.253
+		*** you will have to manually remove any files you've deleted from the      ***
+		*** Marty-Office computer's /mnt/c/git/bluegrass/SyncWithMartyOffice folder ***
+		within the home folder /home/marty invoke the shell script
+			./update_bluegrass.sh
+		Log out of the RPi computer - exit
+
+
 - To update Linux-desktop (192.168.1.237) git tracked files:
-                        ssh marty@192.168.1.237
-                        In terminal for Linux-desktop cd ~/git/bluegrass
-						sudo git status
-						sudo git pull
-						- Exit Linux-desktop
+        ssh marty@192.168.1.237
+        In terminal for Linux-desktop cd ~/git/bluegrass
+			sudo git status
+			sudo git pull
+		- Now update 'SyncWithMartyOffice' files that are not tracked by git:
+            Fire up FreeFileSync on Marty-Office computer
+				Choose 'SyncLinuxDesktop'
+					On left side choose c:\git\bluegrass\SyncWithMartyOffice
+					On right side choose 
+					ftp://marty@192.168.1.237/home/marty/git/bluegrass/SyncWithMartyOffice|pass64=Y2hpY28=
+            	Do a 'Compare', then 'Synchronize'
+					Confirm sync by looking into git/bluegrass/SyncWithMartyOffice
+		- Exit Linux-desktop
+
+
+
 - To update Liv-Room (192.168.1.149) git tracked files:
-                        ssh -p 2569 marty@192.168.1.149
-                        In terminal for Liv-Room cd ~/git/bluegrass
-						sudo git status
-						sudo git pull
-						- Exit Liv-Room
+        ssh -p 2569 marty@192.168.1.149
+        In terminal for Liv-Room cd ~/git/bluegrass
+			sudo git status
+			sudo git pull
+		- Now update 'SyncWithMartyOffice' files that are not tracked by git:
+            Fire up FreeFileSync on Marty-Office computer
+				Choose 'SyncLinuxDesktop'
+					On left side choose c:\git\bluegrass\SyncWithMartyOffice
+					On right side choose 
+					ftp://marty@192.168.1.149/home/marty/git/bluegrass/SyncWithMartyOffice|pass64=Y2hpY28=
+            	Do a 'Compare', then 'Synchronize'
+					Confirm sync by looking into git/bluegrass/SyncWithMartyOffice
+		- Exit Liv-Room
 
-- Now update 'SyncWithMartyOffice' files that are not tracked by git:
-                        Fire up FreeFileSync on Marty-Office computer
-						Choose 'SyncLinuxDesktop'
-						    On left side choose c:\git\bluegrass\SyncWithMartyOffice
-							On right side choose 
-							ftp://marty@192.168.1.237/home/marty/git/bluegrass/SyncWithMartyOffice|pass64=Y2hpY28=
-            				and do a 'Compare', then 'Synchronize'
-					    Confirm sync by looking into /git/bluegrass/SyncWithMartyOffice
-						
 
-                        Fire up FreeFileSync on Marty-Office computer
-						Choose 'SyncLivRoom'
-						    On left side choose c:\git\bluegrass\SyncWithMartyOffice
-							On right side choose 
-		                    ftp://marty@192.168.1.149/home/marty/git/bluegrass/SyncWithMartyOffice|pass64=Y2hpY28=
-            				and do a 'Compare', then 'Synchronize'
-					    Confirm sync by looking into /git/bluegrass/SyncWithMartyOffice
 
 Done!
