@@ -36,7 +36,7 @@ extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
 
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
-  if ext(p).upper() in (extension.upper() for extension in extensions):
+  if ext(p) in (extension.lower() for extension in extensions):
     allFiles.append(p)
 
 def findMatchingBasename(files, basename):
