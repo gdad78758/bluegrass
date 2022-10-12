@@ -54,6 +54,8 @@ for p in Path(musicFolder).rglob('*.[Pp][Nn][Gg]'):
   allFiles.append(p)
 for p in Path(musicFolder).rglob('*.[Hh][Tt][Mm][Ll]'):
   allFiles.append(p)
+for p in Path(musicFolder).rglob('*.[Uu][Rr][Ll]'):
+  allFiles.append(p)
 
 def findMatchingBasename(files, basename):
   matches = [f for f in files if f[0].lower() == l(basename).lower()]
@@ -115,6 +117,10 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".html":
           htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+        elif ext(i) == ".url":
+          with open(i, "r") as urlFile:
+            address = urlFile.readline()
+          htmlOutput.write(f"<a href=\"{address}\">video</a>\n")
         else:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
 
