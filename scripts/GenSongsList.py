@@ -18,7 +18,7 @@ musicFolder = args.musicFolder
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
 
 # lambda ext is like lambda l, except it returns the file extension
-ext = lambda p: str(os.path.splitext(os.path.basename(p))[1])
+ext = lambda p: str(os.path.splitext(os.path.basename(p))[1]).lower()
 
 articles = ['a', 'an', 'the']
 def dictCompare(s):
@@ -31,31 +31,13 @@ def dictCompare(s):
 with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
+extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
+              ".jpg", ".jpeg", ".txt", ".png", ".html", ".url"]
+
 allFiles = []
-for p in Path(musicFolder).rglob('*.[Pp][Dd][Ff]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Cc][Hh][Oo][Pp][Rr][Oo]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Cc][Hh][Oo]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Aa][Ii][Ff]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Mm][Pp]3'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Mm][Ss][Cc][Zz]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Jj][Pp][Gg]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Jj][Pp][Ee][Gg]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Tt][Xx][Tt]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Pp][Nn][Gg]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Hh][Tt][Mm][Ll]'):
-  allFiles.append(p)
-for p in Path(musicFolder).rglob('*.[Uu][Rr][Ll]'):
-  allFiles.append(p)
+for p in Path(musicFolder).rglob('*'):
+  if ext(p).upper() in (extension.upper() for extension in extensions):
+    allFiles.append(p)
 
 def findMatchingBasename(files, basename):
   matches = [f for f in files if f[0].lower() == l(basename).lower()]
@@ -95,34 +77,14 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
 #       else:
 #         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
 #
-        if ext(i).lower() == ".pdf":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".chopro":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i).lower() == ".cho":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i).lower() == ".aif":
-         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".mp3":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".mscz":
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
-        elif ext(i).lower() == ".jpg":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".jpeg":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".txt":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".png":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i).lower() == ".html":
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-        elif ext(i) == ".url":
+        if ext(i) == ".url":
           with open(i, "r") as urlFile:
             address = urlFile.readline()
           htmlOutput.write(f"<a href=\"{address}\">video</a>\n")
-        else:
+        elif (ext(i).lower() == ".chopro") or (ext(i) == ".cho") or (ext(i) == ".mscz"):
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        else:
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
