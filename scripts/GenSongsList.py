@@ -32,7 +32,7 @@ with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
-              ".jpg", ".jpeg", ".txt", ".png", ".html", ".url"]
+              ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt"]
 
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
@@ -78,7 +78,7 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
 #       else:
 #         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
 #
-        if ext(i) == ".url":
+        if ext(i) == ".urltxt":
           with open(i, "r") as urlFile:
             label = urlFile.readline()
             address = urlFile.readline()
