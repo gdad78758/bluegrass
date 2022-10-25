@@ -65,7 +65,7 @@ downloadExtensions = [".cho", ".chopro", ".mscz"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
 with open("GeneratedSongsList.html", "w") as htmlOutput:
   # define separator character sep
-  sep='  '
+  sep='--'
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
