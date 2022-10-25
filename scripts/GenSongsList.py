@@ -64,6 +64,8 @@ for p in allFiles:
 downloadExtensions = [".cho", ".chopro", ".mscz"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
 with open("GeneratedSongsList.html", "w") as htmlOutput:
+  # define separator character sep
+  sep='|'
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
@@ -82,7 +84,7 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
           with open(i, "r") as urlFile:
             label = urlFile.readline()
             address = urlFile.readline()
-          htmlOutput.write(f"<a href=\"{address}\">  {label}</a>\n")
+          htmlOutput.write(f"<a href=\"{address}\">sep{label}sep</a>\n")
         elif ext(i) in downloadExtensions:
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
