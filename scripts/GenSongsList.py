@@ -86,9 +86,9 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
             address = urlFile.readline()
           htmlOutput.write(f"<a href=\"{address}\">{sep}{label}{sep}</a>\n")
         elif ext(i) in downloadExtensions:
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{sep}{ext(i)}{sep}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}{sep}</a>\n")
         else:
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{sep}{ext(i)}{sep}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}{sep}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
