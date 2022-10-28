@@ -1,0 +1,20 @@
+
+
+Major Chord
+1st shape  for A, 2-2-4-5, root on G string: notes R-5-3-5
+1st inversion shape  for A, 6-7-7-x, notes 3-R-5-x
+2nd inversion shape  for A, 9-11-12-x notes 5-3-R-x
+
+Another way to look at it:
+ R  0  +2  +3  <--  R 5 3 R
+-1  R   0  -2  <--  3 R 5 R
+-3 -1   R   0  <--  5 3 R 5
+
+Minor Chord
+1st shape for Am, 2-2-3-5, notes R-5-3-5
+1st inversion shape for Am, 5-7-7-x notes 3-R-5-x
+2nd inversion shape for Am, 9-10-12-x notes 5-3-R-x
+
+ R  0  +1  +3  <--  R 5 3m R
+-2  R   0  -2  <--  3m R 5 R
+-3 -2   R   0  <--  5 3m R 5
