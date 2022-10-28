@@ -94,8 +94,8 @@ with open("GeneratedNotesList.html", "w") as htmlOutput:
 #
         if ext(i).lower() == ".pdf":
           # original line
-          # htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
-          htmlOutput.write(f"  <a href=\"{https://docs.google.com/viewerng/viewer?url=}{str(i)}\">{ext(i)}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+          # htmlOutput.write(f"  <a href=\"{https://docs.google.com/viewerng/viewer?url=}{str(i)}\">{ext(i)}</a>\n")
         elif ext(i).lower() == ".chopro":
           htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         elif ext(i).lower() == ".cho":
