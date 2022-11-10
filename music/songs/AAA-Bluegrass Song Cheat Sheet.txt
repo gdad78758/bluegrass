@@ -84,7 +84,7 @@ Blackberry Blossom - Key G
 	  Oh, Bu-ry me be        -neath the willow, under the weeping willow     tree,
 	    | 1                 | 4               | 1            5             | 1             |
 	   So she will know where I am sleeping,    and per-haps she'll weep for me.
-	 Verses
+  Verses
   1. My heart is sad I am lonely, for the only one I love,
      When shall I see her, oh no never, 'til we meet in heaven above.
   2. She told me that she dearly loved me, how-could I believe it untrue,
@@ -148,40 +148,40 @@ Country Roads - Key G
   Take me home, (down) country roads.
 ---------------------------------------------------------
 Cripple Creek - Key A
-| 1           | 4    1    | 1           | 5      1       | repeat
-| 1           | 1         | 1           | 5      1       | repeat
+| 1       | 4    1    | 1        | 5      1   | repeat
+| 1       | 1         | 1        | 5      1   | repeat
 ---------------------------------------------------------
 *Devil's Dream - Key A
   A Part
-    | 1               | 1               | 2m              | 2m      5       |
-    | 1               | 1               | 2m              | 2m       5      | repeat
+    | 1    | 1    | 2m   | 2m  5 |
+    | 1    | 1    | 2m   | 2m  5 | repeat
   B Part
-    | 1               | 1               | 2m              | 2m      5       |
-    | 1               | 1               | 2m              | 2m       5      | repeat
+    | 1    | 1    | 2m   | 2m  5 |
+    | 1    | 1    | 2m   | 2m  5 | repeat
 
 ---------------------------------------------------------
 Dooley - Key A
-         | 1                 | 4               | 1                   | 5             | 
-		   Doo - ley  was a    good old man, he  lived be-low the      mill.
-		   One gal watched the boil-er, the      oth-er watched the    spout.
-         | 1                 | 4               | 1      5            | 1             | repeat
-		   Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
-		   Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
+    | 1                 | 4               | 1                   | 5             | 
+	Doo - ley  was a    good old man, he  lived be-low the      mill.
+	One gal watched the boil-er, the      oth-er watched the    spout.
+    | 1                 | 4               | 1      5            | 1             | repeat
+	Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
+	Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
     Chorus
 		 | 1                 | 1               | 4                   | 4             |
 		   Dooley, Slippin' up the holler,       Dooley, tryin' to make a dollar.
 		 | 1                 | 1               | 5                   | 1             |
 		   Dooley, give me a swaller,            And I'll pay you back some day.
 	Verse 2 
-		 The revenuers came for him, a slippin' through the woods.
-		 Dooley kept behind them all and never lost his goods.
-		 Dooley was a trader when into town he come,
-		 Sugar by the bushel and molasses by the ton.
-    Verse 3
-	     I remember very well the day old Dooley died,
-		 The woman folk looked sorry, the men stood around and cried.
-		 Now Dooley's on the mountain, he lies there all alone,
-		 They put a jug beside him and a barrel for a stone.		 
+  The revenuers came for him, a slippin' through the woods.
+  Dooley kept behind them all and never lost his goods.
+  Dooley was a trader when into town he come,
+  Sugar by the bushel and molasses by the ton.
+  Verse 3
+  I remember very well the day old Dooley died,
+  The woman folk looked sorry, the men stood around and cried.
+  Now Dooley's on the mountain, he lies there all alone,
+  They put a jug beside him and a barrel for a stone.		 
 ---------------------------------------------------------		 
 Fox on the Run - Key G
     written by Tony Hazzard
@@ -254,37 +254,36 @@ Midnight Rider - Key D
   No, I'm [Gm7] not gonna’ let them catch me, no,
   [C] Not gonna’ let them catch the midnight [D] rider.
 
-
 ---------------------------------------------------------
 *Red Haired Boy - Key A
   A Part
-      | 1               | 1       4      | 1               | 5             |
-      | 1               | 1       4      | 1               | 5        1    |
+      | 1       | 1   4  | 1      | 5       |
+      | 1       | 1   4  | 1      | 5   1   |
   B Part
-      | 5               | 4              | 1               | 5             |
-      | 1               | 1       4      | 1               | 5        1    | 
+      | 5       | 4      | 1      | 5       |
+      | 1       | 1   4  | 1      | 5   1   | 
 
 ---------------------------------------------------------
 *Salt Creek - Key A
   A Part
-         | 1               | 1      4         | 7              | 7       5       |
-         | 1               | 1      4         | 7              | 5       1       | repeat
+      | 1       | 1   4  | 7      | 7   5   |
+      | 1       | 1   4  | 7      | 5   1   | repeat
   B Part
-         | 1               | 1               | 7              | 7                |
-         | 1               | 1               | 7              | 5        1       | repeat
+      | 1       | 1      | 7      | 7       |
+      | 1       | 1      | 7      | 5   1   | repeat
 ---------------------------------------------------------
 Salty Dog Blues - Key G
-         | 1       | 6       | 2      | 2     |
-         | 5       | 5       | 1      | 1     |
+      | 1       | 6      | 2      | 2     |
+      | 5       | 5      | 1      | 1     |
 
 ---------------------------------------------------------
 *Soldier's Joy - Key D
   A Part
-   | 1                   | 1              | 1                     | 5              |
-	 | 1                   | 1              | 1          5          | 1              |
+      | 1       | 1      | 1      | 5     |
+	    | 1       | 1      | 1   5  | 1     |
   B Part
-   | 1                   | 4              | 1                     | 5              |
-	 | 1                   | 4              | 1        5            | 1              | 
+      | 1       | 4      | 1      | 5     |
+	    | 1       | 4      | 1   5  | 1     | 
 	
 ---------------------------------------------------------
 Scales     1   2   3   4   5   6   7   8
