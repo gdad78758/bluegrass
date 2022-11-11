@@ -161,17 +161,17 @@ Cripple Creek - Key A
 
 ---------------------------------------------------------
 Dooley - Key A
-    | 1                 | 4               | 1                   | 5             | 
-	Doo - ley  was a    good old man, he  lived be-low the      mill.
-	One gal watched the boil-er, the      oth-er watched the    spout.
-    | 1                 | 4               | 1      5            | 1             | repeat
-	Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
-	Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
+    | 1                 | 4               | 1                   | 5        | 
+    Doo - ley  was a    good old man, he  lived be-low the      mill.
+    One gal watched the boil-er, the      oth-er watched the    spout.
+    | 1                 | 4               | 1      5            | 1        | repeat
+    Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
+    Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
     Chorus
-		 | 1                 | 1               | 4                   | 4             |
-		   Dooley, Slippin' up the holler,       Dooley, tryin' to make a dollar.
-		 | 1                 | 1               | 5                   | 1             |
-		   Dooley, give me a swaller,            And I'll pay you back some day.
+     | 1                 | 1               | 4                   | 4       |
+       Dooley, Slippin' up the holler,       Dooley, tryin' to make a dollar.
+     | 1                 | 1               | 5                   | 1       |
+       Dooley, give me a swaller,            And I'll pay you back some day.
 	Verse 2 
   The revenuers came for him, a slippin' through the woods.
   Dooley kept behind them all and never lost his goods.
