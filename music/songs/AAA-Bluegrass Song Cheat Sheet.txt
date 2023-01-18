@@ -160,7 +160,7 @@ Cripple Creek - Key A
     | 1    | 1    | 2m   | 2m  5 | repeat
 
 ---------------------------------------------------------
-Dooley - Key A
+Dooley - Key G
     | 1                 | 4               | 1                   | 5        | 
     Doo - ley  was a    good old man, he  lived be-low the      mill.
     One gal watched the boil-er, the      oth-er watched the    spout.
