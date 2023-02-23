@@ -20,13 +20,21 @@ l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
 # lambda ext is like lambda l, except it returns the file extension
 ext = lambda p: str(os.path.splitext(os.path.basename(p))[1])
 
+# dictCompare removes articles that appear as the first word in a filename
 articles = ['a', 'an', 'the']
 def dictCompare(s):
+  formattedS = ''
   sWords = s.split()
   if sWords[0].lower() in articles:
-    return ' '.join(sWords[1:])
+    formattedS = ' '.join(sWords[1:])
   else:
-    return s
+    formattedS = s
+
+  # Remove punctuation
+  formattedS.replace('\'','')
+  formattedS.replace(',','')
+
+  return formattedS
 
 with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
