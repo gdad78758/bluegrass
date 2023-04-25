@@ -1,15 +1,13 @@
 #
 # Invoke with:
-#   python3 GenSongsList.py SongsFolder
-# from pathlib import Path
-
+#   python3 GenNoteslist.py notesFolder
+# 
 from pathlib import Path
 from posixpath import basename, splitext
 import os
 import argparse
 
 parser = argparse.ArgumentParser()
-
 parser.add_argument("NotesFolder")
 args = parser.parse_args()
 
@@ -19,7 +17,7 @@ notesFolder = args.NotesFolder
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
 
 # lambda ext is like lambda l, except it returns the file extension
-ext = lambda p: str(os.path.splitext(os.path.basename(p))[1]).lower()
+ext = lambda p: str(os.path.splitext(os.path.basename(p))[1])
 
 # dictCompare removes articles that appear as the first word in a filename
 articles = ['a', 'an', 'the']
@@ -40,13 +38,29 @@ def dictCompare(s):
 with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
-extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
-              ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt"]
-
 allFiles = []
-for p in Path(notesFolder).rglob('*'):
-  if ext(p) in (extension.lower() for extension in extensions):
-    allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Pp][Dd][Ff]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Cc][Hh][Oo][Pp][Rr][Oo]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Cc][Hh][Oo]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Aa][Ii][Ff]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Mm][Pp]3'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Mm][Ss][Cc][Zz]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Jj][Pp][Gg]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Jj][Pp][Ee][Gg]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Tt][Xx][Tt]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Pp][Nn][Gg]'):
+  allFiles.append(p)
+for p in Path(notesFolder).rglob('*.[Hh][Tt][Mm][Ll]'):
+  allFiles.append(p)
 
 def findMatchingBasename(files, basename):
   matches = [f for f in files if f[0].lower() == l(basename).lower()]
@@ -70,11 +84,8 @@ for p in allFiles:
     # found a song for the first time. Add the title and the filename
     allTitles.append([l(p), str(p)])
 
-downloadExtensions = [".cho", ".chopro", ".mscz"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("GeneratedSongsList.html", "w") as htmlOutput:
-  # define separator character sep
-  sep='&nbsp&nbsp'
+with open("GeneratedNotesList.html", "w") as htmlOutput:
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
@@ -89,15 +100,32 @@ with open("GeneratedSongsList.html", "w") as htmlOutput:
 #       else:
 #         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
 #
-        if ext(i) == ".urltxt":
-          with open(i, "r") as urlFile:
-            label = urlFile.readline()
-            address = urlFile.readline()
-          htmlOutput.write(f"<a href=\"{address}\">{sep}{label}{sep}</a>\n")
-        elif ext(i) in downloadExtensions:
-          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}{sep}</a>\n")
+        if ext(i).lower() == ".pdf":
+          # original line
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+          # htmlOutput.write(f"  <a href=\"{https://docs.google.com/viewerng/viewer?url=}{str(i)}\">{ext(i)}</a>\n")
+        elif ext(i).lower() == ".chopro":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".cho":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".aif":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".mp3":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".mscz":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".jpg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".jpeg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".txt":
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+        elif ext(i).lower() == ".png":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".html":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
-          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}{sep}</a>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
