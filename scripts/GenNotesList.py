@@ -10,10 +10,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("notesFolder")
+parser.add_argument("NotesFolder")
 args = parser.parse_args()
 
-notesfolder = args.notesFolder
+notesfolder = args.NotesFolder
 
 # lambda l accepts a path and returns just the filename without an extension
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
