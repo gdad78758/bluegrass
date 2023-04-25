@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("NotesFolder")
 args = parser.parse_args()
 
-notesfolder = args.NotesFolder
+notesFolder = args.NotesFolder
 
 # lambda l accepts a path and returns just the filename without an extension
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
@@ -44,7 +44,7 @@ extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
               ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt"]
 
 allFiles = []
-for p in Path(notesfolder).rglob('*'):
+for p in Path(notesFolder).rglob('*'):
   if ext(p) in (extension.lower() for extension in extensions):
     allFiles.append(p)
 
