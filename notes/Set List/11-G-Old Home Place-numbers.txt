@@ -26,7 +26,7 @@ And the fox hunter blows his horn
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 1  3-7 4 1  Well, the girl ran off with somebody [G]else
-1  5        The tariffs took all my pay
+1  5        The taverns took all my pay
 1  3-7 4 1  And here I stand where the old home stood
 1  5  1     Before they took it away
  
