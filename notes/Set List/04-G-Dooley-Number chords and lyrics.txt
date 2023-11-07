@@ -26,10 +26,10 @@ Chorus All sing
 Instrumental break - tune=verse twice
 
 Verse 3 Larry and Paulette sing
-[1]I remember very [4]well the [1]day old Dooley [5]died,
-[1]The woman folk [4]looked sorry, the [1]men stood [5]around and [1]cried.
-[1]Now Dooley's [4]on the mountain, he [1]lies there all [5]alone,
-[1]They put a jug [4]beside him and a [1]barrel [5]for a [1]stone.
+  [1]I remember very [4]well the [1]day old Dooley [5]died,
+  [1]The woman folk [4]looked sorry, the [1]men stood [5]around and [1]cried.
+  [1]Now Dooley's [4]on the mountain, he [1]lies there all [5]alone,
+  [1]They put a jug [4]beside him and a [1]barrel [5]for a [1]stone.
 
 Chorus All sing
 
