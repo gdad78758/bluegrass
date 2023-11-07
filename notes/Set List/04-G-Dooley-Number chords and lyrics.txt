@@ -1,24 +1,36 @@
 --------------------------------------------------------
 Dooley - Key G
-    | 1                 | 4               | 1                   | 5        | 
-    Doo - ley  was a    good old man, he  lived be-low the      mill.
-    One gal watched the boil-er, the      oth-er watched the    spout.
-    | 1                 | 4               | 1      5            | 1        | repeat
-    Doo - ley had two   daugh-ters and a  for-ty gal - lon      still.
-    Ma- ma corked the   bot-tles when old Doo- ley fetched them out.
-    Chorus
-     | 1                 | 1               | 4                   | 4       |
-       Dooley, Slippin' up the holler,       Dooley, tryin' to make a dollar.
-     | 1                 | 1               | 5                   | 1       |
-       Dooley, give me a swaller,            And I'll pay you back some day.
-	Verse 2 
-  The revenuers came for him, a slippin' through the woods.
-  Dooley kept behind them all and never lost his goods.
-  Dooley was a trader when into town he come,
-  Sugar by the bushel and molasses by the ton.
-  Verse 3
-  I remember very well the day old Dooley died,
-  The woman folk looked sorry, the men stood around and cried.
-  Now Dooley's on the mountain, he lies there all alone,
-  They put a jug beside him and a barrel for a stone.		 
----------------------------------------------------------		
+		
+Intro - tune=verse once
+  [1] Doo - ley  was a   [4] good old man, he [1] lived be-low the     [5] mill.
+  [1] Doo - ley had two  [4] daugh-ters and a [1] for-ty[5] gal - lon     [1] still.
+
+Verse 1 Paulette sings
+  [1]Doo - ley  was a    [4]good old man, he  [1]lived be-low the      [5]mill.
+  [1]Doo - ley had two   [4]daugh-ters and a  [1]for-ty [5]gal - lon      [1]still.
+  [1]One gal watched the [4]boil-er, the      [1]oth-er watched the    [5]spout.
+  [1]Ma- ma corked the   [4]bot-tles when old [1]Doo- ley f[5]etched them [1]out.
+
+Chorus All sing
+    [1]Dooley, Slippin' up [1]the holler,       [4]Dooley, tryin' to make [4]a dollar.
+    [1]Dooley, give me a [1]swaller,            [5]And I'll pay you back [1]some day.
+
+Verse 2 Larry sings
+  [1]The revenuers [4]came for him, a [1]slippin' through the [5]woods.
+  [1]Dooley kept be[4]hind them all and [1]never [5]lost his [1]goods.
+  [1]Dooley was a [4]trader when into [1]town he [5]come,
+  [1]Sugar by the [4]bushel and [1]molasses [5]by the [1]ton.
+
+Chorus All sing
+
+Instrumental break - tune=verse twice
+
+Verse 3 Larry and Paulette sing
+[1]I remember very [4]well the [1]day old Dooley [5]died,
+[1]The woman folk [4]looked sorry, the [1]men stood [5]around and [1]cried.
+[1]Now Dooley's [4]on the mountain, he [1]lies there all [5]alone,
+[1]They put a jug [4]beside him and a [1]barrel [5]for a [1]stone.
+
+Chorus All sing
+
+TAG [5]And I'll pay you back [1]some day.   [G(Hold)]
