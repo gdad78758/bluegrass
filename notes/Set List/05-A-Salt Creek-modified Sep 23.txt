@@ -5,7 +5,7 @@ Salt Creek - Key A
       | 1      | 1    4  | 1   7  | 5-7   1 | repeat
   B Part
       | 1      | 1       | 7      | 7       |
-      | 1      | 1       | 1   7  | 5-7   1 | repeat
+      | 1      | 1       | 1      | 5-7   1 | repeat
 ---------------------------------------------------------
 
 
@@ -16,5 +16,5 @@ Salt Creek - Key A
       | A      | A    D  | A   G  | E7   A  | repeat
   B Part
       | A      | A       | G      | G       |
-      | A      | A       | A   G  | E7   A  | repeat
+      | A      | A       | A      | E7   A  | repeat
 ---------------------------------------------------------
