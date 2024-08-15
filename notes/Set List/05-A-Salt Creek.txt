@@ -1,8 +1,13 @@
+Salt Creek - Key A (Capo)
+
+Brian starts
+Play in order
+Brian finishes
+
 ---------------------------------------------------------
-Salt Creek - Key A
   A Part
       | 1      | 1    4  | 7      | 7   5-7 |
-      | 1      | 1    4  | 1   7  | 5-7   1 | repeat
+      | 1      | 1    4  | 1      | 5-7   1 | repeat
   B Part
       | 1      | 1       | 7      | 7       |
       | 1      | 1       | 1      | 5-7   1 | repeat
@@ -10,10 +15,9 @@ Salt Creek - Key A
 
 
 ---------------------------------------------------------
-Salt Creek - Key A
   A Part
       | A      | A    D  | G      | G    E7 |
-      | A      | A    D  | A   G  | E7   A  | repeat
+      | A      | A    D  | A      | E7   A  | repeat
   B Part
       | A      | A       | G      | G       |
       | A      | A       | A      | E7   A  | repeat
