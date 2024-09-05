@@ -1,23 +1,26 @@
-#
-# Invoke with:
-#   python3 GenNoteslist.py notesFolder
-# 
 from pathlib import Path
 from posixpath import basename, splitext
+import sys
 import os
 import argparse
+from re import M
+from datetime import datetime
 
 parser = argparse.ArgumentParser()
-parser.add_argument("NotesFolder")
+parser.add_argument("musicFolder")
 args = parser.parse_args()
 
-notesFolder = args.NotesFolder
+print("Generating Music List (this takes a few seconds)", file=sys.stderr)
+
+musicFolder = args.musicFolder
+
+now = datetime.now().strftime("%Y.%m.%d.%H.%M.%S")
 
 # lambda l accepts a path and returns just the filename without an extension
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
 
 # lambda ext is like lambda l, except it returns the file extension
-ext = lambda p: str(os.path.splitext(os.path.basename(p))[1])
+ext = lambda p: str(os.path.splitext(os.path.basename(p))[1]).lower()
 
 # dictCompare removes articles that appear as the first word in a filename
 articles = ['a', 'an', 'the']
@@ -30,40 +33,48 @@ def dictCompare(s):
     formattedS = s
 
   # Remove punctuation
-  formattedS.replace('\'','')
-  formattedS.replace(',','')
+  formattedS = formattedS.replace('\'','')
+  formattedS = formattedS.replace(',','')
 
-  return formattedS
+  return formattedS.lower()
 
-with open("HTMLheader.txt", "r") as headerText:
+with open(musicFolder + "/scripts/HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
+header += """
+<h1>Tuesday Ukes' archive of ukulele songs and chords</h1>
+
+<p>Whether you're a beginner ukulele player looking for easy songs or a longtime
+player searching for fun songs, this is the resource for you. Here you will find
+ukulele chords and chord diagrams for uke players of all levels.</p>
+
+<p>This collection of the best ukulele songs has been built over time by members
+of Austin's Tuesday Ukulele Group. </p>
+
+<h2>Lots of popular songs</h2>
+<p>There's a big range: Easy ukulele songs with simple chords for beginner
+ukulele players with just 3 chords or 4 chords. You will find great songs  by
+Paul McCartney, Neil Diamond, Bob Dylan, John Denver, and Bob Marley turned into
+ukulele music. More-advanced ukulele music players can find finger-stretching
+chord changes and chord shapes applied to popular ukulele songs. </p>
+
+"""
+
+footer = """
+<p>Chord progressions and strum patterns listed are the members' interpretations
+of the original recordings, and are presented for educational purposes. Except
+as noted (a few of our members are songwriters), we make no copyright claim on
+any song.</p>
+"""
+
+extensions = [".PDF", ".chopro", ".cho", ".mscz", ".urltxt"]
 allFiles = []
-for p in Path(notesFolder).rglob('*.[Pp][Dd][Ff]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Cc][Hh][Oo][Pp][Rr][Oo]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Cc][Hh][Oo]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Aa][Ii][Ff]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Mm][Pp]3'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Mm][Ss][Cc][Zz]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Jj][Pp][Gg]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Jj][Pp][Ee][Gg]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Tt][Xx][Tt]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Pp][Nn][Gg]'):
-  allFiles.append(p)
-for p in Path(notesFolder).rglob('*.[Hh][Tt][Mm][Ll]'):
-  allFiles.append(p)
+for p in Path(musicFolder).rglob('*'):
+  if ext(p) in (extension.lower() for extension in extensions):
+    allFiles.append(p.as_posix())
 
 def findMatchingBasename(files, basename):
-  matches = [f for f in files if f[0].lower() == l(basename).lower()]
+  matches = [f for f in files if dictCompare(f[0]) == dictCompare(l(basename))]
   if matches:
     # matches should never have more than one entry, but there is no check to
     # verify that claim. The only way we intend to add a new file path to
@@ -84,11 +95,12 @@ for p in allFiles:
     # found a song for the first time. Add the title and the filename
     allTitles.append([l(p), str(p)])
 
+downloadExtensions = [".cho", ".chopro"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("GeneratedNotesList.html", "w") as htmlOutput:
+with open("ukulele-song-archive.html", "w") as htmlOutput:
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
-for f in sortedTitles:
+  for f in sortedTitles:
     try:
       htmlOutput.write("<tr>")
       # first table column contains the song title (f[0])
@@ -112,6 +124,9 @@ for f in sortedTitles:
 
   #close the table etc.
   htmlOutput.write("</table>")
+  htmlOutput.write(footer)
   htmlOutput.write("</div>\n")
   htmlOutput.write("</div>\n")
   htmlOutput.write("</body>\n")
+
+print("Done!", file=sys.stderr)
