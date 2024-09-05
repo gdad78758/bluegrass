@@ -1,20 +1,18 @@
+#
+# Invoke with:
+#   python3 GenSongsList.py SongsFolder
+# from pathlib import Path
+
 from pathlib import Path
 from posixpath import basename, splitext
-import sys
 import os
 import argparse
-from re import M
-from datetime import datetime
 
 parser = argparse.ArgumentParser()
 parser.add_argument("musicFolder")
 args = parser.parse_args()
 
-print("Generating Music List (this takes a few seconds)", file=sys.stderr)
-
 musicFolder = args.musicFolder
-
-now = datetime.now().strftime("%Y.%m.%d.%H.%M.%S")
 
 # lambda l accepts a path and returns just the filename without an extension
 l = lambda p: str(os.path.splitext(os.path.basename(p))[0])
@@ -33,48 +31,24 @@ def dictCompare(s):
     formattedS = s
 
   # Remove punctuation
-  formattedS = formattedS.replace('\'','')
-  formattedS = formattedS.replace(',','')
+  formattedS.replace('\'','')
+  formattedS.replace(',','')
 
-  return formattedS.lower()
+  return formattedS
 
-with open(musicFolder + "/scripts/HTMLheader.txt", "r") as headerText:
+with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
-header += """
-<h1>Tuesday Ukes' archive of ukulele songs and chords</h1>
+extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
+              ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt"]
 
-<p>Whether you're a beginner ukulele player looking for easy songs or a longtime
-player searching for fun songs, this is the resource for you. Here you will find
-ukulele chords and chord diagrams for uke players of all levels.</p>
-
-<p>This collection of the best ukulele songs has been built over time by members
-of Austin's Tuesday Ukulele Group. </p>
-
-<h2>Lots of popular songs</h2>
-<p>There's a big range: Easy ukulele songs with simple chords for beginner
-ukulele players with just 3 chords or 4 chords. You will find great songs  by
-Paul McCartney, Neil Diamond, Bob Dylan, John Denver, and Bob Marley turned into
-ukulele music. More-advanced ukulele music players can find finger-stretching
-chord changes and chord shapes applied to popular ukulele songs. </p>
-
-"""
-
-footer = """
-<p>Chord progressions and strum patterns listed are the members' interpretations
-of the original recordings, and are presented for educational purposes. Except
-as noted (a few of our members are songwriters), we make no copyright claim on
-any song.</p>
-"""
-
-extensions = [".PDF", ".chopro", ".cho", ".mscz", ".urltxt"]
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
   if ext(p) in (extension.lower() for extension in extensions):
-    allFiles.append(p.as_posix())
+    allFiles.append(p)
 
 def findMatchingBasename(files, basename):
-  matches = [f for f in files if dictCompare(f[0]) == dictCompare(l(basename))]
+  matches = [f for f in files if f[0].lower() == l(basename).lower()]
   if matches:
     # matches should never have more than one entry, but there is no check to
     # verify that claim. The only way we intend to add a new file path to
@@ -95,9 +69,11 @@ for p in allFiles:
     # found a song for the first time. Add the title and the filename
     allTitles.append([l(p), str(p)])
 
-downloadExtensions = [".cho", ".chopro"]
+downloadExtensions = [".cho", ".chopro", ".mscz"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("ukulele-song-archive.html", "w") as htmlOutput:
+with open("GeneratedNotesList.html", "w") as htmlOutput:
+  # define separator character sep
+  sep='&nbsp&nbsp'
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
   for f in sortedTitles:
@@ -107,15 +83,20 @@ with open("ukulele-song-archive.html", "w") as htmlOutput:
       htmlOutput.write(f"  <td>{f[0]}</td>\n<td>")
       # the remainder of f's elements are files that match the title in f[0]
       for i in f[1:]:
+#        if ext(i) != ".pdf":
+#          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+#       else:
+#         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+#
         if ext(i) == ".urltxt":
           with open(i, "r") as urlFile:
-            label = urlFile.readline().strip()
-            address = urlFile.readline().strip()
-          htmlOutput.write(f"<a href=\"{address}\">{label}</a><br>\n")
+            label = urlFile.readline()
+            address = urlFile.readline()
+          htmlOutput.write(f"<a href=\"{address}\">{sep}{label}{sep}</a>\n")
         elif ext(i) in downloadExtensions:
-          htmlOutput.write(f" <a href=\"{str(i).replace(' ','%20')}?v={now}\" download=\"{l(i)}{ext(i)}\">{ext(i)}</a><br>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}{sep}</a>\n")
         else:
-          htmlOutput.write(f"  <a href=\"{str(i).replace(' ','%20')}?v={now}\">{ext(i)}</a><br>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}{sep}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
@@ -124,9 +105,6 @@ with open("ukulele-song-archive.html", "w") as htmlOutput:
 
   #close the table etc.
   htmlOutput.write("</table>")
-  htmlOutput.write(footer)
   htmlOutput.write("</div>\n")
   htmlOutput.write("</div>\n")
   htmlOutput.write("</body>\n")
-
-print("Done!", file=sys.stderr)
