@@ -88,22 +88,44 @@ sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
 with open("GeneratedNotesList.html", "w") as htmlOutput:
   htmlOutput.writelines(header)
   htmlOutput.write("<table>")
-for f in sortedTitles:
+  for f in sortedTitles:
     try:
       htmlOutput.write("<tr>")
       # first table column contains the song title (f[0])
       htmlOutput.write(f"  <td>{f[0]}</td>\n<td>")
       # the remainder of f's elements are files that match the title in f[0]
       for i in f[1:]:
-        if ext(i) == ".urltxt":
-          with open(i, "r") as urlFile:
-            label = urlFile.readline().strip()
-            address = urlFile.readline().strip()
-          htmlOutput.write(f"<a href=\"{address}\">{label}</a><br>\n")
-        elif ext(i) in downloadExtensions:
-          htmlOutput.write(f" <a href=\"{str(i).replace(' ','%20')}?v={now}\" download=\"{l(i)}{ext(i)}\">{ext(i)}</a><br>\n")
+#        if ext(i) != ".pdf":
+#          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+#       else:
+#         htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+#
+        if ext(i).lower() == ".pdf":
+          # original line
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+          # htmlOutput.write(f"  <a href=\"{https://docs.google.com/viewerng/viewer?url=}{str(i)}\">{ext(i)}</a>\n")
+        elif ext(i).lower() == ".chopro":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".cho":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".aif":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".mp3":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".mscz":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".jpg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".jpeg":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".txt":
+          htmlOutput.write(f"  <a href=\"{str(i)}\">{ext(i)}</a>\n")
+        elif ext(i).lower() == ".png":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
+        elif ext(i).lower() == ".html":
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
         else:
-          htmlOutput.write(f"  <a href=\"{str(i).replace(' ','%20')}?v={now}\">{ext(i)}</a><br>\n")
+          htmlOutput.write(f"  <a href=\"{str(i)}\" download>{ext(i)}</a>\n")
 
       # close each table row (and the table data containing file links)
       htmlOutput.write("</td></tr>\n")
