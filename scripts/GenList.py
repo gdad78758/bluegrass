@@ -10,7 +10,7 @@ from datetime import datetime
 parser = argparse.ArgumentParser()
 parser.add_argument("musicFolder")
 parser.add_argument("outputFile")
-parser.add_argument("--intro", action=argparse.BooleanOptionalAction)
+parser.add_argument("--intro", action=argparse.BooleanOptionalAction, default=True)
 args = parser.parse_args()
 
 print("Generating Music List (this takes a few seconds)", file=sys.stderr)
