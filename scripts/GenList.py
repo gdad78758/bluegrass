@@ -43,7 +43,7 @@ def dictCompare(s):
 
   return formattedS.lower()
 
-with open(musicFolder + "/scripts/HTMLheader.txt", "r") as headerText:
+with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 introduction = """
