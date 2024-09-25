@@ -72,7 +72,7 @@ as noted (a few of our members are songwriters), we make no copyright claim on
 any song.</p>
 """
 
-extensions = [".PDF", ".chopro", ".cho", ".mscz", ".urltxt", ".txt", ".mp3"]
+extensions = [".PDF", ".chopro", ".cho", ".mscz", ".urltxt", ".txt", ".mp3", ".html"]
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
   if ext(p) in (extension.lower() for extension in extensions):
