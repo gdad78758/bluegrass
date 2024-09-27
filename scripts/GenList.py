@@ -73,7 +73,7 @@ any song.</p>
 """
 
 extensions = [".PDF", ".chopro", ".cho", ".mscz", ".urltxt", ".aif",
-              ".txt", ".mp3", ".html", ".jpg", ".jpeg", ".png"]
+              ".txt", ".mp3", ".html", ".jpg", ".jpeg", ".png", ".m4a"]
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
   if ext(p) in (extension.lower() for extension in extensions):
