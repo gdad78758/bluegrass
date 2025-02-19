@@ -20,12 +20,14 @@ It's a Texas armadillo, whenever he thinks
 [A] It ain't their fault, they're made that way
 [D] (stop) Persistent armadillos 'til their [D] dying day
 
-&blue: [D] Ridin' down 290, the fog was thick
-&blue: I didn't see what happened, it happened so quick
-&blue: [G] I felt a thump, I heard a squish
-&blue: [D] I hit the brakes about went in the ditch
-&blue: [A] Jumped out of my truck and to my surprise
-&blue: [D] (stop) A damned armadillo was [D] stuck to my tire
+{textcolour: blue}
+[D] Ridin' down 290, the fog was thick
+I didn't see what happened, it happened so quick
+[G] I felt a thump, I heard a squish
+[D] I hit the brakes about went in the ditch
+[A] Jumped out of my truck and to my surprise
+[D] (stop) A damned armadillo was [D] stuck to my tire
+{textcolour}
 
 [D] If your ridin' down any old Texas road
 You see an armadillo walking on the shoulder
