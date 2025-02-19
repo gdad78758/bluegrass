@@ -11,7 +11,7 @@ for p in Path("./").rglob('*.cho'):
 
 startColor = re.compile('textcolour: *\w+')
 endColor = re.compile('textcolour *}')
-onsongColor = re.compile('/.&blue:')
+onsongColor = re.compile('&blue:')
 
 for p in allFiles:
   try:
