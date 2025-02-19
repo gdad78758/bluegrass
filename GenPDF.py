@@ -1,3 +1,5 @@
+import PatchTextColor
+
 import subprocess
 from pathlib import Path
 from posixpath import basename, splitext
@@ -40,4 +42,5 @@ def createPDFs():
     if ext(p) in (extension.lower() for extension in extensions):
       subprocess.run(chordproSettings + [str(p)])
 
+PatchTextColor.PatchColors()
 createPDFs()
