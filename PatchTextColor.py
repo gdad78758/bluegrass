@@ -29,7 +29,7 @@ for p in allFiles:
           f.write("{textcolour}\n")
 
         if addColor:
-          newL = l.replace('&blue:','')
+          newL = re.sub('.?&blue:','',l)
           f.write(newL)
         else:
           f.write(l)
