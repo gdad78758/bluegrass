@@ -8,6 +8,9 @@ import sys
 import os
 import argparse
 
+repo = Repo('.')
+print(repo.is_dirty())
+
 parser = argparse.ArgumentParser()
 parser.add_argument("musicFolder")
 args = parser.parse_args()
@@ -43,8 +46,6 @@ def createPDFs():
     if ext(p) in (extension.lower() for extension in extensions):
       subprocess.run(chordproSettings + [str(p)])
 
-
-repo = Repo('.')
 if repo.is_dirty():
   print("Cannot operate on a repo with changes -- " +
         "commit, discard, or stash your changes and try again")
