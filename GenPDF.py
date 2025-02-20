@@ -1,4 +1,5 @@
 import PatchTextColor
+from git import Repo
 
 import subprocess
 from pathlib import Path
@@ -42,5 +43,14 @@ def createPDFs():
     if ext(p) in (extension.lower() for extension in extensions):
       subprocess.run(chordproSettings + [str(p)])
 
-PatchTextColor.PatchColors()
-createPDFs()
+
+repo = Repo('.')
+if repo.is_dirty():
+  print("Cannot operate on a repo with changes -- " +
+        "commit, discard, or stash your changes and try again")
+else:
+  PatchTextColor.PatchColors()
+  createPDFs()
+  repo.git.restore('*.chopro')
+  repo.git.restore('*.cho')
+
