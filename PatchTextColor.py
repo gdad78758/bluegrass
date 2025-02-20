@@ -41,5 +41,3 @@ def PatchColors():
 
     except:
       print(f"failed on file {str(p)}")
-
-PatchColors()
