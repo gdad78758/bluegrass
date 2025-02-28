@@ -9,7 +9,7 @@ Notes:
    2. generate pdfs from the master chopro files by invoking this from the bluegrass root folder:
         python GenPDF.py (must be from Windows Cli)
       This will take awhile, but when it's done you'll have a bunch of pdf files that have been changed.
-   3. When 2. is done, commit the pdf file changes
+   3. When ii. is done, commit the pdf file changes
 
    Note:  the python GenPDF.py step will not work if you haven't committed all previous changes to the repo.
   
