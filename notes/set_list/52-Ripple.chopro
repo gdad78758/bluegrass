@@ -24,13 +24,21 @@ E|--3-------3--|--------------|---------------|---------------|
 
 
 (Intro - Start on G*)
-&blue:/
+{textcolour: blue}
+/
+{textcolour}
 [G]If my words did [G*]glow with the gold of [C]sunshine
-&blue:/
+{textcolour: blue}
+/
+{textcolour}
 [C]And my tunes were played on the harp unst[G]rung
-&blue:/
+{textcolour: blue}
+/
+{textcolour}
 [G]Would you hear my voice come through the [C]music
-&blue:/
+{textcolour: blue}
+/
+{textcolour}
 [C]Would you [G]hold it [D]near [C]as it were your [G]own?
 
 
