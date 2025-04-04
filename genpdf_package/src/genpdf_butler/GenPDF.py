@@ -1,4 +1,4 @@
-import PatchTextColor
+from genpdf_butler import PatchTextColor
 from git import Repo
 
 import subprocess

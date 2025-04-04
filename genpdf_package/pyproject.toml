@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+[project]
+name = "genpdf_butler"
+version = "0.0.3"
+authors = [
+  { name="Paul Butler", email="c.paul.butler@gmail.com" },
+]
+description = "A package for running chordpro CLI over a folder"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/gdad78758/bluegrass"
+Issues = "https://github.com/gdad78758/bluegrass/issues"
