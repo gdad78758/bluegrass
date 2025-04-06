@@ -6,7 +6,7 @@ dependencies = [
   "gitpython>=3.1.44"
 ]
 name = "genpdf_butler"
-version = "0.0.16"
+version = "0.0.17"
 authors = [
   { name="Paul Butler", email="c.paul.butler@gmail.com" },
 ]
