@@ -12,7 +12,7 @@ def PatchColors():
 
   startColor = re.compile('textcolour: *\w+')
   endColor = re.compile('textcolour *}')
-  onsongColor = re.compile('&blue:')
+  onsongColor = re.compile('&blue:?')
 
   for p in allFiles:
     try:
@@ -30,7 +30,7 @@ def PatchColors():
             f.write("{textcolour}\n")
 
           if addColor:
-            newL = re.sub('.?&blue: *','',l)
+            newL = re.sub('.?&blue:? *','',l)
             f.write(newL)
           else:
             f.write(l)
