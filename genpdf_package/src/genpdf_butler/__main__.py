@@ -24,7 +24,7 @@ def main():
           "commit, discard, or stash your changes and try again")
   else:
     PatchTextColor.PatchColors()
-    createPDFs()
+    GenPDF.createPDFs()
     repo.git.restore('*.chopro')
     repo.git.restore('*.cho')
 
