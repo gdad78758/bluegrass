@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 musicFolder = args.musicFolder
 
-def createPDFs():
+def createPDFs(pagesize):
   chordproSettings=[
   	"chordpro",
           "--config=Ukulele",
@@ -30,7 +30,7 @@ def createPDFs():
           "--define=pdf:footspace=10",
           "--define=pdf:head-first-only=true",
           "--define=pdf:fonts:chord:color=red",
-          "--define=pdf:papersize=a5",
+          "--define=pdf:papersize=" + pagesize,
           "--text-font=helvetica",
           "--chord-font=helvetica"
   ]

@@ -12,11 +12,13 @@ import argparse
 def main():
   parser = argparse.ArgumentParser()
   parser.add_argument("--musicFolder", type=str, default='.')
+  parser.add_argument("--pagesize", type=str, default='a5')
   args = parser.parse_args()
 
   print("Generating Music List (this takes a few seconds)", file=sys.stderr)
 
   musicFolder = args.musicFolder
+  pagesize = args.pagesize
 
   repo = Repo('.')
   if repo.is_dirty():
