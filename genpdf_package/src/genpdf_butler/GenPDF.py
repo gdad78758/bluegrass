@@ -1,4 +1,4 @@
-import PatchTextColor
+from genpdf_butler import PatchTextColor
 from git import Repo
 
 import subprocess
@@ -12,8 +12,6 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--musicFolder", type=str, default='.')
 args = parser.parse_args()
-
-print("Generating Music List (this takes a few seconds)", file=sys.stderr)
 
 musicFolder = args.musicFolder
 
@@ -32,6 +30,7 @@ def createPDFs():
           "--define=pdf:footspace=10",
           "--define=pdf:head-first-only=true",
           "--define=pdf:fonts:chord:color=red",
+          "--define=pdf:papersize=a5",
           "--text-font=helvetica",
           "--chord-font=helvetica"
   ]
@@ -43,14 +42,3 @@ def createPDFs():
   for p in Path(musicFolder).rglob('*'):
     if ext(p) in (extension.lower() for extension in extensions):
       subprocess.run(chordproSettings + [str(p)])
-
-repo = Repo('.')
-if repo.is_dirty():
-  print("Cannot operate on a repo with changes -- " +
-        "commit, discard, or stash your changes and try again")
-else:
-  PatchTextColor.PatchColors()
-  createPDFs()
-  repo.git.restore('*.chopro')
-  repo.git.restore('*.cho')
-
