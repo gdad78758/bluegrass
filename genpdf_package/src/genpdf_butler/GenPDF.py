@@ -18,7 +18,6 @@ musicFolder = args.musicFolder
 def createPDFs():
   chordproSettings=[
   	"chordpro",
-          "--page-size=A5",
           "--config=Ukulele",
           "--config=Ukulele-ly",
           "--define=pdf:diagrams:show=none",
@@ -31,6 +30,7 @@ def createPDFs():
           "--define=pdf:footspace=10",
           "--define=pdf:head-first-only=true",
           "--define=pdf:fonts:chord:color=red",
+          "--define=pdf:papersize=a5",
           "--text-font=helvetica",
           "--chord-font=helvetica"
   ]
