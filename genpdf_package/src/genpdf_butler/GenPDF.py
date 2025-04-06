@@ -18,7 +18,7 @@ musicFolder = args.musicFolder
 def createPDFs():
   chordproSettings=[
   	"chordpro",
-          "--page-size=A5"
+          "--page-size=A5",
           "--config=Ukulele",
           "--config=Ukulele-ly",
           "--define=pdf:diagrams:show=none",
