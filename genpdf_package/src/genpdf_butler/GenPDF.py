@@ -13,8 +13,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--musicFolder", type=str, default='.')
 args = parser.parse_args()
 
-print("Generating Music List (this takes a few seconds)", file=sys.stderr)
-
 musicFolder = args.musicFolder
 
 def createPDFs():
