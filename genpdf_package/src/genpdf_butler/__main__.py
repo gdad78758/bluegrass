@@ -2,11 +2,8 @@ from genpdf_butler import PatchTextColor
 from genpdf_butler import GenPDF
 from git import Repo
 
-import subprocess
-from pathlib import Path
 from posixpath import basename, splitext
 import sys
-import os
 import argparse
 
 def main():
@@ -26,7 +23,7 @@ def main():
           "commit, discard, or stash your changes and try again")
   else:
     PatchTextColor.PatchColors()
-    GenPDF.createPDFs()
+    GenPDF.createPDFs(musicFolder, pagesize)
     repo.git.restore('*.chopro')
     repo.git.restore('*.cho')
 

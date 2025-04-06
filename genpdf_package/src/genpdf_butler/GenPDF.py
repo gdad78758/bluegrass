@@ -1,21 +1,9 @@
-from genpdf_butler import PatchTextColor
-from git import Repo
-
 import subprocess
 from pathlib import Path
 from posixpath import basename, splitext
-import sys
 import os
-import argparse
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--musicFolder", type=str, default='.')
-args = parser.parse_args()
-
-musicFolder = args.musicFolder
-
-def createPDFs(pagesize):
+def createPDFs(musicFolder, pagesize):
   chordproSettings=[
   	"chordpro",
           "--config=Ukulele",
