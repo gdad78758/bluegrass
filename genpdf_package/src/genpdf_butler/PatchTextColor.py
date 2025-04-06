@@ -30,7 +30,7 @@ def PatchColors():
             f.write("{textcolour}\n")
 
           if addColor:
-            newL = re.sub('.?&blue:? *','',l)
+            newL = re.sub('.?&blue:?/? *','',l)
             f.write(newL)
           else:
             f.write(l)
