@@ -61,6 +61,19 @@ How to sync everything:
 
 Done!
 
+Note re genpdf from email from Paul B:
+--------------------------------------------------------
+Follow the "On Windows" instructions here (I used the "via pip" method):
+https://pipx.pypa.io/stable/installation/
+
+Install genpdf:
+pipx install genpdf_butler
+
+change directories to your bluegrass repo and type "genpdf".
+
+There is an optional "pagesize" parameter now that defaults to 'a5'. It used to generate for 'a4', and you might want to try 'a6'. Example:
+  c:...bluegrass\> genpdf --pagesize a6
+---------------------------------------------------------
 
 To generate pdfs from the chordpros, from the WINDOWS Cli
   go to the bluegrass folder, then run:
