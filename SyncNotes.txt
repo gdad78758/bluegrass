@@ -60,3 +60,11 @@ How to sync everything:
 
 
 Done!
+
+
+To generate pdfs from the chordpros, from the WINDOWS Cli
+  go to the bluegrass folder, then run:
+
+    genpdf
+
+  This will start the pdf generations.
