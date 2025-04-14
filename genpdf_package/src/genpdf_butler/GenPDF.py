@@ -3,17 +3,17 @@ from pathlib import Path
 from posixpath import basename, splitext
 import os
 
-def createPDFs(musicFolder, pagesize):
+def createPDFs(musicFolder, pagesize, showchords):
   chordproSettings=[
   	"chordpro",
           "--config=Ukulele",
           "--config=Ukulele-ly",
-          "--define=pdf:diagrams:show=none",
+          "--define=pdf:diagrams:show=" + showchords,
           "--define=settings:inline-chords=true",
           "--define=pdf:even-odd-pages=0",
           "--define=pdf:margintop=70",
           "--define=pdf:marginbottom=0",
-          "--define=pdf:marginleft=0",
+          "--define=pdf:marginleft=10",
           "--define=pdf:marginright=50",
           "--define=pdf:headspace=50",
           "--define=pdf:footspace=10",
