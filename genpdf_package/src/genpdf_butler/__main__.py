@@ -17,7 +17,7 @@ def main():
   musicFolder = args.musicFolder
   pagesize = args.pagesize
 
-  repo = Repo('.')
+  repo = Repo(path='.', search_parent_directories=True)
   if repo.is_dirty():
     print("Cannot operate on a repo with changes -- " +
           "commit, discard, or stash your changes and try again")
