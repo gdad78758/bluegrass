@@ -83,5 +83,5 @@ To generate pdfs from the chordpros, from the WINDOWS Cli
   This will start the pdf generations.
 
   For individual file, 
-    genpdf "filename"
+    genpdf "filename"  <-- can give name of directory and it'll do files recursively
  
