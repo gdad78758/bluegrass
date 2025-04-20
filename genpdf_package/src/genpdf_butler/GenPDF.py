@@ -3,7 +3,7 @@ from pathlib import Path
 from posixpath import basename, splitext
 import os
 
-def createPDFs(musicFolder, pagesize, showchords):
+def createPDFs(musicTarget, pagesize, showchords):
   chordproSettings=[
   	"chordpro",
           "--config=Ukulele",
@@ -28,6 +28,13 @@ def createPDFs(musicFolder, pagesize, showchords):
   ext = lambda p: str(os.path.splitext(os.path.basename(p))[1]).lower()
 
   extensions = [".chopro", ".cho"]
-  for p in Path(musicFolder).rglob('*'):
-    if ext(p) in (extension.lower() for extension in extensions):
-      subprocess.run(chordproSettings + [str(p)])
+  if os.path.exists(musicTarget):
+    if os.path.isdir(musicTarget):
+      for p in Path(musicTarget).rglob('*'):
+        if ext(p) in (extension.lower() for extension in extensions):
+          subprocess.run(chordproSettings + [str(p)])
+    else:
+      if ext(musicTarget) in (extension.lower() for extension in extensions):
+        subprocess.run(chordproSettings + [musicTarget])
+  else:
+    print(f"no such file or folder '{musicTarget}'")
