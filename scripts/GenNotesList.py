@@ -40,7 +40,7 @@ with open("HTMLheader.txt", "r") as headerText:
   header = headerText.readlines()
 
 extensions = [".PDF", ".chopro", ".cho", ".aif", ".mp3", ".mscz",
-              ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt"]
+              ".jpg", ".jpeg", ".txt", ".png", ".html", ".urltxt",".wav"]
 
 allFiles = []
 for p in Path(musicFolder).rglob('*'):
