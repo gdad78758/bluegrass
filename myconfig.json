@@ -368,17 +368,17 @@
 	// Fonts.
 	"fonts" : {
 	    "title" : {
-		"description" : "sans bold 12",
+		"description" : "sans bold 11",
 	    },
 	    "text" : {
-		"description" : "sans 12",
+		"description" : "sans 11",
 	    },
 	    "chord" : {
-		"description" : "sans bold 12",
+		"description" : "sans bold 11",
 		"color" : "red",
 	    },
 	    "comment" : {
-		"description" : "sans bold 12",
+		"description" : "sans bold 11",
 		"color" : "red",
 	    },
 	},
