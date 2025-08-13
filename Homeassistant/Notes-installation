@@ -1,0 +1,30 @@
+Link from Paul: how to set up Proxmox
+https://youtu.be/_u8qTN3cCnQ?si=XN-i4yFGhMi_OUFb
+
+Set up:
+  Hostname:  Proxmox.Calv
+  Password:  chico77837
+  IP:        192.168.86.73
+  Gateway:   192.168.86.1
+
+  Log in: 
+  https://192.168.86.73:8006
+  user:      root
+  Password:  chico77837
+
+  The commands he gave:
+    lvremove /dev/pve/data
+    lvresize -l +100%FREE /dev/pve/root
+    resize2fs /dev/mapper/pve-root
+
+
+
+Link from Paul: how to set up homeassistant
+https://www.youtube.com/watch?v=ChI253givq4
+
+
+Set up passthrough:
+https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)
+
+It gives you a way to set up the drive on a scsi drive with specific ID:
+qm set 101 -scsi1 /dev/disk/by-id/ata-MAXTOR_STM3500630AS_9QG7B15T-part1
