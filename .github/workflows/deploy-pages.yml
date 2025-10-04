@@ -54,14 +54,24 @@ jobs:
           
       - name: Generate PDFs from .chopro files
         run: |
-          # Find and process .chopro files that need PDF updates
+          # Get list of changed .chopro files since last commit on main branch
+          # This will catch new files and modified files
+          changed_chopro_files=$(git diff --name-only origin/main...HEAD -- "*.chopro" || echo "")
+          new_chopro_files=$(git ls-files --others --exclude-standard -- "*.chopro" || echo "")
+          
+          # Find all .chopro files that need PDF updates
           find . -name "*.chopro" -type f | while read -r file; do
             # Get the corresponding PDF filename
             pdf_file="${file%.chopro}.pdf"
+            file_relative="${file#./}"
             
-            # Check if PDF doesn't exist or .chopro is newer than PDF
-            if [ ! -f "$pdf_file" ] || [ "$file" -nt "$pdf_file" ]; then
-              echo "Generating PDF for: $file (PDF missing or outdated)"
+            # Check if PDF doesn't exist
+            if [ ! -f "$pdf_file" ]; then
+              echo "Generating PDF for: $file (PDF missing)"
+              genpdf --pagesize a5 "$file"
+            # Check if .chopro file has been changed in git
+            elif echo "$changed_chopro_files" | grep -q "^$file_relative$" || echo "$new_chopro_files" | grep -q "^$file_relative$"; then
+              echo "Generating PDF for: $file (chopro file changed in git)"
               genpdf --pagesize a5 "$file"
             else
               echo "Skipping $file (PDF up to date)"
