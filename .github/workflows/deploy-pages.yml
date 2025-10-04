@@ -61,21 +61,41 @@ jobs:
           
       - name: Generate PDFs from .chopro files
         run: |
+          # Debug: Show git log and current state
+          echo "=== Git Debug Info ==="
+          git log --oneline -5
+          echo "Current HEAD: $(git rev-parse HEAD)"
+          echo "=== End Debug ==="
+          
           # Get list of changed .chopro files in this push/commit
-          # Use GitHub event context to get changed files, or fallback to recent changes
+          # Try multiple approaches to find changed files
+          changed_chopro_files=""
+          
+          # Method 1: Compare with previous commit
           if [ "${{ github.event_name }}" = "push" ]; then
-            # For push events, compare with the previous commit
-            changed_chopro_files=$(git diff --name-only HEAD~1 HEAD -- "*.chopro" 2>/dev/null || echo "")
-          else
-            # For other events or if comparison fails, check recent changes
-            changed_chopro_files=$(git diff --name-only HEAD~5 HEAD -- "*.chopro" 2>/dev/null || echo "")
+            changed_chopro_files=$(git diff --name-only HEAD~1 HEAD 2>/dev/null | grep '\.chopro$' || echo "")
+            echo "Method 1 (HEAD~1): $changed_chopro_files"
+          fi
+          
+          # Method 2: Use GitHub context (pushed commits)
+          if [ -z "$changed_chopro_files" ] && [ "${{ github.event_name }}" = "push" ]; then
+            changed_chopro_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 2>/dev/null | grep '\.chopro$' || echo "")
+            echo "Method 2 (GitHub context): $changed_chopro_files"
+          fi
+          
+          # Method 3: Fallback - check recent changes
+          if [ -z "$changed_chopro_files" ]; then
+            changed_chopro_files=$(git diff --name-only HEAD~10 HEAD 2>/dev/null | grep '\.chopro$' || echo "")
+            echo "Method 3 (recent changes): $changed_chopro_files"
           fi
           
           # Get untracked .chopro files
-          new_chopro_files=$(git ls-files --others --exclude-standard -- "*.chopro" 2>/dev/null || echo "")
+          new_chopro_files=$(git ls-files --others --exclude-standard 2>/dev/null | grep '\.chopro$' || echo "")
           
-          echo "Changed .chopro files: $changed_chopro_files"
-          echo "New .chopro files: $new_chopro_files"
+          echo "=== Final Results ==="
+          echo "Changed .chopro files: '$changed_chopro_files'"
+          echo "New .chopro files: '$new_chopro_files'"
+          echo "==================="
           
           # Find all .chopro files that need PDF updates
           find . -name "*.chopro" -type f | while read -r file; do
