@@ -49,18 +49,18 @@ jobs:
         run: |
           echo "=== Checking if any PDFs need generation ==="
           
-          need_pdf_generation=false
+          need_generation=false
           
-          # Find all .chopro files and check if their PDFs need updating
-          find . -name "*.chopro" -type f | while read -r chopro_file; do
+          # Use a for loop with glob instead of find to avoid subshell issues
+          for chopro_file in $(find . -name "*.chopro" -type f); do
             # Get the corresponding PDF filename
             pdf_file="${chopro_file%.chopro}.pdf"
             
             # Check if PDF doesn't exist
             if [ ! -f "$pdf_file" ]; then
               echo "PDF missing for: $chopro_file"
-              echo "need_generation=true" >> $GITHUB_OUTPUT
-              exit 0
+              need_generation=true
+              break
             else
               # Use git to get the last modification time of the .chopro file
               chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
@@ -69,14 +69,19 @@ jobs:
               # If .chopro was modified more recently in git than PDF, regenerate
               if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
                 echo "PDF outdated for: $chopro_file (chopro=$chopro_git_time, pdf=$pdf_git_time)"
-                echo "need_generation=true" >> $GITHUB_OUTPUT
-                exit 0
+                need_generation=true
+                break
               fi
             fi
           done
           
-          echo "need_generation=false" >> $GITHUB_OUTPUT
-          echo "All PDFs are up to date - skipping ChordPro installation"
+          if [ "$need_generation" = true ]; then
+            echo "need_generation=true" >> $GITHUB_OUTPUT
+            echo "PDF generation required - will install ChordPro"
+          else
+            echo "need_generation=false" >> $GITHUB_OUTPUT
+            echo "All PDFs are up to date - skipping ChordPro installation"
+          fi
           
       - name: Install ChordPro and genpdf-butler
         if: steps.check-pdfs.outputs.need_generation == 'true'
