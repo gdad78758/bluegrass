@@ -38,11 +38,50 @@ jobs:
         with:
           python-version: '3.11'
           
-      - name: Install dependencies
+      - name: Install basic dependencies
         run: |
           python -m pip install --upgrade pip
           # Install Python dependencies for GenList.py
           pip install first
+          
+      - name: Check if PDF generation is needed
+        id: check-pdfs
+        run: |
+          echo "=== Checking if any PDFs need generation ==="
+          
+          need_pdf_generation=false
+          
+          # Find all .chopro files and check if their PDFs need updating
+          find . -name "*.chopro" -type f | while read -r chopro_file; do
+            # Get the corresponding PDF filename
+            pdf_file="${chopro_file%.chopro}.pdf"
+            
+            # Check if PDF doesn't exist
+            if [ ! -f "$pdf_file" ]; then
+              echo "PDF missing for: $chopro_file"
+              echo "need_generation=true" >> $GITHUB_OUTPUT
+              exit 0
+            else
+              # Use git to get the last modification time of the .chopro file
+              chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
+              pdf_git_time=$(git log -1 --format="%ct" -- "$pdf_file" 2>/dev/null || echo "0")
+              
+              # If .chopro was modified more recently in git than PDF, regenerate
+              if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
+                echo "PDF outdated for: $chopro_file (chopro=$chopro_git_time, pdf=$pdf_git_time)"
+                echo "need_generation=true" >> $GITHUB_OUTPUT
+                exit 0
+              fi
+            fi
+          done
+          
+          echo "need_generation=false" >> $GITHUB_OUTPUT
+          echo "All PDFs are up to date - skipping ChordPro installation"
+          
+      - name: Install ChordPro and genpdf-butler
+        if: steps.check-pdfs.outputs.need_generation == 'true'
+        run: |
+          echo "=== Installing ChordPro and genpdf-butler ==="
           # Install chordpro via cpanm and genpdf-butler from PyPI
           sudo apt-get update
           sudo apt-get install -y cpanminus build-essential libpod-parser-perl
@@ -50,8 +89,9 @@ jobs:
           pip install genpdf-butler
           
       - name: Generate PDFs from .chopro files
+        if: steps.check-pdfs.outputs.need_generation == 'true'
         run: |
-          echo "=== Checking .chopro files for PDF generation ==="
+          echo "=== Generating PDFs ==="
           
           # Find all .chopro files and check if their PDFs need updating
           find . -name "*.chopro" -type f | while read -r chopro_file; do
