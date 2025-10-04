@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for git diff comparisons
         
       - name: Download previous deployment artifacts
         uses: actions/download-artifact@v4
