@@ -1,74 +1,54 @@
 ---
-title: GenPDF Butler
-description: A Python package for generating PDFs from ChordPro files
+title: Bluegrass Music Collection
+description: A collection of bluegrass chord charts, sheet music, and audio files
 ---
 
-# GenPDF Butler
+# Bluegrass Music Collection
 
-A Python package for running ChordPro CLI over a folder to generate PDFs from chord charts and sheet music.
+Welcome to the bluegrass music collection featuring chord charts, sheet music, and audio files for bluegrass musicians and enthusiasts.
 
-## Features
+## Generated Lists
 
-- **Batch Processing**: Process entire directories of `.chopro` and `.cho` files
-- **Configurable Output**: Customize page size, chord display, and formatting
-- **Ukulele Optimized**: Pre-configured settings for ukulele chord charts
-- **Flexible Input**: Handle single files or entire directory trees
+- [Notes List](GeneratedNotesList.html) - Songs both finished and working
+- [Songs List](GeneratedSongsList.html) - Miscellaneous songs we've not done
+- [Christmas Songs](Christmas.html) - Holiday music collection
+- [Katy Lessons](KatyLessons.html) - Educational materials
 
-## Installation
+## About This Collection
 
-```bash
-pip install genpdf-butler
-```
+This collection contains:
+- **ChordPro files** (`.chopro`, `.cho`) - Chord charts with lyrics
+- **PDF sheet music** - Generated from ChordPro files
+- **Audio files** (`.mp3`, `.m4a`, `.aif`) - Reference recordings
+- **MuseScore files** (`.mscz`) - Editable sheet music
+- **Text files** - Additional notes and resources
 
-## Quick Start
+## PDF Generation
 
-```python
-from genpdf_butler.GenPDF import createPDFs
+PDFs are automatically generated using [genpdf-butler](https://github.com/TuesdayUkes/genpdf-butler), a Python package for converting ChordPro files to PDF format.
 
-# Generate PDFs from all .chopro files in a directory
-createPDFs('/path/to/music/folder', 'a4', 'true')
+### Automatic Generation
+- PDFs are generated during site deployment when `.chopro` files are newer than their corresponding `.pdf` files
+- Uses Git history to determine when files were last modified (not filesystem timestamps)
+- Only regenerates PDFs when the source ChordPro file has actually changed
 
-# Process a single file
-createPDFs('/path/to/song.chopro', 'letter', 'false')
-```
+### Manual PDF Control
+For better control and faster builds, you can check PDF files directly into the repository:
 
-## Parameters
+- **Commit PDFs to Git**: Check in `.pdf` files alongside their `.chopro` counterparts
+- **Prevents regeneration**: Committed PDFs won't be regenerated unless the `.chopro` file is modified after the PDF
+- **Custom formatting**: Allows manually created or customized PDFs to override automatic generation
+- **Faster builds**: Skips ChordPro installation and PDF generation when all PDFs are up to date
+- **Mixed approach**: Some PDFs can be committed while others are auto-generated as needed
 
-- **musicTarget**: Path to file or directory containing ChordPro files
-- **pagesize**: Paper size (`'a4'`, `'letter'`, etc.)
-- **showchords**: Chord diagram display (`'true'` or `'false'`)
-
-## Command Line Usage
-
-After installation, you can use the command line interface:
-
-```bash
-# Process current directory with default settings (a6 paper, no chords)
-genpdf
-
-# Process specific directory with custom settings
-genpdf /path/to/music/folder --pagesize a4 --showchords true
-
-# Process single file
-genpdf song.chopro --pagesize letter --showchords false
-```
-
-### Arguments
-
-- **musictarget** (optional): Path to .chopro file or directory (defaults to current directory)
-- **--pagesize**: Paper size (default: 'a6')
-- **--showchords**: Show chord diagrams ('true' or 'false', default: 'false')
-
-## Requirements
-
-- Python 3.11+
-- ChordPro CLI tool installed and available in PATH
+**Example workflow:**
+1. Create or modify a `.chopro` file
+2. Generate PDF locally: `genpdf --pagesize a5 mysong.chopro`
+3. Customize the PDF if needed (manual edits, different settings)
+4. Commit both `.chopro` and `.pdf` files to Git
+5. Future deployments will skip regeneration unless you modify the `.chopro` file
 
 ## Repository
 
 - **Homepage**: [https://github.com/gdad78758/bluegrass](https://github.com/gdad78758/bluegrass)
 - **Issues**: [https://github.com/gdad78758/bluegrass/issues](https://github.com/gdad78758/bluegrass/issues)
-
-## License
-
-MIT License - see LICENSE file for details.
