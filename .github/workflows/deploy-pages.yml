@@ -29,6 +29,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Download previous deployment artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./previous-deployment
+        continue-on-error: true
+        
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -101,14 +108,33 @@ jobs:
           mkdir -p docs
           # Copy generated HTML and PDF files to docs directory for publishing
           cp *.html docs/ 2>/dev/null || true
-          # Copy all .chopro and .pdf files from all directories to docs
+          # Copy all .chopro files
           find . -name "*.chopro" -type f | while read -r file; do
             # Create directory structure in docs to match source
             dir_path=$(dirname "$file")
             mkdir -p "docs/$dir_path"
             cp "$file" "docs/$file"
           done
+          
+          # First, copy any existing PDFs from previous deployment
+          if [ -d "./previous-deployment" ]; then
+            echo "Restoring PDFs from previous deployment..."
+            find ./previous-deployment -name "*.pdf" -type f | while read -r file; do
+              # Get relative path and copy to docs
+              rel_path="${file#./previous-deployment/}"
+              dir_path=$(dirname "$rel_path")
+              mkdir -p "docs/$dir_path"
+              cp "$file" "docs/$rel_path"
+              echo "Restored: $rel_path"
+            done
+          fi
+          
+          # Then copy/overwrite with PDFs from repo (including newly generated ones)
           find . -name "*.pdf" -type f | while read -r file; do
+            # Skip the previous-deployment directory
+            if [[ "$file" == "./previous-deployment/"* ]]; then
+              continue
+            fi
             # Create directory structure in docs to match source
             dir_path=$(dirname "$file")
             mkdir -p "docs/$dir_path"
