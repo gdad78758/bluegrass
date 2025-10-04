@@ -111,8 +111,9 @@ jobs:
             mkdir -p "docs/$dir_path"
             cp "$file" "docs/$file"
           done
-          # Copy image files (jpeg, jpg, png, gif, etc.)
-          find . -name "*.jpeg" -o -name "*.jpg" -o -name "*.png" -o -name "*.gif" -o -name "*.webp" | while read -r file; do
+          # Copy all file types that GenList.py publishes (from line 162-163)
+          # Extensions: .PDF, .chopro, .cho, .mscz, .urltxt, .aif, .txt, .mp3, .html, .jpg, .jpeg, .png, .m4a
+          find . \( -name "*.pdf" -o -name "*.PDF" -o -name "*.mscz" -o -name "*.urltxt" -o -name "*.aif" -o -name "*.txt" -o -name "*.mp3" -o -name "*.html" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.m4a" \) | while read -r file; do
             # Create directory structure in docs to match source
             dir_path=$(dirname "$file")
             mkdir -p "docs/$dir_path"
