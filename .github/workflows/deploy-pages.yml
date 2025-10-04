@@ -80,7 +80,39 @@ jobs:
           mkdir -p docs
           # Copy generated HTML and PDF files to docs directory for publishing
           cp *.html docs/ 2>/dev/null || true
-          cp *.pdf docs/ 2>/dev/null || true
+          # Copy all .chopro and .pdf files from all directories to docs
+          find . -name "*.chopro" -type f | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          find . -name "*.pdf" -type f | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          # Copy image files (jpeg, jpg, png, gif, etc.)
+          find . -name "*.jpeg" -o -name "*.jpg" -o -name "*.png" -o -name "*.gif" -o -name "*.webp" | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          # Copy CSS files and wp-content directory structure
+          if [ -d "wp-content" ]; then
+            cp -r wp-content docs/
+          fi
+          if [ -d "wp-includes" ]; then
+            cp -r wp-includes docs/
+          fi
+          # Copy any standalone CSS files
+          find . -name "*.css" -type f | while read -r file; do
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
           echo "# GenPDF Butler Documentation" > docs/index.md
           echo "" >> docs/index.md
           echo "## About" >> docs/index.md
