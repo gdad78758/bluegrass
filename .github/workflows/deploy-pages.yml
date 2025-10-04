@@ -1,0 +1,175 @@
+# GitHub Pages deployment workflow
+name: Deploy to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["butler-gh-pages"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for git diff comparisons
+        
+
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # Install Python dependencies for GenList.py
+          pip install first
+          # Install chordpro via cpanm and genpdf-butler
+          sudo apt-get update
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl
+          sudo cpanm --notest App::Music::ChordPro
+          pipx install genpdf-butler
+          
+      - name: Build package
+        run: |
+          cd genpdf_package
+          python -m build
+          
+      - name: Generate PDFs from .chopro files
+        run: |
+          echo "=== Checking .chopro files for PDF generation ==="
+          
+          # Find all .chopro files and check if their PDFs need updating
+          find . -name "*.chopro" -type f | while read -r chopro_file; do
+            # Get the corresponding PDF filename
+            pdf_file="${chopro_file%.chopro}.pdf"
+            
+            # Check if PDF doesn't exist
+            if [ ! -f "$pdf_file" ]; then
+              echo "Generating PDF for: $chopro_file (PDF missing)"
+              genpdf --pagesize a5 "$chopro_file"
+            else
+              # Use git to get the last modification time of the .chopro file
+              chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
+              pdf_git_time=$(git log -1 --format="%ct" -- "$pdf_file" 2>/dev/null || echo "0")
+              
+              # If .chopro was modified more recently in git than PDF, regenerate
+              if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
+                echo "Generating PDF for: $chopro_file (chopro modified more recently in git: $chopro_git_time vs $pdf_git_time)"
+                genpdf --pagesize a5 "$chopro_file"
+              else
+                echo "Skipping $chopro_file (PDF up to date in git: chopro=$chopro_git_time, pdf=$pdf_git_time)"
+              fi
+            fi
+          done
+          
+      - name: Generate HTML files
+        run: |
+          python3 scripts/GenList.py --no-intro notes/set_list GeneratedNotesList.html
+          python3 scripts/GenList.py --no-intro music GeneratedSongsList.html
+          python3 scripts/GenList.py --no-intro Christmas Christmas.html
+          python3 ./scripts/GenList.py --no-intro 'Katy Lesson' KatyLessons.html
+          
+      - name: Generate documentation
+        run: |
+          mkdir -p docs
+          # Copy generated HTML and PDF files to docs directory for publishing
+          cp *.html docs/ 2>/dev/null || true
+          # Copy all .chopro files
+          find . -name "*.chopro" -type f | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          
+          # Copy all PDFs from repo (including newly generated ones)
+          find . -name "*.pdf" -type f | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          # Copy all file types that GenList.py publishes (from line 162-163)
+          # Extensions: .PDF, .chopro, .cho, .mscz, .urltxt, .aif, .txt, .mp3, .html, .jpg, .jpeg, .png, .m4a
+          find . \( -name "*.pdf" -o -name "*.PDF" -o -name "*.mscz" -o -name "*.urltxt" -o -name "*.aif" -o -name "*.txt" -o -name "*.mp3" -o -name "*.html" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.m4a" \) | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          # Copy CSS files and wp-content directory structure
+          if [ -d "wp-content" ]; then
+            cp -r wp-content docs/
+          fi
+          if [ -d "wp-includes" ]; then
+            cp -r wp-includes docs/
+          fi
+          # Copy any standalone CSS files
+          find . -name "*.css" -type f | while read -r file; do
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          echo "# GenPDF Butler Documentation" > docs/index.md
+          echo "" >> docs/index.md
+          echo "## About" >> docs/index.md
+          echo "GenPDF Butler is a package for running chordpro CLI over a folder to generate PDFs from chord charts." >> docs/index.md
+          echo "" >> docs/index.md
+          echo "## Installation" >> docs/index.md
+          echo "\`\`\`bash" >> docs/index.md
+          echo "pip install genpdf-butler" >> docs/index.md
+          echo "\`\`\`" >> docs/index.md
+          echo "" >> docs/index.md
+          echo "## Usage" >> docs/index.md
+          echo "\`\`\`python" >> docs/index.md
+          echo "from genpdf_butler.GenPDF import createPDFs" >> docs/index.md
+          echo "" >> docs/index.md
+          echo "# Generate PDFs from .chopro files" >> docs/index.md
+          echo "createPDFs('/path/to/music', 'a4', 'all')" >> docs/index.md
+          echo "\`\`\`" >> docs/index.md
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

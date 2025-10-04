@@ -21,9 +21,18 @@ def main():
   showchords = args.showchords
 
   repo = Repo(path='.', search_parent_directories=True)
-  if repo.is_dirty():
-    print("Cannot operate on a repo with changes -- " +
-          "commit, discard, or stash your changes and try again")
+  
+  # Check if any .chopro or .cho files are modified or untracked
+  dirty_chopro_files = [item.a_path for item in repo.index.diff(None) if item.a_path.endswith(('.chopro', '.cho'))]
+  untracked_chopro_files = [f for f in repo.untracked_files if f.endswith(('.chopro', '.cho'))]
+  
+  if dirty_chopro_files or untracked_chopro_files:
+    print("Cannot operate on a repo with .chopro/.cho changes -- " +
+          "commit, discard, or stash your .chopro/.cho changes and try again")
+    if dirty_chopro_files:
+      print("Modified .chopro/.cho files:", dirty_chopro_files)
+    if untracked_chopro_files:
+      print("Untracked .chopro/.cho files:", untracked_chopro_files)
   else:
     PatchTextColor.PatchColors()
     GenPDF.createPDFs(musictarget, pagesize, showchords)
