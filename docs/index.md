@@ -9,10 +9,14 @@ Welcome to the bluegrass music collection featuring chord charts, sheet music, a
 
 ## Generated Lists
 
-- [Notes List](GeneratedNotesList.html) - Songs both finished and working
-- [Songs List](GeneratedSongsList.html) - Miscellaneous songs we've not done
-- [Christmas Songs](Christmas.html) - Holiday music collection
-- [Katy Lessons](KatyLessons.html) - Educational materials
+The following lists are automatically generated during site deployment:
+
+- **Notes List** (`GeneratedNotesList.html`) - Songs both finished and working
+- **Songs List** (`GeneratedSongsList.html`) - Miscellaneous songs we've not done  
+- **Christmas Songs** (`Christmas.html`) - Holiday music collection
+- **Katy Lessons** (`KatyLessons.html`) - Educational materials
+
+*Note: These HTML files are generated during deployment and will be available once the site is published.*
 
 ## About This Collection
 
