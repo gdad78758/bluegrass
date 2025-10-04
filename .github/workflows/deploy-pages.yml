@@ -54,10 +54,21 @@ jobs:
           
       - name: Generate PDFs from .chopro files
         run: |
-          # Get list of changed .chopro files since last commit on main branch
-          # This will catch new files and modified files
-          changed_chopro_files=$(git diff --name-only origin/main...HEAD -- "*.chopro" || echo "")
-          new_chopro_files=$(git ls-files --others --exclude-standard -- "*.chopro" || echo "")
+          # Get list of changed .chopro files in this push/commit
+          # Use GitHub event context to get changed files, or fallback to recent changes
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # For push events, compare with the previous commit
+            changed_chopro_files=$(git diff --name-only HEAD~1 HEAD -- "*.chopro" 2>/dev/null || echo "")
+          else
+            # For other events or if comparison fails, check recent changes
+            changed_chopro_files=$(git diff --name-only HEAD~5 HEAD -- "*.chopro" 2>/dev/null || echo "")
+          fi
+          
+          # Get untracked .chopro files
+          new_chopro_files=$(git ls-files --others --exclude-standard -- "*.chopro" 2>/dev/null || echo "")
+          
+          echo "Changed .chopro files: $changed_chopro_files"
+          echo "New .chopro files: $new_chopro_files"
           
           # Find all .chopro files that need PDF updates
           find . -name "*.chopro" -type f | while read -r file; do
@@ -70,7 +81,7 @@ jobs:
               echo "Generating PDF for: $file (PDF missing)"
               genpdf --pagesize a5 "$file"
             # Check if .chopro file has been changed in git
-            elif echo "$changed_chopro_files" | grep -q "^$file_relative$" || echo "$new_chopro_files" | grep -q "^$file_relative$"; then
+            elif echo "$changed_chopro_files" | grep -q "$file_relative" || echo "$new_chopro_files" | grep -q "$file_relative"; then
               echo "Generating PDF for: $file (chopro file changed in git)"
               genpdf --pagesize a5 "$file"
             else
