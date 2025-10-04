@@ -31,12 +31,7 @@ jobs:
         with:
           fetch-depth: 0  # Fetch full history for git diff comparisons
         
-      - name: Download previous deployment artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./previous-deployment
-        continue-on-error: true
+
         
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -63,58 +58,29 @@ jobs:
           
       - name: Generate PDFs from .chopro files
         run: |
-          # Debug: Show git log and current state
-          echo "=== Git Debug Info ==="
-          git log --oneline -5
-          echo "Current HEAD: $(git rev-parse HEAD)"
-          echo "=== End Debug ==="
+          echo "=== Checking .chopro files for PDF generation ==="
           
-          # Get list of changed .chopro files in this push/commit
-          # Try multiple approaches to find changed files
-          changed_chopro_files=""
-          
-          # Method 1: Compare with previous commit
-          if [ "${{ github.event_name }}" = "push" ]; then
-            changed_chopro_files=$(git diff --name-only HEAD~1 HEAD 2>/dev/null | grep '\.chopro$' || echo "")
-            echo "Method 1 (HEAD~1): $changed_chopro_files"
-          fi
-          
-          # Method 2: Use GitHub context (pushed commits)
-          if [ -z "$changed_chopro_files" ] && [ "${{ github.event_name }}" = "push" ]; then
-            changed_chopro_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 2>/dev/null | grep '\.chopro$' || echo "")
-            echo "Method 2 (GitHub context): $changed_chopro_files"
-          fi
-          
-          # Method 3: Fallback - check recent changes
-          if [ -z "$changed_chopro_files" ]; then
-            changed_chopro_files=$(git diff --name-only HEAD~10 HEAD 2>/dev/null | grep '\.chopro$' || echo "")
-            echo "Method 3 (recent changes): $changed_chopro_files"
-          fi
-          
-          # Get untracked .chopro files
-          new_chopro_files=$(git ls-files --others --exclude-standard 2>/dev/null | grep '\.chopro$' || echo "")
-          
-          echo "=== Final Results ==="
-          echo "Changed .chopro files: '$changed_chopro_files'"
-          echo "New .chopro files: '$new_chopro_files'"
-          echo "==================="
-          
-          # Find all .chopro files that need PDF updates
-          find . -name "*.chopro" -type f | while read -r file; do
+          # Find all .chopro files and check if their PDFs need updating
+          find . -name "*.chopro" -type f | while read -r chopro_file; do
             # Get the corresponding PDF filename
-            pdf_file="${file%.chopro}.pdf"
-            file_relative="${file#./}"
+            pdf_file="${chopro_file%.chopro}.pdf"
             
             # Check if PDF doesn't exist
             if [ ! -f "$pdf_file" ]; then
-              echo "Generating PDF for: $file (PDF missing)"
-              genpdf --pagesize a5 "$file"
-            # Check if .chopro file has been changed in git
-            elif echo "$changed_chopro_files" | grep -q "$file_relative" || echo "$new_chopro_files" | grep -q "$file_relative"; then
-              echo "Generating PDF for: $file (chopro file changed in git)"
-              genpdf --pagesize a5 "$file"
+              echo "Generating PDF for: $chopro_file (PDF missing)"
+              genpdf --pagesize a5 "$chopro_file"
             else
-              echo "Skipping $file (PDF up to date)"
+              # Use git to get the last modification time of the .chopro file
+              chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
+              pdf_git_time=$(git log -1 --format="%ct" -- "$pdf_file" 2>/dev/null || echo "0")
+              
+              # If .chopro was modified more recently in git than PDF, regenerate
+              if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
+                echo "Generating PDF for: $chopro_file (chopro modified more recently in git: $chopro_git_time vs $pdf_git_time)"
+                genpdf --pagesize a5 "$chopro_file"
+              else
+                echo "Skipping $chopro_file (PDF up to date in git: chopro=$chopro_git_time, pdf=$pdf_git_time)"
+              fi
             fi
           done
           
@@ -138,25 +104,8 @@ jobs:
             cp "$file" "docs/$file"
           done
           
-          # First, copy any existing PDFs from previous deployment
-          if [ -d "./previous-deployment" ]; then
-            echo "Restoring PDFs from previous deployment..."
-            find ./previous-deployment -name "*.pdf" -type f | while read -r file; do
-              # Get relative path and copy to docs
-              rel_path="${file#./previous-deployment/}"
-              dir_path=$(dirname "$rel_path")
-              mkdir -p "docs/$dir_path"
-              cp "$file" "docs/$rel_path"
-              echo "Restored: $rel_path"
-            done
-          fi
-          
-          # Then copy/overwrite with PDFs from repo (including newly generated ones)
+          # Copy all PDFs from repo (including newly generated ones)
           find . -name "*.pdf" -type f | while read -r file; do
-            # Skip the previous-deployment directory
-            if [[ "$file" == "./previous-deployment/"* ]]; then
-              continue
-            fi
             # Create directory structure in docs to match source
             dir_path=$(dirname "$file")
             mkdir -p "docs/$dir_path"
