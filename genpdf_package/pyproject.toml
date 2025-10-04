@@ -6,7 +6,7 @@ dependencies = [
   "gitpython>=3.1.44"
 ]
 name = "genpdf_butler"
-version = "0.0.27"
+version = "0.0.29"
 authors = [
   { name="Paul Butler", email="c.paul.butler@gmail.com" },
 ]
@@ -15,7 +15,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Operating System :: Microsoft",
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]

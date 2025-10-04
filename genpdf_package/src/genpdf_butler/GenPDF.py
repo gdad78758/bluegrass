@@ -6,8 +6,8 @@ import os
 def createPDFs(musicTarget, pagesize, showchords):
   chordproSettings=[
   	"chordpro",
-          "--config=Ukulele",
-          "--config=Ukulele-ly",
+          "--config=ukulele",
+          "--config=ukulele-ly",
           "--define=pdf:diagrams:show=" + showchords,
           "--define=settings:inline-chords=true",
           "--define=pdf:even-odd-pages=0",
