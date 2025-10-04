@@ -6,8 +6,8 @@ import os
 def createPDFs(musicTarget, pagesize, showchords):
   chordproSettings=[
   	"chordpro",
-          "--config=Ukulele",
-          "--config=Ukulele-ly",
+          "--config=ukulele",
+          "--config=ukulele-ly",
           "--define=pdf:diagrams:show=" + showchords,
           "--define=settings:inline-chords=true",
           "--define=pdf:even-odd-pages=0",
@@ -32,9 +32,11 @@ def createPDFs(musicTarget, pagesize, showchords):
     if os.path.isdir(musicTarget):
       for p in Path(musicTarget).rglob('*'):
         if ext(p) in (extension.lower() for extension in extensions):
-          subprocess.run(chordproSettings + [str(p)])
+          pdf_output = str(p).replace(ext(p), '.pdf')
+          subprocess.run(chordproSettings + [f"--output={pdf_output}", str(p)])
     else:
       if ext(musicTarget) in (extension.lower() for extension in extensions):
-        subprocess.run(chordproSettings + [musicTarget])
+        pdf_output = musicTarget.replace(ext(musicTarget), '.pdf')
+        subprocess.run(chordproSettings + [f"--output={pdf_output}", musicTarget])
   else:
     print(f"no such file or folder '{musicTarget}'")
