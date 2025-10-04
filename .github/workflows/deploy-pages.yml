@@ -51,8 +51,8 @@ jobs:
           
           need_generation=false
           
-          # Use a for loop with glob instead of find to avoid subshell issues
-          for chopro_file in $(find . -name "*.chopro" -type f); do
+          # Use find with -print0 and read with -d '' to handle filenames with spaces
+          while IFS= read -r -d '' chopro_file; do
             # Get the corresponding PDF filename
             pdf_file="${chopro_file%.chopro}.pdf"
             
@@ -73,7 +73,7 @@ jobs:
                 break
               fi
             fi
-          done
+          done < <(find . -name "*.chopro" -type f -print0)
           
           if [ "$need_generation" = true ]; then
             echo "need_generation=true" >> $GITHUB_OUTPUT
