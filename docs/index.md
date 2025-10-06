@@ -35,6 +35,7 @@ PDFs are automatically generated using [genpdf-butler](https://github.com/Tuesda
 - PDFs are generated during site deployment when `.chopro` files are newer than their corresponding `.pdf` files
 - Uses Git history to determine when files were last modified (not filesystem timestamps)
 - Only regenerates PDFs when the source ChordPro file has actually changed
+- **Auto-committed**: Generated PDFs are automatically committed back to the repository for version control and persistence
 
 ### Manual PDF Control
 For better control and faster builds, you can check PDF files directly into the repository:
@@ -45,7 +46,13 @@ For better control and faster builds, you can check PDF files directly into the 
 - **Faster builds**: Skips ChordPro installation and PDF generation when all PDFs are up to date
 - **Mixed approach**: Some PDFs can be committed while others are auto-generated as needed
 
-**Example workflow:**
+**Automatic workflow:**
+1. Modify a `.chopro` file and commit it
+2. Push to repository - deployment workflow detects the change
+3. PDF is automatically generated and committed back to the repository
+4. Site is deployed with both the updated `.chopro` and new `.pdf`
+
+**Manual override workflow:**
 1. Create or modify a `.chopro` file
 2. Generate PDF locally: `genpdf --pagesize a5 mysong.chopro`
 3. Customize the PDF if needed (manual edits, different settings)
