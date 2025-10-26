@@ -6,8 +6,6 @@
 {time: 4/4}
 
 (Intro:)
-[G]//// [Em]//// [C]////  [D]/   [C] / [Bm] / [Am] /
-
 
 [G]Rockin' around the Christmas tree, at the [D7]Christmas party hop.
 [Am7]Mistletoe [D7]hung where [Am7]you can [D7]see;
@@ -25,11 +23,12 @@ and we'll [Am7]do some [D7]caro-[G]ling.
 [Am7]Ev'ryone [D7]dancing [Am7]merri[D7]ly,
 in the [Am7]new old-[D7]fashioned [G]way.
 
-(Instrumental solo: Larry)
-
-/&blue:[G]Rockin' around the Christmas tree; let the [D7]Christmas spirit ring.
-/&blue:[Am7]Later we'll[D7] have some[Am7] pumpkin[D7] pie,
+{textcolour: blue}
+(Instrumental)
+[G]Rockin' around the Christmas tree; let the [D7]Christmas spirit ring.
+[Am7]Later we'll[D7] have some[Am7] pumpkin[D7] pie,
 and we'll[Am7] do some[D7] caro[G]-ling.
+{textcolour}
 
 [C]You will get a sentimental [Bm]feeling, when you hear;
 [Em]Voices singing,"[G]let's be jolly;
@@ -39,11 +38,12 @@ and we'll[Am7] do some[D7] caro[G]-ling.
 [Am7]Ev'ryone [D7]dancing [Am7]merri[D7]ly,
 in the [Am7]new old-[D7]fashioned [G]way.
 
-(Instrumental solo: Gary)
-
-/&blue:[G]Rockin' around the Christmas tree; let the [D7]Christmas spirit ring.
-/&blue:[Am7]Later we'll[D7] have some[Am7] pumpkin[D7] pie,
+{textcolour: blue}
+(Instrumental solo)
+[G]Rockin' around the Christmas tree; let the [D7]Christmas spirit ring.
+[Am7]Later we'll[D7] have some[Am7] pumpkin[D7] pie,
 and we'll[Am7] do some[D7] caro[G]-ling.
+{textcolour}
 
 [C]You will get a sentimental [Bm]feeling, when you hear;
 [Em]Voices singing,"[G]let's be jolly;
@@ -52,5 +52,3 @@ and we'll[Am7] do some[D7] caro[G]-ling.
 [G]Rockin' around the Christmas tree, have a [D7]happy holiday.
 [Am7]Ev'ryone [D7]dancing [Am7]merri-[D7]ly,
 in the [D]new [D#]old-[E]fa-shi[F#]oned [G]way[Em]... [C]   [G]
-
-
