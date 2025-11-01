@@ -1,0 +1,224 @@
+# GitHub Pages deployment workflow
+name: Deploy to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages and commit PDFs
+permissions:
+  contents: write  # Allow reading repo and writing commits
+  pages: write     # Allow GitHub Pages deployment
+  id-token: write  # Allow OIDC token for Pages deployment
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for git diff comparisons
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authenticated operations
+        
+
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install basic dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Install Python dependencies for GenList.py
+          pip install first
+          
+      - name: Check if PDF generation is needed
+        id: check-pdfs
+        run: |
+          echo "=== Checking if any PDFs need generation ==="
+          
+          need_generation=false
+          
+          # Use find with -print0 and read with -d '' to handle filenames with spaces
+          while IFS= read -r -d '' chopro_file; do
+            # Get the corresponding PDF filename
+            pdf_file="${chopro_file%.chopro}.pdf"
+            
+            # Check if PDF doesn't exist
+            if [ ! -f "$pdf_file" ]; then
+              echo "PDF missing for: $chopro_file"
+              need_generation=true
+              break
+            else
+              # Use git to get the last modification time of the .chopro file
+              chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
+              pdf_git_time=$(git log -1 --format="%ct" -- "$pdf_file" 2>/dev/null || echo "0")
+              
+              # If .chopro was modified more recently in git than PDF, regenerate
+              if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
+                echo "PDF outdated for: $chopro_file (chopro=$chopro_git_time, pdf=$pdf_git_time)"
+                need_generation=true
+                break
+              fi
+            fi
+          done < <(find . -name "*.chopro" -type f -print0)
+          
+          if [ "$need_generation" = true ]; then
+            echo "need_generation=true" >> $GITHUB_OUTPUT
+            echo "PDF generation required - will install ChordPro"
+          else
+            echo "need_generation=false" >> $GITHUB_OUTPUT
+            echo "All PDFs are up to date - skipping ChordPro installation"
+          fi
+          
+      - name: Install ChordPro and genpdf-butler
+        if: steps.check-pdfs.outputs.need_generation == 'true'
+        run: |
+          echo "=== Installing ChordPro and genpdf-butler ==="
+          # Install chordpro via cpanm and genpdf-butler from PyPI
+          sudo apt-get update
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl
+          sudo cpanm --notest App::Music::ChordPro
+          pip install genpdf-butler
+          
+      - name: Generate PDFs from .chopro files
+        if: steps.check-pdfs.outputs.need_generation == 'true'
+        run: |
+          echo "=== Generating PDFs ==="
+          
+          # Find all .chopro files and check if their PDFs need updating
+          find . -name "*.chopro" -type f | while read -r chopro_file; do
+            # Get the corresponding PDF filename
+            pdf_file="${chopro_file%.chopro}.pdf"
+            
+            # Check if PDF doesn't exist
+            if [ ! -f "$pdf_file" ]; then
+              echo "Generating PDF for: $chopro_file (PDF missing)"
+              genpdf --pagesize a5 "$chopro_file"
+            else
+              # Use git to get the last modification time of the .chopro file
+              chopro_git_time=$(git log -1 --format="%ct" -- "$chopro_file" 2>/dev/null || echo "0")
+              pdf_git_time=$(git log -1 --format="%ct" -- "$pdf_file" 2>/dev/null || echo "0")
+              
+              # If .chopro was modified more recently in git than PDF, regenerate
+              if [ "$chopro_git_time" -gt "$pdf_git_time" ]; then
+                echo "Generating PDF for: $chopro_file (chopro modified more recently in git: $chopro_git_time vs $pdf_git_time)"
+                genpdf --pagesize a5 "$chopro_file"
+              else
+                echo "Skipping $chopro_file (PDF up to date in git: chopro=$chopro_git_time, pdf=$pdf_git_time)"
+              fi
+            fi
+          done
+          
+      - name: Commit generated PDFs to repository
+        if: steps.check-pdfs.outputs.need_generation == 'true'
+        run: |
+          echo "=== Committing generated PDFs ==="
+          
+          # Configure git for the GitHub Actions bot
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add any new or modified PDF files
+          git add *.pdf **/*.pdf 2>/dev/null || true
+          
+          # Check if there are any PDF changes to commit
+          if git diff --staged --quiet; then
+            echo "No PDF changes to commit"
+          else
+            echo "Committing generated PDF changes..."
+            git commit -m "Auto-generate PDFs from updated .chopro files
+            
+            Generated PDFs for .chopro files newer than their corresponding PDFs.
+            Automated commit from deploy-pages workflow.
+            Source commit: ${{ github.sha }}"
+            
+            # Push the changes back to the repository
+            git push origin ${{ github.ref_name }}
+            echo "PDFs committed and pushed to repository"
+          fi
+          
+      - name: Generate HTML files
+        run: |
+          python3 scripts/GenList.py --no-intro notes/set_list GeneratedNotesList.html
+          python3 scripts/GenList.py --no-intro music GeneratedSongsList.html
+          python3 scripts/GenList.py --no-intro Christmas Christmas.html
+          python3 ./scripts/GenList.py --no-intro 'Katy Lesson' KatyLessons.html
+          
+      - name: Generate documentation
+        run: |
+          mkdir -p docs
+          # Copy generated HTML and PDF files to docs directory for publishing
+          cp *.html docs/ 2>/dev/null || true
+          
+          # Copy all music and media files referenced by GenList.py
+          find . \( -name "*.chopro" -o -name "*.cho" -o -name "*.pdf" -o -name "*.PDF" -o -name "*.mscz" -o -name "*.urltxt" -o -name "*.aif" -o -name "*.txt" -o -name "*.mp3" -o -name "*.html" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.m4a" \) | while read -r file; do
+            # Create directory structure in docs to match source
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          
+          # Copy CSS and WordPress assets
+          if [ -d "wp-content" ]; then
+            cp -r wp-content docs/
+          fi
+          if [ -d "wp-includes" ]; then
+            cp -r wp-includes docs/
+          fi
+          find . -name "*.css" -type f | while read -r file; do
+            dir_path=$(dirname "$file")
+            mkdir -p "docs/$dir_path"
+            cp "$file" "docs/$file"
+          done
+          
+          # Create index page for the music collection (not genpdf-butler docs)
+          echo "# Bluegrass Music Collection" > docs/index.md
+          echo "" >> docs/index.md
+          echo "Welcome to the bluegrass music collection with chord charts, sheet music, and audio files." >> docs/index.md
+          echo "" >> docs/index.md
+          echo "## Generated Lists" >> docs/index.md
+          echo "- [Notes List](GeneratedNotesList.html)" >> docs/index.md
+          echo "- [Songs List](GeneratedSongsList.html)" >> docs/index.md
+          echo "- [Christmas Songs](Christmas.html)" >> docs/index.md
+          echo "- [Katy Lessons](KatyLessons.html)" >> docs/index.md
+          echo "" >> docs/index.md
+          echo "## Tools Used" >> docs/index.md
+          echo "PDFs generated using [genpdf-butler](https://github.com/TuesdayUkes/genpdf-butler)" >> docs/index.md
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
