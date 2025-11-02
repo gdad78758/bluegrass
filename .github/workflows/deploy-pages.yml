@@ -156,6 +156,7 @@ jobs:
           python3 scripts/GenList.py --no-intro notes/set_list GeneratedNotesList.html
           python3 scripts/GenList.py --no-intro music GeneratedSongsList.html
           python3 scripts/GenList.py --no-intro Christmas Christmas.html
+          python3 scripts/GenList.py --no-intro Practice_Tracks Practice.html
           python3 ./scripts/GenList.py --no-intro 'Katy Lesson' KatyLessons.html
           
       - name: Generate documentation
