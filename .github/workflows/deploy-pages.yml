@@ -42,8 +42,11 @@ jobs:
       - name: Install basic dependencies
         run: |
           python -m pip install --upgrade pip
-          # Install Python dependencies for GenList.py
-          pip install first
+          python -m pip install first
+          python -m pip install --user pipx
+          python -m pipx ensurepath
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          ~/.local/bin/pipx install --force genlist-butler
           
       - name: Check if PDF generation is needed
         id: check-pdfs
@@ -153,12 +156,12 @@ jobs:
           
       - name: Generate HTML files
         run: |
-          python3 scripts/GenList.py --no-intro notes/set_list GeneratedNotesList.html
-          python3 scripts/GenList.py --no-intro music GeneratedSongsList.html
-          python3 scripts/GenList.py --no-intro Christmas Christmas.html
-          python3 scripts/GenList.py --no-intro Practice_Tracks Practice.html
-          python3 ./scripts/GenList.py --no-intro 'Katy Lesson' KatyLessons.html
-          python3 ./scripts/GenList.py --no-intro EddieLessons EddieLessons.html
+          genlist --no-intro notes/set_list GeneratedNotesList.html
+          genlist --no-intro music GeneratedSongsList.html
+          genlist --no-intro Christmas Christmas.html
+          genlist --no-intro Practice_Tracks Practice.html
+          genlist --no-intro 'Katy Lesson' KatyLessons.html
+          genlist --no-intro EddieLessons EddieLessons.html
           
       - name: Generate documentation
         run: |
