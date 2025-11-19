@@ -156,12 +156,12 @@ jobs:
           
       - name: Generate HTML files
         run: |
-          genlist --no-intro notes/set_list GeneratedNotesList.html
-          genlist --no-intro music GeneratedSongsList.html
-          genlist --no-intro Christmas Christmas.html
-          genlist --no-intro Practice_Tracks Practice.html
-          genlist --no-intro 'Katy Lesson' KatyLessons.html
-          genlist --no-intro EddieLessons EddieLessons.html
+          genlist --no-intro --no-line-numbers --filter none notes/set_list GeneratedNotesList.html
+          genlist --no-intro --no-line-numbers --filter none music GeneratedSongsList.html
+          genlist --no-intro --no-line-numbers --filter none Christmas Christmas.html
+          genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
+          genlist --no-intro --no-line-numbers --filter none 'Katy Lesson' KatyLessons.html
+          genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
           
       - name: Generate documentation
         run: |
