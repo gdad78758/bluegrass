@@ -158,6 +158,7 @@ jobs:
           python3 scripts/GenList.py --no-intro Christmas Christmas.html
           python3 scripts/GenList.py --no-intro Practice_Tracks Practice.html
           python3 ./scripts/GenList.py --no-intro 'Katy Lesson' KatyLessons.html
+          python3 ./scripts/GenList.py --no-intro EddieLessons EddieLessons.html
           
       - name: Generate documentation
         run: |
