@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Clean up legacy &blue prefixed lines in .chopro files.
 
 Usage examples:

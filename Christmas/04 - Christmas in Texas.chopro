@@ -57,17 +57,21 @@ I better [B]grab another bag of [B]ice
 
 (Lead solo)
 
-/&blue:I've been a [A]good good boy I [A]know he knows
-/&blue:To [B]drop some presents [B]here.
-/&blue:Oh, the [E]place will be rockin’
-/&blue:When he [E]fills up my stockin’
-/&blue:with [E]ice cold Lonestar [A]beer.  [A]////
+{textcolour: blue}
+I've been a [A]good good boy I [A]know he knows
+To [B]drop some presents [B]here.
+Oh, the [E]place will be rockin’
+When he [E]fills up my stockin’
+with [E]ice cold Lonestar [A]beer.  [A]////
+{textcolour}
 
-/&blue:I've been a [A]good good boy I [A]know he knows
-/&blue:To [B]drop some presents [B]here.
-/&blue:Oh, the [E]place will be rockin’
-/&blue:When he [E]fills up my stockin’
-/&blue:with [E]ice cold Lonestar [A]beer.  [A]////
+{textcolour: blue}
+I've been a [A]good good boy I [A]know he knows
+To [B]drop some presents [B]here.
+Oh, the [E]place will be rockin’
+When he [E]fills up my stockin’
+with [E]ice cold Lonestar [A]beer.  [A]////
+{textcolour}
 
 (Chorus - Everyone sings)
 
