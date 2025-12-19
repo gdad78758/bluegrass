@@ -7,6 +7,6 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<img id="gemini-logo" src="assets/GeminiLogo.webp" alt="Gemini Logo">
+<img id="gemini-logo" src="assets/GeminiCircleLogo.webp" alt="Gemini Logo">
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="index.html#content">Skip to content</a>
