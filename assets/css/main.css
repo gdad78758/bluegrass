@@ -1,0 +1,94 @@
+:root {
+    color-scheme: dark;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+    background-color: rgb(58, 64, 80);
+    color: #f3f6fb;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.site {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: 2.2rem;
+}
+
+h2 {
+    margin: 24px 0 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+a {
+    color: #f2c14e;
+}
+
+a:visited {
+    color: #d6a73f;
+}
+
+a:hover,
+a:focus {
+    color: #ffd877;
+}
+
+img.hero {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 8px 0 20px;
+    object-fit: cover;
+}
+
+.section-title {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+}
+
+.divider {
+    margin: 24px 0 12px;
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+}
+
+/* Logo Styles */
+#gemini-logo {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 9999;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 720px) {
+    body {
+        padding-bottom: 120px; /* Add space at the bottom to scroll past the logo */
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}

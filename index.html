@@ -2,110 +2,11 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-    :root {
-        color-scheme: dark;
-    }
-    body {
-        margin: 0;
-        padding: 16px;
-        background-color: rgb(58, 64, 80);
-        color: #f3f6fb;
-        font-family: Arial, sans-serif;
-        font-size: 18px;
-        line-height: 1.6;
-    }
-    main {
-        max-width: 960px;
-        margin: 0 auto;
-    }
-    h1 {
-        margin: 0 0 12px;
-        font-size: 2.2rem;
-    }
-    h2 {
-        margin: 24px 0 12px;
-        font-size: 1.4rem;
-        font-weight: 600;
-    }
-    a {
-        color: #f2c14e;
-        display: inline-block;
-        padding: 4px 0;
-    }
-    a:visited {
-        color: #d6a73f;
-    }
-    a:hover,
-    a:focus {
-        color: #ffd877;
-    }
-    img.hero {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        display: block;
-        margin: 8px 0 20px;
-        object-fit: cover;
-    }
-    .section-title {
-        margin-top: 28px;
-        margin-bottom: 8px;
-        letter-spacing: 0.04em;
-    }
-    .divider {
-        margin: 24px 0 12px;
-        font-size: 1rem;
-        letter-spacing: 0.16em;
-    }
-    .logo-fixed {
-        position: fixed !important;
-        right: 16px;
-        bottom: 16px;
-        max-width: 200px;
-        width: min(28vw, 200px);
-        z-index: 20;
-        opacity: 0.9;
-        pointer-events: none;
-    }
-    @media (max-width: 720px) {
-        body {
-            padding: 14px;
-            font-size: 18px;
-            padding-bottom: 180px; /* keep content clear of fixed logo at bottom */
-        }
-        h1 {
-            font-size: 1.9rem;
-        }
-        h2 {
-            font-size: 1.25rem;
-        }
-        .logo-fixed {
-            position: fixed !important;
-            left: 50% !important;
-            right: auto !important;
-            top: auto !important;
-            bottom: 12px !important;
-            transform: translateX(-50%) !important;
-            max-width: 180px;
-            width: min(36vw, 180px);
-            margin: 0;
-            display: block;
-        }
-    }
-</style>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
-<div class="logo-fixed">
-    <picture>
-        <source srcset="/assets/GeminiLogo.webp" type="image/webp" />
-        <img src="/assets/GeminiLogo.png" alt="Silver Grass Band logo" style="width: 100%; height: auto; display: block;" />
-    </picture>
-</div>
+<img id="gemini-logo" src="assets/GeminiLogo.webp" alt="Gemini Logo">
 
-<main>
     <h1>Silver Grass Band</h1>
     <img class="hero" src="SGB 2025.jpeg" alt="The Silver Grass Band" />
 
@@ -117,19 +18,13 @@
         <li><a href="KatysLesson.html">Katy's Lessons</a></li>
         <li><a href="GeneratedSongsList.html">Miscellaneous songs we've not done</a></li>
     </ul>
-
-    <div class="divider">================================================</div>
-
+<hr { border: none; border-top: 1px solid #666; margin: 24px 0; }>
     <h1 class="section-title">Marty's Notes</h1>
     <a href="LinksList.html">Links</a>
     <a href="MLPList.html">Private - password required</a>
 
     <h2>Eddie's Lessons</h2>
     <a href="EddieLessons.html">Eddie's Lessons</a>
-    <p></p>
-    <p></p>
-    <p></p>
-</main>
 
 </body>
 </html>
