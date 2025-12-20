@@ -98,3 +98,13 @@ img.hero {
         font-size: 1.25rem;
     }
 }
+
+/* Search & Filter */
+.search-controls #searchInput {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    padding: 8px 10px;
+    font-size: 1.15rem;
+    line-height: 1.3;
+}
