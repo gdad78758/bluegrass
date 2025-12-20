@@ -11,4 +11,4 @@
 <img id="gemini-logo" src="assets/GeminiCircleLogo.webp" alt="Gemini Logo">
 </a>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="index.html#content">Skip to content</a>
+	<a class="skip-link screen-reader-text" href="index.html#content">← Return Home</a>
