@@ -68,6 +68,21 @@ img.hero {
     border: 0;
 }
 
+.video-chapters {
+    width: 100%;
+    max-width: 960px;
+    margin: 8px 0 24px;
+    padding-left: 20px;
+}
+
+.video-chapters li {
+    margin: 6px 0;
+}
+
+.video-chapters a {
+    font-weight: 600;
+}
+
 hr.content-divider {
     border: none;
     border-top: 1px solid #666;
