@@ -45,14 +45,41 @@ a:focus {
     color: #ffd877;
 }
 
+.hero-container {
+    position: relative;
+    width: 100%;
+    margin: 8px 0 20px;
+}
+
 img.hero {
     width: 100%;
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     display: block;
-    margin: 8px 0 20px;
     object-fit: cover;
+}
+
+.hero-contact {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 
+        -2px -2px 0 #fff,
+        2px -2px 0 #fff,
+        -2px 2px 0 #fff,
+        2px 2px 0 #fff,
+        -3px 0px 0 #fff,
+        3px 0px 0 #fff,
+        0px -3px 0 #fff,
+        0px 3px 0 #fff;
+    text-align: center;
+    width: 90%;
+    line-height: 1.2;
 }
 
 .responsive-video {
@@ -130,6 +157,11 @@ hr.content-divider {
 
     h2 {
         font-size: 1.25rem;
+    }
+
+    .hero-contact {
+        font-size: 1.5rem;
+        bottom: 10px;
     }
 }
 
