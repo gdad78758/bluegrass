@@ -17,6 +17,43 @@
         <div class="hero-contact">Contact Marty Porter (512)&nbsp;699-0144</div>
     </div>
 
+    <!-- Audio Player Section -->
+    <div class="audio-player-container">
+        <h2>Audio Samples</h2>
+        <div class="audio-player">
+            <audio id="audioPlayer" preload="auto">
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="player-controls">
+                <button id="prevBtn" class="control-btn" aria-label="Previous track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                    </svg>
+                </button>
+                <button id="playPauseBtn" class="control-btn play-pause" aria-label="Play/Pause">
+                    <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                        <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+                    </svg>
+                </button>
+                <button id="nextBtn" class="control-btn" aria-label="Next track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="track-info">
+                <div id="trackTitle">Ready to play</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<div class="responsive-video">
         <iframe id="bandVideo" src="https://www.youtube.com/embed/h9tA-V3aryY?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 	</div>
@@ -102,43 +139,6 @@
             loadYouTubeIframeApiOnce();
         })();
     </script>
-
-    <!-- Audio Player Section -->
-    <div class="audio-player-container">
-        <h2>Bluegrass Samples</h2>
-        <div class="audio-player">
-            <audio id="audioPlayer" preload="auto">
-                <source src="" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="player-controls">
-                <button id="prevBtn" class="control-btn" aria-label="Previous track">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
-                    </svg>
-                </button>
-                <button id="playPauseBtn" class="control-btn play-pause" aria-label="Play/Pause">
-                    <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                        <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
-                    </svg>
-                </button>
-                <button id="nextBtn" class="control-btn" aria-label="Next track">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="track-info">
-                <div id="trackTitle">Ready to play</div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <style>
         .audio-player-container {
