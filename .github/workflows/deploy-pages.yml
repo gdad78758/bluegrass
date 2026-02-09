@@ -157,7 +157,7 @@ jobs:
           
       - name: Generate HTML files
         run: |
-          genlist --no-intro --no-line-numbers --filter none notes/set_list GeneratedNotesList.html
+          genlist --no-intro --no-line-numbers --filter none notes/set_list songs.html
           genlist --no-intro --no-line-numbers --filter none music GeneratedSongsList.html
           genlist --no-intro --no-line-numbers --filter none Christmas Christmas.html
           genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
@@ -197,7 +197,7 @@ jobs:
           echo "Welcome to the bluegrass music collection with chord charts, sheet music, and audio files." >> docs/index.md
           echo "" >> docs/index.md
           echo "## Generated Lists" >> docs/index.md
-          echo "- [Notes List](GeneratedNotesList.html)" >> docs/index.md
+          echo "- [Notes List](songs.html)" >> docs/index.md
           echo "- [Songs List](GeneratedSongsList.html)" >> docs/index.md
           echo "- [Christmas Songs](Christmas.html)" >> docs/index.md
           echo "- [Katy Lessons](KatyLessons.html)" >> docs/index.md

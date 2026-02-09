@@ -71,7 +71,7 @@ for p in allFiles:
 
 downloadExtensions = [".cho", ".chopro", ".mscz"]
 sortedTitles = sorted(allTitles, key=(lambda e: dictCompare(e[0]).casefold()))
-with open("GeneratedNotesList.html", "w") as htmlOutput:
+with open("songs.html", "w") as htmlOutput:
   # define separator character sep
   sep='&nbsp&nbsp'
   htmlOutput.writelines(header)

@@ -11,7 +11,7 @@ Welcome to the bluegrass music collection featuring chord charts, sheet music, a
 
 The following lists are automatically generated during site deployment:
 
-- **Notes List** (`GeneratedNotesList.html`) - Songs both finished and working
+- **Notes List** (`songs.html`) - Songs both finished and working
 - **Songs List** (`GeneratedSongsList.html`) - Miscellaneous songs we've not done  
 - **Christmas Songs** (`Christmas.html`) - Holiday music collection
 - **Katy Lessons** (`KatyLessons.html`) - Educational materials
