@@ -103,5 +103,211 @@
         })();
     </script>
 
+    <!-- Audio Player Section -->
+    <div class="audio-player-container">
+        <h2>Bluegrass Samples</h2>
+        <div class="audio-player">
+            <audio id="audioPlayer" preload="auto">
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="player-controls">
+                <button id="prevBtn" class="control-btn" aria-label="Previous track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                    </svg>
+                </button>
+                <button id="playPauseBtn" class="control-btn play-pause" aria-label="Play/Pause">
+                    <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                        <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+                    </svg>
+                </button>
+                <button id="nextBtn" class="control-btn" aria-label="Next track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="track-info">
+                <div id="trackTitle">Ready to play</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .audio-player-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .play-pause {
+            padding: 1rem;
+        }
+
+        .track-info {
+            text-align: center;
+        }
+
+        #trackTitle {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: white;
+            height: 100%;
+            width: 0%;
+            transition: width 0.1s linear;
+            border-radius: 10px;
+        }
+    </style>
+
+    <script>
+        (function() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const trackTitle = document.getElementById('trackTitle');
+            const progressBar = document.getElementById('progressBar');
+
+            const tracks = [
+                { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker' },
+                { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home' },
+                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special' },
+                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner' },
+                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky' }
+            ];
+
+            let currentTrackIndex = 0;
+            let playDuration = 30; // seconds
+            let startTime = 0;
+            let progressInterval = null;
+
+            function loadTrack(index) {
+                currentTrackIndex = index;
+                audioPlayer.src = tracks[index].file;
+                trackTitle.textContent = tracks[index].title;
+                progressBar.style.width = '0%';
+            }
+
+            function updateProgress() {
+                if (audioPlayer.paused) return;
+                const elapsed = audioPlayer.currentTime - startTime;
+                const progress = (elapsed / playDuration) * 100;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+
+                if (elapsed >= playDuration) {
+                    nextTrack();
+                }
+            }
+
+            function play() {
+                startTime = audioPlayer.currentTime;
+                audioPlayer.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                
+                if (progressInterval) clearInterval(progressInterval);
+                progressInterval = setInterval(updateProgress, 100);
+            }
+
+            function pause() {
+                audioPlayer.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                    progressInterval = null;
+                }
+            }
+
+            function nextTrack() {
+                pause();
+                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+                loadTrack(currentTrackIndex);
+                play();
+            }
+
+            function prevTrack() {
+                pause();
+                currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+                loadTrack(currentTrackIndex);
+                play();
+            }
+
+            playPauseBtn.addEventListener('click', function() {
+                if (audioPlayer.paused) {
+                    play();
+                } else {
+                    pause();
+                }
+            });
+
+            nextBtn.addEventListener('click', nextTrack);
+            prevBtn.addEventListener('click', prevTrack);
+
+            // Load the first track but don't play
+            loadTrack(0);
+        })();
+    </script>
+
 </body>
 </html>
