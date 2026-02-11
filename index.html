@@ -240,16 +240,17 @@
             const progressBar = document.getElementById('progressBar');
 
             const tracks = [
-                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner' },
-                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky' },
-                { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker' },
-                { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home' },
-                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special' }
+                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner', start: 2, end: 30 },
+                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky', start: 2, end: 30 },
+                { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker', start: 0, end: 30 },
+                { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home', start: 2, end: 30 },
+                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special', start: 0, end: 30 }
             ];
 
             const crossfadeDuration = 2; // seconds
             let currentTrackIndex = 0;
-            let playDuration = 30; // seconds
+            let playStart = 0;
+            let playEnd = 30;
             let progressInterval = null;
             let isCrossfading = false;
             let fadeRequestId = null;
@@ -263,13 +264,16 @@
                 if (audioEl === activeAudio) {
                     trackTitle.textContent = tracks[index].title;
                     progressBar.style.width = '0%';
+                    playStart = Math.max(0, tracks[index].start || 0);
+                    playEnd = Math.max(playStart, tracks[index].end || playStart);
                 }
             }
 
             function updateProgress() {
                 if (activeAudio.paused) return;
 
-                const elapsed = activeAudio.currentTime;
+                const elapsed = Math.max(0, activeAudio.currentTime - playStart);
+                const playDuration = Math.max(0.1, playEnd - playStart);
                 const progress = (elapsed / playDuration) * 100;
                 progressBar.style.width = Math.min(progress, 100) + '%';
 
@@ -282,6 +286,9 @@
             }
 
             function play() {
+                if (activeAudio.currentTime < playStart || activeAudio.currentTime > playEnd) {
+                    activeAudio.currentTime = playStart;
+                }
                 activeAudio.play();
                 if (isCrossfading) inactiveAudio.play();
                 playIcon.style.display = 'none';
@@ -347,12 +354,14 @@
                 trackTitle.textContent = tracks[currentTrackIndex].title;
                 progressBar.style.width = '0%';
 
-                incomingAudio.currentTime = 0;
+                incomingAudio.currentTime = playStart;
                 incomingAudio.volume = 0;
                 outgoingAudio.volume = 1;
                 incomingAudio.play();
 
                 swapActiveAudio();
+                playStart = Math.max(0, tracks[currentTrackIndex].start || 0);
+                playEnd = Math.max(playStart, tracks[currentTrackIndex].end || playStart);
 
                 const fadeMs = crossfadeDuration * 1000;
                 const startTime = performance.now();
