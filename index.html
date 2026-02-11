@@ -240,73 +240,162 @@
             const progressBar = document.getElementById('progressBar');
 
             const tracks = [
+                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner' },
+                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky' },
                 { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker' },
                 { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home' },
-                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special' },
-                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner' },
-                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky' }
+                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special' }
             ];
 
+            const crossfadeDuration = 2; // seconds
             let currentTrackIndex = 0;
             let playDuration = 30; // seconds
-            let startTime = 0;
             let progressInterval = null;
+            let isCrossfading = false;
+            let fadeRequestId = null;
+            let activeAudio = audioPlayer;
+            let inactiveAudio = new Audio();
+            inactiveAudio.preload = 'auto';
 
-            function loadTrack(index) {
-                currentTrackIndex = index;
-                audioPlayer.src = tracks[index].file;
-                trackTitle.textContent = tracks[index].title;
-                progressBar.style.width = '0%';
+            function loadTrack(index, audioEl) {
+                audioEl.src = tracks[index].file;
+                audioEl.load();
+                if (audioEl === activeAudio) {
+                    trackTitle.textContent = tracks[index].title;
+                    progressBar.style.width = '0%';
+                }
             }
 
             function updateProgress() {
-                if (audioPlayer.paused) return;
-                const elapsed = audioPlayer.currentTime - startTime;
+                if (activeAudio.paused) return;
+
+                const elapsed = activeAudio.currentTime;
                 const progress = (elapsed / playDuration) * 100;
                 progressBar.style.width = Math.min(progress, 100) + '%';
 
-                if (elapsed >= playDuration) {
+                const fadeStart = Math.max(0, playDuration - crossfadeDuration);
+                if (!isCrossfading && elapsed >= fadeStart) {
+                    crossfadeToIndex((currentTrackIndex + 1) % tracks.length);
+                } else if (elapsed >= playDuration && !isCrossfading) {
                     nextTrack();
                 }
             }
 
             function play() {
-                startTime = audioPlayer.currentTime;
-                audioPlayer.play();
+                activeAudio.play();
+                if (isCrossfading) inactiveAudio.play();
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'block';
-                
+
                 if (progressInterval) clearInterval(progressInterval);
                 progressInterval = setInterval(updateProgress, 100);
             }
 
             function pause() {
-                audioPlayer.pause();
+                cancelCrossfade();
+                activeAudio.pause();
+                inactiveAudio.pause();
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
-                
+
                 if (progressInterval) {
                     clearInterval(progressInterval);
                     progressInterval = null;
                 }
             }
 
-            function nextTrack() {
+            function swapActiveAudio() {
+                const previousActive = activeAudio;
+                activeAudio = inactiveAudio;
+                inactiveAudio = previousActive;
+            }
+
+            function cancelCrossfade() {
+                if (!isCrossfading) return;
+                if (fadeRequestId) {
+                    cancelAnimationFrame(fadeRequestId);
+                    fadeRequestId = null;
+                }
+                inactiveAudio.pause();
+                inactiveAudio.currentTime = 0;
+                inactiveAudio.volume = 1;
+                activeAudio.volume = 1;
+                isCrossfading = false;
+            }
+
+            function crossfadeToIndex(nextIndex, force) {
+                if (isCrossfading) {
+                    if (!force) return;
+                    cancelCrossfade();
+                }
+                const wasPlaying = !activeAudio.paused;
+
+                if (!wasPlaying || crossfadeDuration <= 0) {
+                    pause();
+                    currentTrackIndex = nextIndex;
+                    loadTrack(currentTrackIndex, activeAudio);
+                    play();
+                    return;
+                }
+
+                isCrossfading = true;
+                const outgoingAudio = activeAudio;
+                const incomingAudio = inactiveAudio;
+
+                currentTrackIndex = nextIndex;
+                loadTrack(currentTrackIndex, incomingAudio);
+                trackTitle.textContent = tracks[currentTrackIndex].title;
+                progressBar.style.width = '0%';
+
+                incomingAudio.currentTime = 0;
+                incomingAudio.volume = 0;
+                outgoingAudio.volume = 1;
+                incomingAudio.play();
+
+                swapActiveAudio();
+
+                const fadeMs = crossfadeDuration * 1000;
+                const startTime = performance.now();
+
+                function step(now) {
+                    const elapsedMs = now - startTime;
+                    const ratio = Math.min(elapsedMs / fadeMs, 1);
+                    inactiveAudio.volume = 1 - ratio;
+                    activeAudio.volume = ratio;
+
+                    if (ratio < 1) {
+                        fadeRequestId = requestAnimationFrame(step);
+                        return;
+                    }
+
+                    inactiveAudio.pause();
+                    inactiveAudio.currentTime = 0;
+                    inactiveAudio.volume = 1;
+                    activeAudio.volume = 1;
+                    isCrossfading = false;
+                }
+
+                fadeRequestId = requestAnimationFrame(step);
+            }
+
+            function jumpToIndex(nextIndex) {
+                cancelCrossfade();
                 pause();
-                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-                loadTrack(currentTrackIndex);
+                currentTrackIndex = nextIndex;
+                loadTrack(currentTrackIndex, activeAudio);
                 play();
+            }
+
+            function nextTrack() {
+                jumpToIndex((currentTrackIndex + 1) % tracks.length);
             }
 
             function prevTrack() {
-                pause();
-                currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-                loadTrack(currentTrackIndex);
-                play();
+                jumpToIndex((currentTrackIndex - 1 + tracks.length) % tracks.length);
             }
 
             playPauseBtn.addEventListener('click', function() {
-                if (audioPlayer.paused) {
+                if (activeAudio.paused) {
                     play();
                 } else {
                     pause();
@@ -317,7 +406,7 @@
             prevBtn.addEventListener('click', prevTrack);
 
             // Load the first track but don't play
-            loadTrack(0);
+            loadTrack(0, activeAudio);
         })();
     </script>
 
