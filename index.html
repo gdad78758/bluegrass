@@ -348,43 +348,59 @@
                 isCrossfading = true;
                 const outgoingAudio = activeAudio;
                 const incomingAudio = inactiveAudio;
+                const nextStart = Math.max(0, tracks[nextIndex].start || 0);
+                const nextEnd = Math.max(nextStart, tracks[nextIndex].end || nextStart);
 
-                currentTrackIndex = nextIndex;
-                loadTrack(currentTrackIndex, incomingAudio);
-                trackTitle.textContent = tracks[currentTrackIndex].title;
-                progressBar.style.width = '0%';
-
-                incomingAudio.currentTime = playStart;
+                loadTrack(nextIndex, incomingAudio);
+                incomingAudio.currentTime = nextStart;
                 incomingAudio.volume = 0;
                 outgoingAudio.volume = 1;
-                incomingAudio.play();
 
-                swapActiveAudio();
-                playStart = Math.max(0, tracks[currentTrackIndex].start || 0);
-                playEnd = Math.max(playStart, tracks[currentTrackIndex].end || playStart);
+                const beginCrossfade = function() {
+                    currentTrackIndex = nextIndex;
+                    trackTitle.textContent = tracks[currentTrackIndex].title;
+                    progressBar.style.width = '0%';
 
-                const fadeMs = crossfadeDuration * 1000;
-                const startTime = performance.now();
+                    swapActiveAudio();
+                    playStart = nextStart;
+                    playEnd = nextEnd;
 
-                function step(now) {
-                    const elapsedMs = now - startTime;
-                    const ratio = Math.min(elapsedMs / fadeMs, 1);
-                    inactiveAudio.volume = 1 - ratio;
-                    activeAudio.volume = ratio;
+                    const fadeMs = crossfadeDuration * 1000;
+                    const startTime = performance.now();
 
-                    if (ratio < 1) {
-                        fadeRequestId = requestAnimationFrame(step);
-                        return;
+                    function step(now) {
+                        const elapsedMs = now - startTime;
+                        const ratio = Math.min(elapsedMs / fadeMs, 1);
+                        inactiveAudio.volume = 1 - ratio;
+                        activeAudio.volume = ratio;
+
+                        if (ratio < 1) {
+                            fadeRequestId = requestAnimationFrame(step);
+                            return;
+                        }
+
+                        inactiveAudio.pause();
+                        inactiveAudio.currentTime = 0;
+                        inactiveAudio.volume = 1;
+                        activeAudio.volume = 1;
+                        isCrossfading = false;
                     }
 
-                    inactiveAudio.pause();
-                    inactiveAudio.currentTime = 0;
-                    inactiveAudio.volume = 1;
-                    activeAudio.volume = 1;
-                    isCrossfading = false;
-                }
+                    fadeRequestId = requestAnimationFrame(step);
+                };
 
-                fadeRequestId = requestAnimationFrame(step);
+                const playPromise = incomingAudio.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(beginCrossfade).catch(function() {
+                        incomingAudio.pause();
+                        incomingAudio.currentTime = 0;
+                        incomingAudio.volume = 1;
+                        outgoingAudio.volume = 1;
+                        isCrossfading = false;
+                    });
+                } else {
+                    beginCrossfade();
+                }
             }
 
             function jumpToIndex(nextIndex) {
