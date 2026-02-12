@@ -94,6 +94,15 @@ img.hero {
     aspect-ratio: 16 / 9;
 }
 
+.video-panel {
+    margin: 16px 0 28px;
+    padding: 1.25rem;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--panel-shadow);
+}
+
 .responsive-video iframe {
     width: 100%;
     height: 100%;
@@ -105,7 +114,7 @@ img.hero {
     display: grid;
     gap: 0.5rem;
     width: 100%;
-    margin: 8px 0 24px;
+    margin: 12px 0 0;
 }
 
 .video-chapters label {
@@ -144,10 +153,14 @@ hr.content-divider {
     margin: 24px 0 32px;
 }
 
-.audio-player-container h2,
-.full-player-container h2 {
+.audio-player-container h2 {
     text-align: center;
     margin-bottom: 0.75rem;
+}
+
+.audio-player h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .audio-player,
@@ -230,6 +243,11 @@ hr.content-divider {
 .full-player-controls {
     display: grid;
     gap: 0.75rem;
+}
+
+.full-player-controls h2 {
+    margin: 0 0 0.25rem;
+    text-align: center;
 }
 
 .full-player-controls label {

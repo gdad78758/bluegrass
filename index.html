@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css?v=2026-02-09">
+    <link rel="stylesheet" href="assets/css/main.css?v=2026-02-12">
 	<title>Bluegrass &#8211; Bluegrass in Austin, Texas</title>
 </head>
 <body>
@@ -21,8 +21,8 @@
 
     <!-- Audio Player Section -->
     <div class="audio-player-container">
-        <h2>Audio Samples</h2>
         <div class="audio-player">
+        <h2>Audio Samples</h2>
             <audio id="audioPlayer" preload="auto">
                 <source src="" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -56,29 +56,31 @@
         </div>
     </div>
 
-	<div class="responsive-video">
-        <iframe id="bandVideo" src="https://www.youtube.com/embed/h9tA-V3aryY?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-	</div>
+    <div class="video-panel">
+		<div class="responsive-video">
+            <iframe id="bandVideo" src="https://www.youtube.com/embed/h9tA-V3aryY?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		</div>
 
-    <div class="video-chapters" aria-label="Video chapters">
-        <label for="videoChapterSelect">Jump to a song</label>
-        <select id="videoChapterSelect" aria-label="Jump to a song">
-            <option value="0">Christmas for Cowboys</option>
-            <option value="225">Grandma Got Run Over by a Reindeer</option>
-            <option value="456">Frosty the Snowman</option>
-            <option value="592">Christmas in Texas</option>
-            <option value="760">Merry Christmas From the Family</option>
-            <option value="1047">Feliz Navidad</option>
-            <option value="1178">Rockin' Around the Christmas Tree</option>
-            <option value="1337">Have Yourself a Merry Little Christmas</option>
-            <option value="1559">Here it is Christmastime</option>
-            <option value="1795">Silver Bells</option>
-            <option value="1952">Santa Claus is Coming to Town</option>
-            <option value="2089">Silent Night</option>
-            <option value="2343">Holly Jolly Christmas</option>
-            <option value="2434">Winter Wonderland</option>
-            <option value="2571">We Wish You a Merry Christmas</option>
-        </select>
+        <div class="video-chapters" aria-label="Video chapters">
+            <label for="videoChapterSelect">Jump to a song</label>
+            <select id="videoChapterSelect" aria-label="Jump to a song">
+                <option value="0">Christmas for Cowboys</option>
+                <option value="225">Grandma Got Run Over by a Reindeer</option>
+                <option value="456">Frosty the Snowman</option>
+                <option value="592">Christmas in Texas</option>
+                <option value="760">Merry Christmas From the Family</option>
+                <option value="1047">Feliz Navidad</option>
+                <option value="1178">Rockin' Around the Christmas Tree</option>
+                <option value="1337">Have Yourself a Merry Little Christmas</option>
+                <option value="1559">Here it is Christmastime</option>
+                <option value="1795">Silver Bells</option>
+                <option value="1952">Santa Claus is Coming to Town</option>
+                <option value="2089">Silent Night</option>
+                <option value="2343">Holly Jolly Christmas</option>
+                <option value="2434">Winter Wonderland</option>
+                <option value="2571">We Wish You a Merry Christmas</option>
+            </select>
+        </div>
     </div>
 
     <script>
@@ -125,8 +127,8 @@
     </script>
 
     <div class="full-player-container">
-        <h2>Full Tracks</h2>
         <div class="full-player-controls">
+            <h2>Full Tracks</h2>
             <label for="fullTrackSelect">Select a song</label>
             <select id="fullTrackSelect" aria-label="Select a song"></select>
             <audio id="fullTrackPlayer" controls preload="metadata">
