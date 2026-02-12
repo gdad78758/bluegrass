@@ -134,6 +134,7 @@
             <audio id="fullTrackPlayer" controls preload="metadata">
                 Your browser does not support the audio element.
             </audio>
+            <a id="fullTrackDownload" class="download-btn" href="#" download>Download track</a>
         </div>
     </div>
 
@@ -205,6 +206,7 @@
             function initFullPlayer() {
                 const fullSelect = document.getElementById('fullTrackSelect');
                 const fullPlayer = document.getElementById('fullTrackPlayer');
+                const fullDownload = document.getElementById('fullTrackDownload');
                 if (!fullSelect || !fullPlayer) return;
 
                 tracks.forEach(function(track, index) {
@@ -219,6 +221,11 @@
                     if (!selected) return;
                     fullPlayer.src = selected.file;
                     fullPlayer.load();
+                    if (fullDownload) {
+                        fullDownload.href = selected.file;
+                        fullDownload.setAttribute('download', selected.file.split('/').pop());
+                        fullDownload.setAttribute('aria-label', 'Download ' + selected.title);
+                    }
                 }
 
                 fullSelect.addEventListener('change', function() {
