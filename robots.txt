@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /
+Allow: /index.html
+Allow: /assets/
+Allow: /notes/
+Allow: /SGB%202025.jpeg
+Allow: /Favicon.ico
