@@ -324,6 +324,13 @@ hr.content-divider {
         font-size: 1.5rem;
         bottom: 10px;
     }
+
+    .gemini-logo-link {
+        position: static;
+        display: block;
+        width: fit-content;
+        margin: 24px auto 16px;
+    }
 }
 
 /* Search & Filter */
