@@ -226,7 +226,48 @@
             transition: width 0.1s linear;
             border-radius: 10px;
         }
+
+        .full-player-container {
+            max-width: 700px;
+            margin: 2.5rem auto 3rem;
+            padding: 1.5rem 1rem 2rem;
+            text-align: center;
+        }
+
+        .full-player-container h2 {
+            color: #e2e8f0;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .full-player-controls {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .full-player-controls select {
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(203, 211, 223, 0.5);
+            background: rgba(40, 46, 61, 0.9);
+            color: #e2e8f0;
+        }
+
+        .full-player-controls audio {
+            width: 100%;
+        }
     </style>
+
+    <div class="full-player-container">
+        <h2>Full Tracks</h2>
+        <div class="full-player-controls">
+            <label for="fullTrackSelect">Select a song</label>
+            <select id="fullTrackSelect" aria-label="Select a song"></select>
+            <audio id="fullTrackPlayer" controls preload="metadata">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
 
     <script>
         (function() {
@@ -291,6 +332,32 @@
                     playStart = Math.max(0, tracks[index].start || 0);
                     playEnd = Math.max(playStart, tracks[index].end || playStart);
                 }
+            }
+
+            function initFullPlayer() {
+                const fullSelect = document.getElementById('fullTrackSelect');
+                const fullPlayer = document.getElementById('fullTrackPlayer');
+                if (!fullSelect || !fullPlayer) return;
+
+                tracks.forEach(function(track, index) {
+                    const option = document.createElement('option');
+                    option.value = String(index);
+                    option.textContent = track.title;
+                    fullSelect.appendChild(option);
+                });
+
+                function setFullTrack(index) {
+                    const selected = tracks[index];
+                    if (!selected) return;
+                    fullPlayer.src = selected.file;
+                    fullPlayer.load();
+                }
+
+                fullSelect.addEventListener('change', function() {
+                    setFullTrack(Number(fullSelect.value));
+                });
+
+                setFullTrack(0);
             }
 
             function updateProgress() {
@@ -464,6 +531,7 @@
 
             // Load the first track but don't play
             loadTrack(0, activeAudio);
+            initFullPlayer();
         })();
     </script>
 
