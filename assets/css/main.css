@@ -67,6 +67,7 @@ img.hero {
     border-radius: 8px;
     display: block;
     object-fit: cover;
+    box-shadow: var(--panel-shadow);
 }
 
 .hero-contact {
