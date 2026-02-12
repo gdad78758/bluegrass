@@ -1,5 +1,13 @@
 :root {
     color-scheme: dark;
+    --panel-bg: linear-gradient(135deg, rgba(40, 46, 61, 0.98) 0%, rgba(58, 64, 80, 0.98) 100%);
+    --panel-border: rgba(203, 211, 223, 0.35);
+    --panel-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    --panel-radius: 14px;
+    --control-bg: rgba(58, 64, 80, 0.85);
+    --control-border: rgba(203, 211, 223, 0.45);
+    --control-text: #cbd3df;
+    --control-text-strong: #e2e8f0;
 }
 
 html {
@@ -30,6 +38,7 @@ h2 {
     margin: 24px 0 12px;
     font-size: 1.4rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
 a {
@@ -65,18 +74,15 @@ img.hero {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
-    text-shadow: 
-        -2px -2px 0 #fff,
-        2px -2px 0 #fff,
-        -2px 2px 0 #fff,
-        2px 2px 0 #fff,
-        -3px 0px 0 #fff,
-        3px 0px 0 #fff,
-        0px -3px 0 #fff,
-        0px 3px 0 #fff;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--control-text-strong);
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    box-shadow: var(--panel-shadow);
+    padding: 0.45rem 1.25rem;
+    text-shadow: none;
     text-align: center;
     width: 90%;
     line-height: 1.2;
@@ -96,18 +102,23 @@ img.hero {
 }
 
 .video-chapters {
+    display: grid;
+    gap: 0.5rem;
     width: 100%;
-    max-width: 960px;
     margin: 8px 0 24px;
-    padding-left: 20px;
 }
 
-.video-chapters li {
-    margin: 6px 0;
-}
-
-.video-chapters a {
+.video-chapters label {
     font-weight: 600;
+    color: var(--control-text-strong);
+}
+
+.video-chapters select {
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid var(--control-border);
+    background: rgba(40, 46, 61, 0.9);
+    color: var(--control-text-strong);
 }
 
 hr.content-divider {
@@ -126,6 +137,116 @@ hr.content-divider {
     margin: 24px 0 12px;
     font-size: 1rem;
     letter-spacing: 0.16em;
+}
+
+.audio-player-container,
+.full-player-container {
+    margin: 24px 0 32px;
+}
+
+.audio-player-container h2,
+.full-player-container h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.audio-player,
+.full-player-controls {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--panel-shadow);
+    padding: 1.75rem;
+    color: #f3f6fb;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.control-btn {
+    background: var(--control-bg);
+    border: 2px solid var(--control-border);
+    border-radius: 50%;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--control-text);
+}
+
+.control-btn:hover {
+    background: rgba(203, 211, 223, 0.2);
+    border-color: rgba(226, 232, 240, 0.8);
+    color: var(--control-text-strong);
+    transform: scale(1.06);
+}
+
+.control-btn:active {
+    transform: scale(0.98);
+}
+
+.play-pause {
+    padding: 1rem;
+}
+
+.track-info {
+    text-align: center;
+}
+
+#trackTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    min-height: 1.5rem;
+    color: var(--control-text-strong);
+}
+
+.progress-container {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #cbd3df 0%, #e2e8f0 100%);
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+    border-radius: 10px;
+}
+
+.full-player-container {
+    text-align: center;
+}
+
+.full-player-controls {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.full-player-controls label {
+    font-weight: 600;
+    color: var(--control-text-strong);
+}
+
+.full-player-controls select {
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid var(--control-border);
+    background: rgba(40, 46, 61, 0.9);
+    color: var(--control-text-strong);
+}
+
+.full-player-controls audio {
+    width: 100%;
 }
 
 /* Logo Styles */

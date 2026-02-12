@@ -11,6 +11,8 @@
 <img id="gemini-logo" src="assets/GeminiCircleLogo.webp" alt="Gemini Logo">
 </a>
 
+<main class="site">
+
     <h1>Silver Grass Band&nbsp;- Austin,&nbsp;TX</h1>
     <div class="hero-container">
         <img class="hero" src="SGB 2025.jpeg" alt="The Silver Grass Band" />
@@ -58,65 +60,47 @@
         <iframe id="bandVideo" src="https://www.youtube.com/embed/h9tA-V3aryY?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 	</div>
 
-    <h2>Video Chapters</h2>
-    <ul class="video-chapters" id="videoChapters" aria-label="Video chapters">
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=0" data-seconds="0">00:00</a> - Christmas for Cowboys</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=225" data-seconds="225">03:45</a> - Grandma Got Run Over by a Reindeer</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=456" data-seconds="456">07:36</a> - Frosty the Snowman</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=592" data-seconds="592">09:52</a> - Christmas in Texas</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=760" data-seconds="760">12:40</a> - Merry Christmas From the Family</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1047" data-seconds="1047">17:27</a> - Feliz Navidad</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1178" data-seconds="1178">19:38</a> - Rockin' Around the Christmas Tree</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1337" data-seconds="1337">22:17</a> - Have Yourself a Merry Little Christmas</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1559" data-seconds="1559">25:59</a> - Here it is Christmastime</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1795" data-seconds="1795">29:55</a> - Silver Bells</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=1952" data-seconds="1952">32:32</a> - Santa Claus is Coming to Town</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=2089" data-seconds="2089">34:49</a> - Silent Night</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=2343" data-seconds="2343">39:03</a> - Holly Jolly Christmas</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=2434" data-seconds="2434">40:34</a> - Winter Wonderland</li>
-        <li><a href="https://youtu.be/h9tA-V3aryY?t=2571" data-seconds="2571">42:51</a> - We Wish You a Merry Christmas</li>
-    </ul>
-    <script type="application/json" id="videoChapterData">
-        [
-            { "time": "00:00", "title": "Christmas for Cowboys" },
-            { "time": "03:45", "title": "Grandma Got Run Over by a Reindeer" },
-            { "time": "07:36", "title": "Frosty the Snowman" },
-            { "time": "09:52", "title": "Christmas in Texas" },
-            { "time": "12:40", "title": "Merry Christmas From the Family" },
-            { "time": "17:27", "title": "Feliz Navidad" },
-            { "time": "19:38", "title": "Rockin' Around the Christmas Tree" },
-            { "time": "22:17", "title": "Have Yourself a Merry Little Christmas" },
-            { "time": "25:59", "title": "Here it is Christmastime" },
-            { "time": "29:55", "title": "Silver Bells" },
-            { "time": "32:32", "title": "Santa Claus is Coming to Town" },
-            { "time": "34:49", "title": "Silent Night" },
-            { "time": "39:03", "title": "Holly Jolly Christmas" },
-            { "time": "40:34", "title": "Winter Wonderland" },
-            { "time": "42:51", "title": "We Wish You a Merry Christmas" }
-        ]
-    </script>
+    <div class="video-chapters" aria-label="Video chapters">
+        <label for="videoChapterSelect">Jump to a song</label>
+        <select id="videoChapterSelect" aria-label="Jump to a song">
+            <option value="0">Christmas for Cowboys</option>
+            <option value="225">Grandma Got Run Over by a Reindeer</option>
+            <option value="456">Frosty the Snowman</option>
+            <option value="592">Christmas in Texas</option>
+            <option value="760">Merry Christmas From the Family</option>
+            <option value="1047">Feliz Navidad</option>
+            <option value="1178">Rockin' Around the Christmas Tree</option>
+            <option value="1337">Have Yourself a Merry Little Christmas</option>
+            <option value="1559">Here it is Christmastime</option>
+            <option value="1795">Silver Bells</option>
+            <option value="1952">Santa Claus is Coming to Town</option>
+            <option value="2089">Silent Night</option>
+            <option value="2343">Holly Jolly Christmas</option>
+            <option value="2434">Winter Wonderland</option>
+            <option value="2571">We Wish You a Merry Christmas</option>
+        </select>
+    </div>
 
     <script>
         (function () {
-            var chaptersEl = document.getElementById('videoChapters');
+            var chaptersSelect = document.getElementById('videoChapterSelect');
             var iframeId = 'bandVideo';
-            if (!chaptersEl || !document.getElementById(iframeId)) return;
+            var iframeEl = document.getElementById(iframeId);
+            if (!chaptersSelect || !iframeEl) return;
 
             var player = null;
-            chaptersEl.addEventListener('click', function (e) {
-                var target = e.target;
-                if (!target || target.tagName !== 'A') return;
-
-                var secondsAttr = target.getAttribute('data-seconds');
-                var seconds = secondsAttr ? Number(secondsAttr) : NaN;
+            chaptersSelect.addEventListener('change', function () {
+                var seconds = Number(chaptersSelect.value);
                 if (!isFinite(seconds)) return;
 
                 // If the embedded player is ready, seek without leaving the page.
                 if (player && typeof player.seekTo === 'function') {
-                    e.preventDefault();
                     player.seekTo(seconds, true);
                     if (typeof player.playVideo === 'function') player.playVideo();
+                    return;
                 }
+
+                iframeEl.src = 'https://www.youtube.com/embed/h9tA-V3aryY?enablejsapi=1&start=' + seconds + '&autoplay=1';
             });
 
             function loadYouTubeIframeApiOnce() {
@@ -139,124 +123,6 @@
             loadYouTubeIframeApiOnce();
         })();
     </script>
-
-    <style>
-        .audio-player-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1.5rem 1rem;
-        }
-
-        .audio-player-container h2 {
-            color: #e2e8f0;
-            letter-spacing: 0.02em;
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-            text-align: center;
-        }
-
-        .audio-player {
-            background: linear-gradient(135deg, rgba(40, 46, 61, 0.98) 0%, rgba(58, 64, 80, 0.98) 100%);
-            border: 1px solid rgba(203, 211, 223, 0.35);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-            color: #f3f6fb;
-        }
-
-        .player-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .control-btn {
-            background: rgba(58, 64, 80, 0.85);
-            border: 2px solid rgba(203, 211, 223, 0.45);
-            border-radius: 50%;
-            padding: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #cbd3df;
-        }
-
-        .control-btn:hover {
-            background: rgba(203, 211, 223, 0.2);
-            border-color: rgba(226, 232, 240, 0.8);
-            color: #e2e8f0;
-            transform: scale(1.1);
-        }
-
-        .control-btn:active {
-            transform: scale(0.95);
-        }
-
-        .play-pause {
-            padding: 1rem;
-        }
-
-        .track-info {
-            text-align: center;
-        }
-
-        #trackTitle {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            min-height: 1.5rem;
-            color: #e2e8f0;
-        }
-
-        .progress-container {
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 10px;
-            height: 8px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            background: linear-gradient(90deg, #cbd3df 0%, #e2e8f0 100%);
-            height: 100%;
-            width: 0%;
-            transition: width 0.1s linear;
-            border-radius: 10px;
-        }
-
-        .full-player-container {
-            max-width: 700px;
-            margin: 2.5rem auto 3rem;
-            padding: 1.5rem 1rem 2rem;
-            text-align: center;
-        }
-
-        .full-player-container h2 {
-            color: #e2e8f0;
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-        }
-
-        .full-player-controls {
-            display: grid;
-            gap: 0.75rem;
-        }
-
-        .full-player-controls select {
-            padding: 0.5rem 0.75rem;
-            border-radius: 8px;
-            border: 1px solid rgba(203, 211, 223, 0.5);
-            background: rgba(40, 46, 61, 0.9);
-            color: #e2e8f0;
-        }
-
-        .full-player-controls audio {
-            width: 100%;
-        }
-    </style>
 
     <div class="full-player-container">
         <h2>Full Tracks</h2>
@@ -534,6 +400,8 @@
             initFullPlayer();
         })();
     </script>
+
+</main>
 
 </body>
 </html>
