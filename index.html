@@ -257,6 +257,30 @@
             let activeAudio = audioPlayer;
             let inactiveAudio = new Audio();
             inactiveAudio.preload = 'auto';
+            let audioUnlocked = false;
+
+            function unlockAudioElements() {
+                if (audioUnlocked) return;
+                audioUnlocked = true;
+
+                // Only prime the inactive audio element to avoid pausing the one the user just started.
+                const audioEl = inactiveAudio;
+                audioEl.muted = true;
+                const unlockPromise = audioEl.play();
+                if (unlockPromise && typeof unlockPromise.then === 'function') {
+                    unlockPromise.then(function() {
+                        audioEl.pause();
+                        audioEl.currentTime = 0;
+                        audioEl.muted = false;
+                    }).catch(function() {
+                        audioEl.muted = false;
+                    });
+                } else {
+                    audioEl.pause();
+                    audioEl.currentTime = 0;
+                    audioEl.muted = false;
+                }
+            }
 
             function loadTrack(index, audioEl) {
                 audioEl.src = tracks[index].file;
@@ -397,6 +421,7 @@
                         incomingAudio.volume = 1;
                         outgoingAudio.volume = 1;
                         isCrossfading = false;
+                        jumpToIndex(nextIndex);
                     });
                 } else {
                     beginCrossfade();
@@ -421,14 +446,21 @@
 
             playPauseBtn.addEventListener('click', function() {
                 if (activeAudio.paused) {
+                    unlockAudioElements();
                     play();
                 } else {
                     pause();
                 }
             });
 
-            nextBtn.addEventListener('click', nextTrack);
-            prevBtn.addEventListener('click', prevTrack);
+            nextBtn.addEventListener('click', function() {
+                unlockAudioElements();
+                nextTrack();
+            });
+            prevBtn.addEventListener('click', function() {
+                unlockAudioElements();
+                prevTrack();
+            });
 
             // Load the first track but don't play
             loadTrack(0, activeAudio);
