@@ -168,8 +168,8 @@ hr.content-divider {
 }
 
 .audio-player-container h2 {
-    text-align: center;
-    margin-bottom: 0.75rem;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .audio-player h2 {
@@ -223,16 +223,33 @@ hr.content-divider {
     padding: 1rem;
 }
 
-.track-info {
-    text-align: center;
+.audio-player-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-#trackTitle {
+.audio-player-row h2 {
+    margin: 0;
+    flex: 1 1 180px;
+}
+
+.audio-player-row .player-controls {
+    margin-bottom: 0;
+}
+
+.track-title-inline {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    min-height: 1.5rem;
     color: var(--control-text-strong);
+    flex: 1 1 200px;
+    text-align: right;
+}
+
+.track-progress {
+    margin-top: 1rem;
 }
 
 .progress-container {
@@ -337,6 +354,14 @@ hr.content-divider {
     .hero-contact {
         font-size: 1.5rem;
         bottom: 10px;
+    }
+
+    .audio-player-row {
+        justify-content: flex-start;
+    }
+
+    .track-title-inline {
+        text-align: left;
     }
 
     .gemini-logo-link {

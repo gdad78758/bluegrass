@@ -21,7 +21,8 @@
     <!-- Audio Player Section -->
     <div class="audio-player-container">
         <div class="audio-player">
-        <h2>Audio Samples</h2>
+        <div class="audio-player-row">
+            <h2>Audio Samples</h2>
             <audio id="audioPlayer" preload="auto">
                 <source src="" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -46,12 +47,13 @@
                     </svg>
                 </button>
             </div>
-            <div class="track-info">
-                <div id="trackTitle">Ready to play</div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
+            <div id="trackTitle" class="track-title-inline">Ready to play</div>
+        </div>
+        <div class="track-progress">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
+        </div>
         </div>
     </div>
 
