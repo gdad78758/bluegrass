@@ -391,8 +391,11 @@ hr.content-divider {
     }
 
     .hero-contact {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        width: auto;
         font-size: 1.5rem;
-        bottom: 10px;
     }
 
     .audio-player-row {
