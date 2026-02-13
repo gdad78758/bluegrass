@@ -8,6 +8,8 @@
     --control-border: #c4ccd8;
     --control-text: #d6d9e0;
     --control-text-strong: #f2f4f7;
+    --instruction-text: #f2c14e;
+    --about-text: #ffd877;
 }
 
 html {
@@ -133,7 +135,7 @@ img.hero {
 
 .video-chapters label {
     font-weight: 600;
-    color: var(--control-text-strong);
+    color: var(--instruction-text);
 }
 
 .video-chapters select {
@@ -283,7 +285,7 @@ hr.content-divider {
 
 .full-player-controls label {
     font-weight: 600;
-    color: var(--control-text-strong);
+    color: var(--instruction-text);
 }
 
 .full-player-controls select {
@@ -318,6 +320,32 @@ hr.content-divider {
     border-color: rgba(226, 232, 240, 0.8);
     color: var(--control-text-strong);
     transform: translateY(-1px);
+}
+
+.about-btn {
+    color: var(--about-text);
+}
+
+.about-btn:visited {
+    color: var(--about-text);
+}
+
+.about-btn:hover,
+.about-btn:focus {
+    color: var(--instruction-text);
+}
+
+.about-link {
+    color: var(--about-text);
+}
+
+.about-link:visited {
+    color: var(--about-text);
+}
+
+.about-link:hover,
+.about-link:focus {
+    color: var(--instruction-text);
 }
 
 /* Logo Styles */
