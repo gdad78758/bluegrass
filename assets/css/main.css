@@ -104,10 +104,13 @@ img.hero {
     line-height: 1.2;
     display: inline-block;
     text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .hero-contact:hover,
 .hero-contact:focus {
+    background: #7a808b;
+    border-color: rgba(226, 232, 240, 0.8);
     color: var(--instruction-text);
     text-decoration: none;
 }
