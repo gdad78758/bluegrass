@@ -447,8 +447,20 @@ hr.content-divider {
     .gemini-logo-link {
         position: static;
         display: block;
-        width: fit-content;
+        width: 90%;
         margin: 24px auto 16px;
+    }
+
+    .gemini-logo-center {
+        transform: none;
+        left: auto;
+    }
+
+    #gemini-logo.gemini-logo-home,
+    #gemini-logo.gemini-logo-large {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
     }
 }
 
