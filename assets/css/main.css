@@ -102,6 +102,14 @@ img.hero {
     text-align: center;
     width: 90%;
     line-height: 1.2;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.hero-contact:hover,
+.hero-contact:focus {
+    color: var(--control-text-strong);
+    text-decoration: none;
 }
 
 .responsive-video {
