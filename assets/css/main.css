@@ -92,7 +92,7 @@ img.hero {
     transform: translateX(-50%);
     font-size: 2.1rem;
     font-weight: 700;
-    color: var(--control-text-strong);
+    color: var(--about-text);
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
     border-radius: 999px;
@@ -108,8 +108,19 @@ img.hero {
 
 .hero-contact:hover,
 .hero-contact:focus {
-    color: var(--control-text-strong);
+    color: var(--instruction-text);
     text-decoration: none;
+}
+
+.contact-pill-row {
+    text-align: center;
+    margin: 12px 0 18px;
+}
+
+.contact-pill {
+    position: static;
+    transform: none;
+    width: auto;
 }
 
 .responsive-video {
