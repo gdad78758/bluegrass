@@ -112,6 +112,10 @@ img.hero {
     transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
+.hero-contact:visited {
+    color: var(--about-text);
+}
+
 .hero-contact:hover,
 .hero-contact:focus {
     background: var(--body-bg);
