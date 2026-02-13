@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+
+CSS_PATH="assets/css/main.css"
+
+if ! git diff --name-only --cached -- "$CSS_PATH" | grep -q . && ! git diff --name-only -- "$CSS_PATH" | grep -q .; then
+  exit 0
+fi
+
+timestamp=$(date +%Y-%m-%d-%H%M)
+files=$(grep -rl "assets/css/main.css?v=" -- *.html 2>/dev/null || true)
+
+if [ -z "$files" ]; then
+  exit 0
+fi
+
+tracked_files=""
+for file in $files; do
+  if git check-ignore -q "$file"; then
+    continue
+  fi
+  sed -i -E "s|(assets/css/main\.css\?v=)[^\"']+|\\1$timestamp|g" "$file"
+  tracked_files="$tracked_files $file"
+done
+
+if [ -n "$tracked_files" ]; then
+  git add $tracked_files
+fi

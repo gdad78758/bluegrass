@@ -136,6 +136,7 @@ img.hero {
 .video-chapters label {
     font-weight: 600;
     color: var(--instruction-text);
+    text-align: center;
 }
 
 .video-chapters select {
@@ -308,7 +309,7 @@ hr.content-divider {
     border-radius: 10px;
     border: 1px solid var(--control-border);
     background: rgba(58, 64, 80, 0.85);
-    color: var(--control-text-strong);
+    color: var(--about-text);
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
@@ -318,7 +319,7 @@ hr.content-divider {
 .download-btn:focus {
     background: rgba(203, 211, 223, 0.2);
     border-color: rgba(226, 232, 240, 0.8);
-    color: var(--control-text-strong);
+    color: var(--instruction-text);
     transform: translateY(-1px);
 }
 
@@ -374,6 +375,10 @@ hr.content-divider {
 #gemini-logo.gemini-logo-large {
     width: clamp(140px, 30vw, 240px);
     max-width: 60vw;
+}
+
+#gemini-logo.gemini-logo-home {
+    width: 200px;
 }
 
 /* Mobile Adjustments */

@@ -12,4 +12,9 @@ Notes:
    3. When ii. is done, commit the pdf file changes
 
    Note:  the python GenPDF.py step will not work if you haven't committed all previous changes to the repo.
+
+Hook setup:
+1. To auto-update the main.css cache-busting query before commits, install the hook:
+   - Git Bash: scripts/install-hooks.sh
+   - PowerShell: scripts/install-hooks.ps1
   
