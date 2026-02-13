@@ -34,6 +34,19 @@ h1 {
     font-size: 2.2rem;
 }
 
+.page-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.page-title-row h1 {
+    margin: 0;
+}
+
 h2 {
     margin: 24px 0 12px;
     font-size: 1.4rem;
