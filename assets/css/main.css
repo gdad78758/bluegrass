@@ -10,6 +10,11 @@
     --control-text-strong: #f2f4f7;
     --instruction-text: #f2c14e;
     --about-text: #ffd877;
+    --body-bg: #7a808b;
+    --hover-bg: rgba(203, 211, 223, 0.2);
+    --hover-border: rgba(226, 232, 240, 0.8);
+    --control-bg-strong: rgba(40, 46, 61, 0.9);
+    --table-row-bg: rgba(0, 0, 0, 0.35);
 }
 
 html {
@@ -19,8 +24,8 @@ html {
 body {
     margin: 0;
     padding: 16px;
-    background-color: #7a808b;
-    color: #f2f4f7;
+    background-color: var(--body-bg);
+    color: var(--control-text-strong);
     font-family: Arial, sans-serif;
     font-size: 18px;
     line-height: 1.6;
@@ -109,8 +114,8 @@ img.hero {
 
 .hero-contact:hover,
 .hero-contact:focus {
-    background: #7a808b;
-    border-color: rgba(226, 232, 240, 0.8);
+    background: var(--body-bg);
+    border-color: var(--hover-border);
     color: var(--instruction-text);
     text-decoration: none;
 }
@@ -165,7 +170,7 @@ img.hero {
     padding: 0.6rem 0.75rem;
     border-radius: 10px;
     border: 1px solid var(--control-border);
-    background: rgba(40, 46, 61, 0.9);
+    background: var(--control-bg-strong);
     color: var(--control-text-strong);
 }
 
@@ -234,8 +239,8 @@ hr.content-divider {
 }
 
 .control-btn:hover {
-    background: rgba(203, 211, 223, 0.2);
-    border-color: rgba(226, 232, 240, 0.8);
+    background: var(--hover-bg);
+    border-color: var(--hover-border);
     color: var(--control-text-strong);
     transform: scale(1.06);
 }
@@ -278,7 +283,7 @@ hr.content-divider {
 }
 
 .progress-container {
-    background: rgba(0, 0, 0, 0.35);
+    background: var(--table-row-bg);
     border-radius: 10px;
     height: 8px;
     overflow: hidden;
@@ -315,7 +320,7 @@ hr.content-divider {
     padding: 0.6rem 0.75rem;
     border-radius: 10px;
     border: 1px solid var(--control-border);
-    background: rgba(40, 46, 61, 0.9);
+    background: var(--control-bg-strong);
     color: var(--control-text-strong);
 }
 
@@ -339,8 +344,8 @@ hr.content-divider {
 
 .download-btn:hover,
 .download-btn:focus {
-    background: rgba(203, 211, 223, 0.2);
-    border-color: rgba(226, 232, 240, 0.8);
+    background: var(--hover-bg);
+    border-color: var(--hover-border);
     color: var(--instruction-text);
     transform: translateY(-1px);
 }
@@ -462,6 +467,6 @@ table tbody tr:nth-child(odd) {
 }
 
 table tbody tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: var(--table-row-bg);
 }
 

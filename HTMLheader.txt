@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow, noarchive">
 	<title>Bluegrass &#8211; Bluegrass in Austin, Texas</title>
-	<link rel="stylesheet" href="assets/css/main.css?v=2026-02-13-1531">
+	<link rel="stylesheet" href="assets/css/main.css?v=2026-02-13-1538">
 </head>
 <body>
 <a href="assets/GeminiLogo.webp" class="gemini-logo-link" aria-label="View Gemini logo">
