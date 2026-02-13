@@ -359,10 +359,21 @@ hr.content-divider {
     border-radius: 10px;
 }
 
+.gemini-logo-center {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 #gemini-logo {
     width: 100px;
     height: auto;
     display: block;
+}
+
+#gemini-logo.gemini-logo-large {
+    width: clamp(140px, 30vw, 240px);
+    max-width: 60vw;
 }
 
 /* Mobile Adjustments */
