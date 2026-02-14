@@ -49,6 +49,9 @@ h1 {
     flex-wrap: wrap;
     margin-bottom: 12px;
     text-align: center;
+    background-color: rgba(47, 58, 79, 1);
+    border-radius: 12px;
+    padding: 8px 12px;
 }
 
 .page-title-row h1 {
