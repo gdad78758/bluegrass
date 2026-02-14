@@ -12,4 +12,4 @@
 <img id="gemini-logo" class="gemini-logo-home" src="assets/GeminiCircleLogo.webp" alt="Gemini Logo">
 </a>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="index.html#content">← Return Home</a>
+	<p><a class="about-link home-pill" href="index.html">Home</a></p>
