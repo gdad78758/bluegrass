@@ -176,8 +176,8 @@ img.hero {
 
 .video-chapters select {
     padding: 0.6rem 0.75rem;
-    border-radius: 10px;
-    border: 1px solid var(--control-border);
+    border-radius: 999px;
+    border: 1px solid var(--panel-border);
     background: var(--control-bg-strong);
     color: var(--control-text-strong);
 }
@@ -332,8 +332,8 @@ hr.content-divider {
 
 .full-player-controls select {
     padding: 0.6rem 0.75rem;
-    border-radius: 10px;
-    border: 1px solid var(--control-border);
+    border-radius: 999px;
+    border: 1px solid var(--panel-border);
     background: var(--control-bg-strong);
     color: var(--control-text-strong);
 }
