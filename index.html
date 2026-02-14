@@ -67,6 +67,13 @@
                         fullDownload.setAttribute('download', selected.file.split('/').pop());
                         fullDownload.setAttribute('aria-label', 'Download ' + selected.title);
                     }
+
+                    const playPromise = fullPlayer.play();
+                    if (playPromise && typeof playPromise.catch === 'function') {
+                        playPromise.catch(function() {
+                            // Autoplay can be blocked by the browser; ignore and let the user press play.
+                        });
+                    }
                 }
 
                 fullSelect.addEventListener('change', function() {
