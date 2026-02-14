@@ -44,10 +44,11 @@ h1 {
 .page-title-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 12px;
+    text-align: center;
 }
 
 .page-title-row h1 {
