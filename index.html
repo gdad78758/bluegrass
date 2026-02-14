@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css?v=2026-02-13-1614">
+    <link rel="stylesheet" href="assets/css/main.css?v=2026-02-13-2113">
 	<title>Bluegrass &#8211; Bluegrass in Austin, Texas</title>
 </head>
 <body>
@@ -17,44 +17,70 @@
         <a class="hero-contact" href="abouttheband.html">Bookings and Band Info</a>
     </div>
 
-    <!-- Audio Player Section -->
-    <div class="audio-player-container">
-        <div class="audio-player">
-        <div class="audio-player-row">
-            <h2>Audio Samples</h2>
-            <audio id="audioPlayer" preload="auto">
-                <source src="" type="audio/mpeg">
+    <div class="full-player-container">
+        <div class="full-player-controls">
+            <select id="fullTrackSelect" class="select-placeholder" aria-label="Click to select a song"></select>
+            <audio id="fullTrackPlayer" controls preload="metadata">
                 Your browser does not support the audio element.
             </audio>
-            <div class="player-controls">
-                <button id="prevBtn" class="control-btn" aria-label="Previous track">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
-                    </svg>
-                </button>
-                <button id="playPauseBtn" class="control-btn play-pause" aria-label="Play/Pause">
-                    <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                        <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
-                    </svg>
-                </button>
-                <button id="nextBtn" class="control-btn" aria-label="Next track">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="trackTitle" class="track-title-inline">Ready to play</div>
-        </div>
-        <div class="track-progress">
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-        </div>
+            <a id="fullTrackDownload" class="download-btn" href="#" download>Download track</a>
         </div>
     </div>
+
+    <script>
+        (function() {
+            const tracks = [
+                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner', start: 2, end: 30 },
+                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky', start: 2, end: 30 },
+                { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker', start: 0, end: 30 },
+                { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home', start: 2, end: 30 },
+                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special', start: 0, end: 30 }
+            ];
+
+            function initFullPlayer() {
+                const fullSelect = document.getElementById('fullTrackSelect');
+                const fullPlayer = document.getElementById('fullTrackPlayer');
+                const fullDownload = document.getElementById('fullTrackDownload');
+                if (!fullSelect || !fullPlayer) return;
+
+                const placeholderOption = document.createElement('option');
+                placeholderOption.value = '';
+                placeholderOption.textContent = 'Click to select a song';
+                placeholderOption.disabled = true;
+                placeholderOption.selected = true;
+                fullSelect.appendChild(placeholderOption);
+
+                tracks.forEach(function(track, index) {
+                    const option = document.createElement('option');
+                    option.value = String(index);
+                    option.textContent = track.title;
+                    fullSelect.appendChild(option);
+                });
+
+                function setFullTrack(index) {
+                    const selected = tracks[index];
+                    if (!selected) return;
+                    fullPlayer.src = selected.file;
+                    fullPlayer.load();
+                    if (fullDownload) {
+                        fullDownload.href = selected.file;
+                        fullDownload.setAttribute('download', selected.file.split('/').pop());
+                        fullDownload.setAttribute('aria-label', 'Download ' + selected.title);
+                    }
+                }
+
+                fullSelect.addEventListener('change', function() {
+                    if (!fullSelect.value) {
+                        fullSelect.classList.add('select-placeholder');
+                        return;
+                    }
+                    fullSelect.classList.remove('select-placeholder');
+                    setFullTrack(Number(fullSelect.value));
+                });
+            }
+            initFullPlayer();
+        })();
+    </script>
 
     <div class="video-panel">
 		<div class="responsive-video">
@@ -62,8 +88,8 @@
 		</div>
 
         <div class="video-chapters" aria-label="Video chapters">
-            <label for="videoChapterSelect">Pull down to select a song</label>
-            <select id="videoChapterSelect" aria-label="Pull down to jump to a song">
+            <select id="videoChapterSelect" class="select-placeholder" aria-label="Click to select a song">
+                <option value="" selected disabled>Click to select a song</option>
                 <option value="0">Christmas for Cowboys</option>
                 <option value="225">Grandma Got Run Over by a Reindeer</option>
                 <option value="456">Frosty the Snowman</option>
@@ -92,6 +118,11 @@
 
             var player = null;
             chaptersSelect.addEventListener('change', function () {
+                if (!chaptersSelect.value) {
+                    chaptersSelect.classList.add('select-placeholder');
+                    return;
+                }
+                chaptersSelect.classList.remove('select-placeholder');
                 var seconds = Number(chaptersSelect.value);
                 if (!isFinite(seconds)) return;
 
@@ -123,290 +154,6 @@
             };
 
             loadYouTubeIframeApiOnce();
-        })();
-    </script>
-
-    <div class="full-player-container">
-        <div class="full-player-controls">
-            <h2>Full Tracks</h2>
-            <label for="fullTrackSelect">Pull down to select a song</label>
-            <select id="fullTrackSelect" aria-label="Pull down to select a song"></select>
-            <audio id="fullTrackPlayer" controls preload="metadata">
-                Your browser does not support the audio element.
-            </audio>
-            <a id="fullTrackDownload" class="download-btn" href="#" download>Download track</a>
-        </div>
-    </div>
-
-    <script>
-        (function() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const playIcon = document.getElementById('playIcon');
-            const pauseIcon = document.getElementById('pauseIcon');
-            const trackTitle = document.getElementById('trackTitle');
-            const progressBar = document.getElementById('progressBar');
-
-            const tracks = [
-                { file: 'notes/set_list/11-The Last Moonshiner.mp3', title: 'The Last Moonshiner', start: 2, end: 30 },
-                { file: 'notes/set_list/14-Ghost Riders in the Sky.mp3', title: 'Ghost Riders in the Sky', start: 2, end: 30 },
-                { file: 'notes/set_list/01-Angeline the Baker.mp3', title: 'Angeline the Baker', start: 0, end: 30 },
-                { file: 'notes/set_list/02-Blue Ridge Cabin Home.mp3', title: 'Blue Ridge Cabin Home', start: 2, end: 30 },
-                { file: 'notes/set_list/03-Foggy Mountain Special.mp3', title: 'Foggy Mountain Special', start: 0, end: 30 }
-            ];
-
-            const crossfadeDuration = 2; // seconds
-            let currentTrackIndex = 0;
-            let playStart = 0;
-            let playEnd = 30;
-            let progressInterval = null;
-            let isCrossfading = false;
-            let fadeRequestId = null;
-            let activeAudio = audioPlayer;
-            let inactiveAudio = new Audio();
-            inactiveAudio.preload = 'auto';
-            let audioUnlocked = false;
-
-            function unlockAudioElements() {
-                if (audioUnlocked) return;
-                audioUnlocked = true;
-
-                // Only prime the inactive audio element to avoid pausing the one the user just started.
-                const audioEl = inactiveAudio;
-                audioEl.muted = true;
-                const unlockPromise = audioEl.play();
-                if (unlockPromise && typeof unlockPromise.then === 'function') {
-                    unlockPromise.then(function() {
-                        audioEl.pause();
-                        audioEl.currentTime = 0;
-                        audioEl.muted = false;
-                    }).catch(function() {
-                        audioEl.muted = false;
-                    });
-                } else {
-                    audioEl.pause();
-                    audioEl.currentTime = 0;
-                    audioEl.muted = false;
-                }
-            }
-
-            function loadTrack(index, audioEl) {
-                audioEl.src = tracks[index].file;
-                audioEl.load();
-                if (audioEl === activeAudio) {
-                    trackTitle.textContent = tracks[index].title;
-                    progressBar.style.width = '0%';
-                    playStart = Math.max(0, tracks[index].start || 0);
-                    playEnd = Math.max(playStart, tracks[index].end || playStart);
-                }
-            }
-
-            function initFullPlayer() {
-                const fullSelect = document.getElementById('fullTrackSelect');
-                const fullPlayer = document.getElementById('fullTrackPlayer');
-                const fullDownload = document.getElementById('fullTrackDownload');
-                if (!fullSelect || !fullPlayer) return;
-
-                tracks.forEach(function(track, index) {
-                    const option = document.createElement('option');
-                    option.value = String(index);
-                    option.textContent = track.title;
-                    fullSelect.appendChild(option);
-                });
-
-                function setFullTrack(index) {
-                    const selected = tracks[index];
-                    if (!selected) return;
-                    fullPlayer.src = selected.file;
-                    fullPlayer.load();
-                    if (fullDownload) {
-                        fullDownload.href = selected.file;
-                        fullDownload.setAttribute('download', selected.file.split('/').pop());
-                        fullDownload.setAttribute('aria-label', 'Download ' + selected.title);
-                    }
-                }
-
-                fullSelect.addEventListener('change', function() {
-                    setFullTrack(Number(fullSelect.value));
-                });
-
-                setFullTrack(0);
-            }
-
-            function updateProgress() {
-                if (activeAudio.paused) return;
-
-                const elapsed = Math.max(0, activeAudio.currentTime - playStart);
-                const playDuration = Math.max(0.1, playEnd - playStart);
-                const progress = (elapsed / playDuration) * 100;
-                progressBar.style.width = Math.min(progress, 100) + '%';
-
-                const fadeStart = Math.max(0, playDuration - crossfadeDuration);
-                if (!isCrossfading && elapsed >= fadeStart) {
-                    crossfadeToIndex((currentTrackIndex + 1) % tracks.length);
-                } else if (elapsed >= playDuration && !isCrossfading) {
-                    nextTrack();
-                }
-            }
-
-            function play() {
-                if (activeAudio.currentTime < playStart || activeAudio.currentTime > playEnd) {
-                    activeAudio.currentTime = playStart;
-                }
-                activeAudio.play();
-                if (isCrossfading) inactiveAudio.play();
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
-
-                if (progressInterval) clearInterval(progressInterval);
-                progressInterval = setInterval(updateProgress, 100);
-            }
-
-            function pause() {
-                cancelCrossfade();
-                activeAudio.pause();
-                inactiveAudio.pause();
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
-
-                if (progressInterval) {
-                    clearInterval(progressInterval);
-                    progressInterval = null;
-                }
-            }
-
-            function swapActiveAudio() {
-                const previousActive = activeAudio;
-                activeAudio = inactiveAudio;
-                inactiveAudio = previousActive;
-            }
-
-            function cancelCrossfade() {
-                if (!isCrossfading) return;
-                if (fadeRequestId) {
-                    cancelAnimationFrame(fadeRequestId);
-                    fadeRequestId = null;
-                }
-                inactiveAudio.pause();
-                inactiveAudio.currentTime = 0;
-                inactiveAudio.volume = 1;
-                activeAudio.volume = 1;
-                isCrossfading = false;
-            }
-
-            function crossfadeToIndex(nextIndex, force) {
-                if (isCrossfading) {
-                    if (!force) return;
-                    cancelCrossfade();
-                }
-                const wasPlaying = !activeAudio.paused;
-
-                if (!wasPlaying || crossfadeDuration <= 0) {
-                    pause();
-                    currentTrackIndex = nextIndex;
-                    loadTrack(currentTrackIndex, activeAudio);
-                    play();
-                    return;
-                }
-
-                isCrossfading = true;
-                const outgoingAudio = activeAudio;
-                const incomingAudio = inactiveAudio;
-                const nextStart = Math.max(0, tracks[nextIndex].start || 0);
-                const nextEnd = Math.max(nextStart, tracks[nextIndex].end || nextStart);
-
-                loadTrack(nextIndex, incomingAudio);
-                incomingAudio.currentTime = nextStart;
-                incomingAudio.volume = 0;
-                outgoingAudio.volume = 1;
-
-                const beginCrossfade = function() {
-                    currentTrackIndex = nextIndex;
-                    trackTitle.textContent = tracks[currentTrackIndex].title;
-                    progressBar.style.width = '0%';
-
-                    swapActiveAudio();
-                    playStart = nextStart;
-                    playEnd = nextEnd;
-
-                    const fadeMs = crossfadeDuration * 1000;
-                    const startTime = performance.now();
-
-                    function step(now) {
-                        const elapsedMs = now - startTime;
-                        const ratio = Math.min(elapsedMs / fadeMs, 1);
-                        inactiveAudio.volume = 1 - ratio;
-                        activeAudio.volume = ratio;
-
-                        if (ratio < 1) {
-                            fadeRequestId = requestAnimationFrame(step);
-                            return;
-                        }
-
-                        inactiveAudio.pause();
-                        inactiveAudio.currentTime = 0;
-                        inactiveAudio.volume = 1;
-                        activeAudio.volume = 1;
-                        isCrossfading = false;
-                    }
-
-                    fadeRequestId = requestAnimationFrame(step);
-                };
-
-                const playPromise = incomingAudio.play();
-                if (playPromise && typeof playPromise.then === 'function') {
-                    playPromise.then(beginCrossfade).catch(function() {
-                        incomingAudio.pause();
-                        incomingAudio.currentTime = 0;
-                        incomingAudio.volume = 1;
-                        outgoingAudio.volume = 1;
-                        isCrossfading = false;
-                        jumpToIndex(nextIndex);
-                    });
-                } else {
-                    beginCrossfade();
-                }
-            }
-
-            function jumpToIndex(nextIndex) {
-                cancelCrossfade();
-                pause();
-                currentTrackIndex = nextIndex;
-                loadTrack(currentTrackIndex, activeAudio);
-                play();
-            }
-
-            function nextTrack() {
-                jumpToIndex((currentTrackIndex + 1) % tracks.length);
-            }
-
-            function prevTrack() {
-                jumpToIndex((currentTrackIndex - 1 + tracks.length) % tracks.length);
-            }
-
-            playPauseBtn.addEventListener('click', function() {
-                if (activeAudio.paused) {
-                    unlockAudioElements();
-                    play();
-                } else {
-                    pause();
-                }
-            });
-
-            nextBtn.addEventListener('click', function() {
-                unlockAudioElements();
-                nextTrack();
-            });
-            prevBtn.addEventListener('click', function() {
-                unlockAudioElements();
-                prevTrack();
-            });
-
-            // Load the first track but don't play
-            loadTrack(0, activeAudio);
-            initFullPlayer();
         })();
     </script>
 

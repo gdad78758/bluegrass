@@ -178,6 +178,12 @@ img.hero {
     color: var(--control-text-strong);
 }
 
+.video-chapters select.select-placeholder,
+.full-player-controls select.select-placeholder {
+    color: var(--instruction-text);
+    font-weight: 600;
+}
+
 hr.content-divider {
     border: none;
     border-top: 1px solid #666;
@@ -337,8 +343,8 @@ hr.content-divider {
     align-items: center;
     justify-content: center;
     padding: 0.6rem 1rem;
-    border-radius: 10px;
-    border: 1px solid var(--control-border);
+    border-radius: 999px;
+    border: 1px solid var(--panel-border);
     background: rgba(58, 64, 80, 0.85);
     color: var(--about-text);
     text-decoration: none;
@@ -377,6 +383,27 @@ hr.content-divider {
 
 .about-link:hover,
 .about-link:focus {
+    color: var(--instruction-text);
+}
+
+.home-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--panel-border);
+    background: var(--panel-bg);
+    box-shadow: var(--panel-shadow);
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.home-pill:hover,
+.home-pill:focus {
+    background: var(--body-bg);
+    border-color: var(--hover-border);
     color: var(--instruction-text);
 }
 
