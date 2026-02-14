@@ -425,6 +425,20 @@ hr.content-divider {
     color: var(--instruction-text);
 }
 
+.gemini-logo-display {
+    width: 100%;
+    max-width: 960px;
+    margin: 16px auto 24px;
+}
+
+.gemini-logo-display img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: var(--panel-shadow);
+}
+
 /* Logo Styles */
 .gemini-logo-link {
     position: fixed;
