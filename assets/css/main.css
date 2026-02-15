@@ -175,6 +175,9 @@ img.hero {
 }
 
 .video-chapters select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 0.6rem 1rem;
     border-radius: 999px;
     border: 1px solid var(--panel-border);
@@ -335,6 +338,9 @@ hr.content-divider {
 }
 
 .full-player-controls select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 0.6rem 1rem;
     border-radius: 999px;
     border: 1px solid var(--panel-border);
