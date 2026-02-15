@@ -450,6 +450,17 @@ hr.content-divider {
     border-radius: 10px;
 }
 
+.gemini-logo-link.gemini-logo-scroll {
+    position: static;
+    display: block;
+    width: fit-content;
+    margin: 24px auto 16px;
+}
+
+.gemini-logo-link.gemini-logo-scroll img {
+    margin: 0 auto;
+}
+
 .gemini-logo-center {
     right: auto;
     left: 50%;
@@ -473,10 +484,6 @@ hr.content-divider {
 
 /* Mobile Adjustments */
 @media (max-width: 720px) {
-    body {
-        padding-bottom: 120px; /* Add space at the bottom to scroll past the logo */
-    }
-
     h1 {
         font-size: 1.9rem;
     }
