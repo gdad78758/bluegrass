@@ -139,7 +139,7 @@ img.hero {
     font-weight: 700;
     font-size: 1.1rem;
     line-height: 1.1;
-    color: #d9dee6;
+    color: rgba(47, 58, 79, 1)
     text-decoration: none;
     background: #f2c14e;
     border: 3px solid #1f2430;
