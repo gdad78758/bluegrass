@@ -47,6 +47,22 @@ jobs:
           python -m pipx ensurepath
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           ~/.local/bin/pipx install --force genlist-butler
+
+      - name: Generate set list
+        run: |
+          cd notes/set_list
+          python ../../GenSetList.py
+
+      - name: Check if set list PDF is needed
+        id: check-setlist
+        run: |
+          setlist_file="notes/set_list/00 - Set List.chopro"
+          setlist_pdf="${setlist_file%.chopro}.pdf"
+          if [ -f "$setlist_pdf" ]; then
+            echo "need_setlist_pdf=false" >> $GITHUB_OUTPUT
+          else
+            echo "need_setlist_pdf=true" >> $GITHUB_OUTPUT
+          fi
           
       - name: Check if PDF generation is needed
         id: check-pdfs
@@ -88,7 +104,7 @@ jobs:
           fi
           
       - name: Install ChordPro and genpdf-butler
-        if: steps.check-pdfs.outputs.need_generation == 'true'
+        if: steps.check-pdfs.outputs.need_generation == 'true' || steps.check-setlist.outputs.need_setlist_pdf == 'true'
         run: |
           echo "=== Installing ChordPro and genpdf-butler ==="
           # Install chordpro via cpanm and genpdf-butler from PyPI
@@ -97,6 +113,12 @@ jobs:
           sudo cpanm --notest HarfBuzz::Shaper
           sudo cpanm --notest App::Music::ChordPro
           pip install genpdf-butler
+
+      - name: Generate set list PDF
+        if: steps.check-setlist.outputs.need_setlist_pdf == 'true'
+        run: |
+          echo "=== Generating set list PDF ==="
+          genpdf --pagesize a5 "notes/set_list/00 - Set List.chopro"
           
       - name: Generate PDFs from .chopro files
         if: steps.check-pdfs.outputs.need_generation == 'true'
