@@ -13,6 +13,17 @@ Notes:
 
    Note:  the python GenPDF.py step will not work if you haven't committed all previous changes to the repo.
 
+   Set list PDF:
+   1. The set list master file is generated from numbered ChordPro files in notes/set_list.
+   2. From the notes/set_list folder, run:
+      python ../../GenSetList.py
+      This writes notes/set_list/00 - Set List.chopro by concatenating 00-99 prefixed .chopro files in order.
+   3. The PDF (notes/set_list/00 - Set List.pdf) is generated from that .chopro via:
+      genpdf --force --pagesize a5 "notes/set_list/00 - Set List.chopro"
+   4. In GitHub Actions (see .github/workflows/deploy-pages.yml), the set list .chopro is regenerated
+      on every deploy, and the PDF is generated only if it is missing. The set list PDF is not committed
+      back to the repo by the workflow.
+
 Hook setup:
 1. To auto-update the main.css cache-busting query before commits, install the hook:
    - Git Bash: scripts/install-hooks.sh
