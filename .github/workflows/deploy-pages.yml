@@ -9,7 +9,6 @@ on:
   # Weekly random set list generation (03:00 Central Time)
   schedule:
     - cron: "0 8 * * 4"
-    - cron: "55 19 2 4 *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
