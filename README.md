@@ -24,6 +24,14 @@ Notes:
       on every deploy, and the PDF is generated only if it is missing. The set list PDF is not committed
       back to the repo by the workflow.
 
+   Random set list:
+   1. The workflow can generate a random set list (7 songs) from notes/set_list and Christmas.
+   2. It runs weekly on Thursday at 03:00 Central (see schedule in .github/workflows/deploy-pages.yml).
+   3. You can also run it manually via Actions and enable the "Generate random set list" input.
+   4. The random selection is appended to random.log and committed back to the repo.
+   5. The generated notes/set_list/00 - Random.chopro and PDF are published to GitHub Pages only,
+      and are not committed to the repo.
+
 Hook setup:
 1. To auto-update the main.css cache-busting query before commits, install the hook:
    - Git Bash: scripts/install-hooks.sh

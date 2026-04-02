@@ -9,10 +9,15 @@ on:
   # Weekly random set list generation (03:00 Central Time)
   schedule:
     - cron: "0 8 * * 4"
-    - cron: "45 7 2 4 *"
+    - cron: "55 19 2 4 *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      random:
+        description: "Generate random set list"
+        type: boolean
+        default: false
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages and commit PDFs
 permissions:
@@ -196,7 +201,7 @@ jobs:
           fi
 
       - name: Install ChordPro and genpdf-butler for random list
-        if: github.event_name == 'schedule' && steps.check-pdfs.outputs.need_generation != 'true' && steps.check-setlist.outputs.need_setlist_pdf != 'true'
+        if: (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)) && steps.check-pdfs.outputs.need_generation != 'true' && steps.check-setlist.outputs.need_setlist_pdf != 'true'
         run: |
           echo "=== Installing ChordPro and genpdf-butler for random list ==="
           sudo apt-get update
@@ -206,14 +211,14 @@ jobs:
           pip install genpdf-butler
 
       - name: Generate random set list and PDF
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Generating random set list ==="
           python GenSetList.py --random -o "notes/set_list/00 - Random.chopro"
           genpdf --force --pagesize a5 "notes/set_list/00 - Random.chopro"
 
       - name: Commit random log
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Committing random.log ==="
 
