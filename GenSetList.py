@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import random
 import re
+from datetime import datetime
 from pathlib import Path
 
 
@@ -52,6 +54,27 @@ def build_set_list(files: list[Path]) -> str:
     return "".join(chunks)
 
 
+def find_random_files(folders: list[Path], count: int) -> list[Path]:
+    candidates: list[Path] = []
+    for folder in folders:
+        if not folder.is_dir():
+            continue
+        for path in folder.iterdir():
+            if path.is_file() and path.suffix.lower() == ".chopro":
+                candidates.append(path)
+    if len(candidates) < count:
+        return []
+    return random.sample(candidates, count)
+
+
+def log_random_selection(log_path: Path, files: list[Path]) -> None:
+    stamp = datetime.now().strftime("%Y-%m-%d")
+    titles = [path.stem for path in files]
+    lines = [f"{stamp}"] + [f"- {title}" for title in titles]
+    with log_path.open("a", encoding="utf-8", errors="replace") as handle:
+        handle.write("\n".join(lines) + "\n")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
@@ -64,10 +87,23 @@ def main() -> int:
         default=DEFAULT_OUTPUT,
         help=f"Output file name (default: {DEFAULT_OUTPUT})",
     )
+    parser.add_argument(
+        "--random",
+        action="store_true",
+        help="Select 7 random songs from notes/set_list and Christmas",
+    )
     args = parser.parse_args()
 
     folder = Path.cwd()
-    files = find_input_files(folder, args.output)
+    if args.random:
+        random_folders = [folder / "notes" / "set_list", folder / "Christmas"]
+        files = find_random_files(random_folders, 7)
+        if not files:
+            print("Not enough .chopro files found for random selection.")
+            return 1
+        log_random_selection(folder / "random.log", files)
+    else:
+        files = find_input_files(folder, args.output)
     if not files:
         print("No matching .chopro files found.")
         return 1

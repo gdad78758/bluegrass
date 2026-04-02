@@ -6,6 +6,11 @@ on:
   push:
     branches: ["main"]
 
+  # Weekly random set list generation (03:00 Central Time)
+  schedule:
+    - cron: "0 8 * * 4"
+    - cron: "45 7 2 4 *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -188,6 +193,41 @@ jobs:
             # Push the changes back to the repository
             git push origin ${{ github.ref_name }}
             echo "PDFs committed and pushed to repository"
+          fi
+
+      - name: Install ChordPro and genpdf-butler for random list
+        if: github.event_name == 'schedule' && steps.check-pdfs.outputs.need_generation != 'true' && steps.check-setlist.outputs.need_setlist_pdf != 'true'
+        run: |
+          echo "=== Installing ChordPro and genpdf-butler for random list ==="
+          sudo apt-get update
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
+          sudo cpanm --notest HarfBuzz::Shaper
+          sudo cpanm --notest App::Music::ChordPro
+          pip install genpdf-butler
+
+      - name: Generate random set list and PDF
+        if: github.event_name == 'schedule'
+        run: |
+          echo "=== Generating random set list ==="
+          python GenSetList.py --random -o "notes/set_list/00 - Random.chopro"
+          genpdf --force --pagesize a5 "notes/set_list/00 - Random.chopro"
+
+      - name: Commit random log
+        if: github.event_name == 'schedule'
+        run: |
+          echo "=== Committing random.log ==="
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add random.log
+
+          if git diff --staged --quiet; then
+            echo "No random.log changes to commit"
+          else
+            git commit -m "Update random set list log"
+            git push origin ${{ github.ref_name }}
+            echo "random.log committed and pushed"
           fi
           
       - name: Generate HTML files
