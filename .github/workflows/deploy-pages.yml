@@ -260,12 +260,14 @@ jobs:
 
           mkdir -p "notes/set_list"
 
-          curl -fsSL "$base_url/notes/set_list/00%20-%20Random.chopro" -o "$random_chopro" || true
-          curl -fsSL "$base_url/notes/set_list/00%20-%20Random.pdf" -o "$random_pdf" || true
+          chopro_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/00%20-%20Random.chopro" -o "$random_chopro" || echo "000")
+          pdf_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/00%20-%20Random.pdf" -o "$random_pdf" || echo "000")
 
-          if [ ! -s "$random_chopro" ] || [ ! -s "$random_pdf" ]; then
+          if [ "$chopro_status" != "200" ] || [ "$pdf_status" != "200" ]; then
             rm -f "$random_chopro" "$random_pdf"
-            echo "Random set list not found on Pages; skipping restore."
+            echo "Random set list not found on Pages (chopro=$chopro_status, pdf=$pdf_status); skipping restore."
+          else
+            echo "Restored random set list (chopro=$(wc -c < "$random_chopro") bytes, pdf=$(wc -c < "$random_pdf") bytes)."
           fi
           
       - name: Generate documentation
