@@ -233,18 +233,9 @@ jobs:
             git push origin ${{ github.ref_name }}
             echo "random.log committed and pushed"
           fi
-          
-      - name: Generate HTML files
-        run: |
-          genlist --no-intro --no-line-numbers --filter none notes/set_list songs.html
-          genlist --no-intro --no-line-numbers --filter none music GeneratedSongsList.html
-          genlist --no-intro --no-line-numbers --filter none Christmas Christmas.html
-          genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
-          genlist --no-intro --no-line-numbers --filter none 'Katy Lesson' KatysLesson.html
-          genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
 
       - name: Restore random set list from Pages
-        if: github.event_name == 'push'
+        if: github.event_name != 'schedule' && !(github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Restoring random set list from Pages ==="
 
@@ -269,6 +260,15 @@ jobs:
           else
             echo "Restored random set list (chopro=$(wc -c < "$random_chopro") bytes, pdf=$(wc -c < "$random_pdf") bytes)."
           fi
+
+      - name: Generate HTML files
+        run: |
+          genlist --no-intro --no-line-numbers --filter none notes/set_list songs.html
+          genlist --no-intro --no-line-numbers --filter none music GeneratedSongsList.html
+          genlist --no-intro --no-line-numbers --filter none Christmas Christmas.html
+          genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
+          genlist --no-intro --no-line-numbers --filter none 'Katy Lesson' KatysLesson.html
+          genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
           
       - name: Generate documentation
         run: |
