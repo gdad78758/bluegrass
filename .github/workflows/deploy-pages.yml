@@ -242,6 +242,31 @@ jobs:
           genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
           genlist --no-intro --no-line-numbers --filter none 'Katy Lesson' KatysLesson.html
           genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
+
+      - name: Restore random set list from Pages
+        if: github.event_name == 'push'
+        run: |
+          echo "=== Restoring random set list from Pages ==="
+
+          base_domain=$(cat docs/CNAME 2>/dev/null || true)
+          if [ -n "$base_domain" ]; then
+            base_url="https://$base_domain"
+          else
+            base_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          fi
+
+          random_chopro="notes/set_list/00 - Random.chopro"
+          random_pdf="notes/set_list/00 - Random.pdf"
+
+          mkdir -p "notes/set_list"
+
+          curl -fsSL "$base_url/notes/set_list/00%20-%20Random.chopro" -o "$random_chopro" || true
+          curl -fsSL "$base_url/notes/set_list/00%20-%20Random.pdf" -o "$random_pdf" || true
+
+          if [ ! -s "$random_chopro" ] || [ ! -s "$random_pdf" ]; then
+            rm -f "$random_chopro" "$random_pdf"
+            echo "Random set list not found on Pages; skipping restore."
+          fi
           
       - name: Generate documentation
         run: |
