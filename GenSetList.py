@@ -75,6 +75,12 @@ def log_random_selection(log_path: Path, files: list[Path]) -> None:
         handle.write("\n".join(lines) + "\n")
 
 
+def write_song_list(output_path: Path, files: list[Path]) -> None:
+    list_path = output_path.with_suffix(".txt")
+    titles = [path.stem for path in files]
+    list_path.write_text("\n".join(titles) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
@@ -111,6 +117,7 @@ def main() -> int:
     output_path = folder / args.output
     content = build_set_list(files)
     output_path.write_text(content, encoding="utf-8")
+    write_song_list(output_path, files)
     print(f"Wrote {output_path.name} with {len(files)} songs.")
     return 0
 
