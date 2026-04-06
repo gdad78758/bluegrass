@@ -76,9 +76,26 @@ def log_random_selection(log_path: Path, files: list[Path]) -> None:
 
 
 def write_song_list(output_path: Path, files: list[Path]) -> None:
-    list_path = output_path.with_suffix(".txt")
+    list_path = output_path.with_suffix(".html")
     titles = [path.stem for path in files]
-    list_path.write_text("\n".join(titles) + "\n", encoding="utf-8")
+    title = output_path.stem
+    items = "\n".join(f"    <li>{name}</li>" for name in titles)
+    html = (
+        "<!doctype html>\n"
+        "<html lang=\"en\">\n"
+        "  <head>\n"
+        "    <meta charset=\"utf-8\">\n"
+        f"    <title>{title}</title>\n"
+        "  </head>\n"
+        "  <body>\n"
+        f"    <h1>{title}</h1>\n"
+        "    <ul>\n"
+        f"{items}\n"
+        "    </ul>\n"
+        "  </body>\n"
+        "</html>\n"
+    )
+    list_path.write_text(html, encoding="utf-8")
 
 
 def main() -> int:
