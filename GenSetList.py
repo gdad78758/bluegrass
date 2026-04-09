@@ -60,7 +60,11 @@ def find_random_files(folders: list[Path], count: int) -> list[Path]:
         if not folder.is_dir():
             continue
         for path in folder.iterdir():
-            if path.is_file() and path.suffix.lower() == ".chopro":
+            if not path.is_file():
+                continue
+            if path.name.startswith("00"):
+                continue
+            if path.suffix.lower() == ".chopro":
                 candidates.append(path)
     if len(candidates) < count:
         return []
