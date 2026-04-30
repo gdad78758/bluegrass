@@ -103,8 +103,9 @@ jobs:
           # Install chordpro via cpanm and genpdf-butler from PyPI
           sudo apt-get update
           sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
-          sudo cpanm --notest HarfBuzz::Shaper
-          sudo cpanm --notest App::Music::ChordPro@6.090.0
+          # sudo cpanm --notest HarfBuzz::Shaper
+          # sudo cpanm --notest App::Music::ChordPro@6.090.0
+          sudo apt-get install -y chordpro
           pip install genpdf-butler
           
       - name: Generate PDFs from .chopro files
