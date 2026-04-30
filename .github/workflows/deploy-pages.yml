@@ -100,11 +100,8 @@ jobs:
         if: steps.check-pdfs.outputs.need_generation == 'true'
         run: |
           echo "=== Installing ChordPro and genpdf-butler ==="
-          # Install chordpro via cpanm and genpdf-butler from PyPI
+          # Install chordpro and genpdf-butler from PyPI
           sudo apt-get update
-          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
-          # sudo cpanm --notest HarfBuzz::Shaper
-          # sudo cpanm --notest App::Music::ChordPro@6.090.0
           sudo apt-get install -y chordpro
           pip install genpdf-butler
           
