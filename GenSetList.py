@@ -117,17 +117,18 @@ def main() -> int:
     parser.add_argument(
         "--random",
         action="store_true",
-        help="Select 7 random songs from notes/set_list and Christmas",
+        help="Select 7 random songs: 2 from Christmas, 5 from notes/set_list",
     )
     args = parser.parse_args()
 
     folder = Path.cwd()
     if args.random:
-        random_folders = [folder / "notes" / "set_list", folder / "Christmas"]
-        files = find_random_files(random_folders, 7)
-        if not files:
+        christmas_files = find_random_files([folder / "Christmas"], 2)
+        set_list_files = find_random_files([folder / "notes" / "set_list"], 5)
+        if not christmas_files or not set_list_files:
             print("Not enough .chopro files found for random selection.")
             return 1
+        files = christmas_files + set_list_files
         log_random_selection(folder / "random.log", files)
     else:
         files = find_input_files(folder, args.output)
