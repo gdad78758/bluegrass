@@ -100,9 +100,11 @@ jobs:
         if: steps.check-pdfs.outputs.need_generation == 'true'
         run: |
           echo "=== Installing ChordPro and genpdf-butler ==="
-          # Install chordpro and genpdf-butler from PyPI
+          # Install chordpro via cpanm and genpdf-butler from PyPI
           sudo apt-get update
-          sudo apt-get install -y chordpro
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
+          sudo cpanm --notest HarfBuzz::Shaper
+          sudo cpanm --notest App::Music::ChordPro@6.090.0
           pip install genpdf-butler
           
       - name: Generate PDFs from .chopro files
@@ -156,8 +158,9 @@ jobs:
           echo "=== Installing ChordPro and genpdf-butler ==="
           # Install chordpro via cpanm and genpdf-butler from PyPI
           sudo apt-get update
-          sudo apt-get update
-          sudo apt-get install -y chordpro
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
+          sudo cpanm --notest HarfBuzz::Shaper
+          sudo cpanm --notest App::Music::ChordPro@6.090.0
           pip install genpdf-butler
 
       - name: Generate set list PDF
@@ -201,8 +204,9 @@ jobs:
         run: |
           echo "=== Installing ChordPro and genpdf-butler for random list ==="
           sudo apt-get update
-          sudo apt-get update
-          sudo apt-get install -y chordpro
+          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
+          sudo cpanm --notest HarfBuzz::Shaper
+          sudo cpanm --notest App::Music::ChordPro@6.090.0
           pip install genpdf-butler
 
       - name: Generate random set list and PDF
