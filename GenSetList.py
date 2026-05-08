@@ -10,7 +10,8 @@ from datetime import datetime
 from pathlib import Path
 
 
-DEFAULT_OUTPUT = "00 - Set List.chopro"
+DEFAULT_OUTPUT = "Set List.chopro"
+DEFAULT_LIST = Path("notes") / "set_list" / "setlist.txt"
 NUMBER_PREFIX = re.compile(r"^(\d{2})(?!\d)")
 
 
@@ -52,6 +53,19 @@ def build_set_list(files: list[Path]) -> str:
         else:
             chunks.append("{new_song}\n" + text)
     return "".join(chunks)
+
+
+def find_files_from_list(list_path: Path, set_list_folder: Path) -> list[Path]:
+    """Return ordered .chopro files based on titles listed in list_path."""
+    files: list[Path] = []
+    for line in list_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        title = line.strip()
+        if not title:
+            continue
+        chopro = set_list_folder / f"{title}.chopro"
+        if chopro.is_file():
+            files.append(chopro)
+    return files
 
 
 def find_random_files(folders: list[Path], count: int) -> list[Path]:
@@ -119,10 +133,34 @@ def main() -> int:
         action="store_true",
         help="Select 7 random songs: 2 from Christmas, 5 from notes/set_list",
     )
+    parser.add_argument(
+        "--list",
+        default=None,
+        metavar="FILE",
+        help=(
+            f"Text file with song titles (one per line) in desired order "
+            f"(default when present: {DEFAULT_LIST})"
+        ),
+    )
     args = parser.parse_args()
 
     folder = Path.cwd()
-    if args.random:
+    set_list_folder = folder / "notes" / "set_list"
+
+    # Determine list file path
+    if args.list:
+        list_path: Path | None = Path(args.list)
+    elif (folder / DEFAULT_LIST).is_file():
+        list_path = folder / DEFAULT_LIST
+    else:
+        list_path = None
+
+    if list_path and not args.random:
+        files = find_files_from_list(list_path, set_list_folder)
+        if not files:
+            print(f"No matching .chopro files found for titles in {list_path}.")
+            return 1
+    elif args.random:
         christmas_files = find_random_files([folder / "Christmas"], 2)
         set_list_files = find_random_files([folder / "notes" / "set_list"], 5)
         if not christmas_files or not set_list_files:

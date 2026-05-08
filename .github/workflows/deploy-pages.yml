@@ -138,13 +138,12 @@ jobs:
 
       - name: Generate set list
         run: |
-          cd notes/set_list
-          python ../../GenSetList.py
+          python GenSetList.py -o "notes/set_list/Set List.chopro"
 
       - name: Check if set list PDF is needed
         id: check-setlist
         run: |
-          setlist_file="notes/set_list/00 - Set List.chopro"
+          setlist_file="notes/set_list/Set List.chopro"
           setlist_pdf="${setlist_file%.chopro}.pdf"
           if [ -f "$setlist_pdf" ]; then
             echo "need_setlist_pdf=false" >> $GITHUB_OUTPUT
@@ -167,7 +166,7 @@ jobs:
         if: steps.check-setlist.outputs.need_setlist_pdf == 'true'
         run: |
           echo "=== Generating set list PDF ==="
-          genpdf --force --pagesize a5 "notes/set_list/00 - Set List.chopro"
+          genpdf --force --pagesize a5 "notes/set_list/Set List.chopro"
           
       - name: Commit generated PDFs to repository
         if: steps.check-pdfs.outputs.need_generation == 'true'
@@ -181,7 +180,7 @@ jobs:
           # Add any new or modified PDF files
           git add *.pdf **/*.pdf 2>/dev/null || true
           # Keep generated set list PDF out of the repo
-          git reset -- "notes/set_list/00 - Set List.pdf" 2>/dev/null || true
+          git reset -- "notes/set_list/Set List.pdf" 2>/dev/null || true
           
           # Check if there are any PDF changes to commit
           if git diff --staged --quiet; then
@@ -213,8 +212,8 @@ jobs:
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Generating random set list ==="
-          python GenSetList.py --random -o "notes/set_list/00 - Random.chopro"
-          genpdf --force --pagesize a5 "notes/set_list/00 - Random.chopro"
+          python GenSetList.py --random -o "notes/set_list/Random.chopro"
+          genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
 
       - name: Commit random log
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
@@ -246,9 +245,9 @@ jobs:
             base_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
           fi
 
-          random_chopro="notes/set_list/00 - Random.chopro"
-          random_pdf="notes/set_list/00 - Random.pdf"
-          random_html="notes/set_list/00 - Random.html"
+          random_chopro="notes/set_list/Random.chopro"
+          random_pdf="notes/set_list/Random.pdf"
+          random_html="notes/set_list/Random.html"
 
           mkdir -p "notes/set_list"
 
