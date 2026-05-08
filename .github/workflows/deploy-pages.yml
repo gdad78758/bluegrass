@@ -264,11 +264,11 @@ jobs:
 
       - name: Generate HTML files
         run: |
-          genlist --no-intro --no-line-numbers --filter none notes/set_list songs.html
-          genlist --no-intro --no-line-numbers --filter none music GeneratedSongsList.html
-          genlist --no-intro --no-line-numbers --filter none Christmas Christmas.html
-          genlist --no-intro --no-line-numbers --filter none Practice_Tracks Practice.html
-          genlist --no-intro --no-line-numbers --filter none 'Katy Lesson' KatysLesson.html
+          genlist --no-intro --filter none notes/set_list songs.html
+          genlist --no-intro --filter none music GeneratedSongsList.html
+          genlist --no-intro --filter none Christmas Christmas.html
+          genlist --no-intro --filter none Practice_Tracks Practice.html
+          genlist --no-intro --filter none 'Katy Lesson' KatysLesson.html
           genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
           
       - name: Generate documentation
