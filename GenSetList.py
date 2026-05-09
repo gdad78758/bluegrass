@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-DEFAULT_OUTPUT = "Set List.chopro"
+DEFAULT_OUTPUT = "Finished Set List.chopro"
 DEFAULT_LIST = Path("notes") / "set_list" / "setlist.txt"
 NUMBER_PREFIX = re.compile(r"^(\d{2})(?!\d)")
 

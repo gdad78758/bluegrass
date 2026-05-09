@@ -138,18 +138,21 @@ jobs:
 
       - name: Generate set list
         run: |
-          python GenSetList.py -o "notes/set_list/Set List.chopro"
+          python GenSetList.py -o "notes/set_list/Finished Set List.chopro"
+
+      - name: Generate working songs
+        run: |
+          python GenSetList.py --list "notes/set_list/workingsetlist.txt" -o "notes/set_list/Working Songs.chopro"
 
       - name: Check if set list PDF is needed
         id: check-setlist
         run: |
-          setlist_file="notes/set_list/Set List.chopro"
-          setlist_pdf="${setlist_file%.chopro}.pdf"
-          if [ -f "$setlist_pdf" ]; then
-            echo "need_setlist_pdf=false" >> $GITHUB_OUTPUT
-          else
-            echo "need_setlist_pdf=true" >> $GITHUB_OUTPUT
-          fi
+          need=false
+          for f in "notes/set_list/Finished Set List.chopro" "notes/set_list/Working Songs.chopro"; do
+            pdf="${f%.chopro}.pdf"
+            [ -f "$pdf" ] || need=true
+          done
+          echo "need_setlist_pdf=$need" >> $GITHUB_OUTPUT
 
       - name: Install ChordPro and genpdf-butler for set list
         if: steps.check-pdfs.outputs.need_generation != 'true' && steps.check-setlist.outputs.need_setlist_pdf == 'true'
@@ -165,8 +168,9 @@ jobs:
       - name: Generate set list PDF
         if: steps.check-setlist.outputs.need_setlist_pdf == 'true'
         run: |
-          echo "=== Generating set list PDF ==="
-          genpdf --force --pagesize a5 "notes/set_list/Set List.chopro"
+          echo "=== Generating set list PDFs ==="
+          genpdf --force --pagesize a5 "notes/set_list/Finished Set List.chopro"
+          genpdf --force --pagesize a5 "notes/set_list/Working Songs.chopro"
           
       - name: Commit generated PDFs to repository
         if: steps.check-pdfs.outputs.need_generation == 'true'
@@ -180,7 +184,8 @@ jobs:
           # Add any new or modified PDF files
           git add *.pdf **/*.pdf 2>/dev/null || true
           # Keep generated set list PDF out of the repo
-          git reset -- "notes/set_list/Set List.pdf" 2>/dev/null || true
+          git reset -- "notes/set_list/Finished Set List.pdf" 2>/dev/null || true
+          git reset -- "notes/set_list/Working Songs.pdf" 2>/dev/null || true
           
           # Check if there are any PDF changes to commit
           if git diff --staged --quiet; then
@@ -251,9 +256,9 @@ jobs:
 
           mkdir -p "notes/set_list"
 
-          chopro_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/00%20-%20Random.chopro" -o "$random_chopro" || echo "000")
-          pdf_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/00%20-%20Random.pdf" -o "$random_pdf" || echo "000")
-          html_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/00%20-%20Random.html" -o "$random_html" || echo "000")
+          chopro_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.chopro" -o "$random_chopro" || echo "000")
+          pdf_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.pdf" -o "$random_pdf" || echo "000")
+          html_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.html" -o "$random_html" || echo "000")
 
           if [ "$chopro_status" != "200" ] || [ "$pdf_status" != "200" ] || [ "$html_status" != "200" ]; then
             rm -f "$random_chopro" "$random_pdf" "$random_html"

@@ -20,9 +20,9 @@ Notes:
       - To change the set list order or contents, edit notes/set_list/setlist.txt.
    2. From the bluegrass root folder, run:
       python GenSetList.py
-      This writes Set List.chopro by concatenating the .chopro files in the order defined by setlist.txt.
-   3. The PDF (Set List.pdf) is generated from that .chopro via:
-      genpdf --force --pagesize a5 "Set List.chopro"
+      This writes Finished Set List.chopro by concatenating the .chopro files in the order defined by setlist.txt.
+   3. The PDF (Finished Set List.pdf) is generated from that .chopro via:
+      genpdf --force --pagesize a5 "Finished Set List.chopro"
    4. In GitHub Actions (see .github/workflows/deploy-pages.yml), the set list .chopro is regenerated
       on every deploy, and the PDF is generated only if it is missing. The set list PDF is not committed
       back to the repo by the workflow.
