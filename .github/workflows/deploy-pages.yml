@@ -220,51 +220,22 @@ jobs:
           python GenSetList.py --random -o "notes/set_list/Random.chopro"
           genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
 
-      - name: Commit random log
+      - name: Commit random log and files
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
-          echo "=== Committing random.log ==="
+          echo "=== Committing random set list files ==="
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add random.log
+          git add random.log "notes/set_list/Random.chopro" "notes/set_list/Random.html"
 
           if git diff --staged --quiet; then
-            echo "No random.log changes to commit"
+            echo "No random set list changes to commit"
           else
-            git commit -m "Update random set list log"
+            git commit -m "Update random set list"
             git push origin ${{ github.ref_name }}
-            echo "random.log committed and pushed"
-          fi
-
-      - name: Restore random set list from Pages
-        if: github.event_name != 'schedule' && !(github.event_name == 'workflow_dispatch' && inputs.random)
-        run: |
-          echo "=== Restoring random set list from Pages ==="
-
-          base_domain=$(cat docs/CNAME 2>/dev/null || true)
-          if [ -n "$base_domain" ]; then
-            base_url="https://$base_domain"
-          else
-            base_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
-          fi
-
-          random_chopro="notes/set_list/Random.chopro"
-          random_pdf="notes/set_list/Random.pdf"
-          random_html="notes/set_list/Random.html"
-
-          mkdir -p "notes/set_list"
-
-          chopro_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.chopro" -o "$random_chopro" || echo "000")
-          pdf_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.pdf" -o "$random_pdf" || echo "000")
-          html_status=$(curl -w "%{http_code}" -fsSL "$base_url/notes/set_list/Random.html" -o "$random_html" || echo "000")
-
-          if [ "$chopro_status" != "200" ] || [ "$pdf_status" != "200" ] || [ "$html_status" != "200" ]; then
-            rm -f "$random_chopro" "$random_pdf" "$random_html"
-            echo "Random set list not found on Pages (chopro=$chopro_status, pdf=$pdf_status, html=$html_status); skipping restore."
-          else
-            echo "Restored random set list (chopro=$(wc -c < "$random_chopro") bytes, pdf=$(wc -c < "$random_pdf") bytes, html=$(wc -c < "$random_html") bytes)."
+            echo "Random set list committed and pushed"
           fi
 
       - name: Generate HTML files
