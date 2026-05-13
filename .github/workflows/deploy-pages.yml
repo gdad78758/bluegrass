@@ -218,6 +218,8 @@ jobs:
         run: |
           echo "=== Generating random set list ==="
           python GenSetList.py --random -o "notes/set_list/Random.chopro"
+          # stage generated random list since the following genpdf will revert the .chopro file
+          git add .
           genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
 
       - name: Commit random log and files
