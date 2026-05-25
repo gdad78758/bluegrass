@@ -57,6 +57,27 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           ~/.local/bin/pipx install --force genlist-butler
 
+      - name: Update CSS cache-busting parameters
+        run: |
+          if git diff-tree --no-commit-id -r HEAD --name-only | grep -q "assets/css/main.css"; then
+            echo "=== main.css changed, updating cache-busting parameters ==="
+            TIMESTAMP=$(date +%Y-%m-%d-%H%M)
+            grep -rl "main\.css?v=" --include="*.html" --include="*.txt" . \
+              | xargs sed -E -i "s/main\.css\?v=[0-9-]+/main.css?v=${TIMESTAMP}/g"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            if git diff --staged --quiet; then
+              echo "No cache-busting changes needed"
+            else
+              git commit -m "Update CSS cache-busting parameters to ${TIMESTAMP}"
+              git push origin ${{ github.ref_name }}
+              echo "Cache-busting parameters updated and pushed"
+            fi
+          else
+            echo "main.css unchanged, skipping cache-busting update"
+          fi
+
       - name: Check if PDF generation is needed
         id: check-pdfs
         run: |
@@ -252,6 +273,22 @@ jobs:
           genlist --no-intro --filter none Practice_Tracks Practice.html
           genlist --no-intro --filter none 'Katy Lesson' KatysLesson.html
           genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
+
+      - name: Update cache-busting parameters in private_links.html
+        run: |
+          echo "=== Updating cache-busting parameters in private_links.html ==="
+          TIMESTAMP=$(date +%Y-%m-%d-%H%M)
+          sed -E -i "s/\.html\?v=[0-9-]+/.html?v=${TIMESTAMP}/g" private_links.html
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add private_links.html
+          if git diff --staged --quiet; then
+            echo "No changes to private_links.html"
+          else
+            git commit -m "Update cache-busting parameters in private_links.html to ${TIMESTAMP}"
+            git push origin ${{ github.ref_name }}
+            echo "private_links.html committed and pushed"
+          fi
           
       - name: Generate documentation
         run: |
