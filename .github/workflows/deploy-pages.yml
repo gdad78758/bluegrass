@@ -230,7 +230,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add random.log "notes/set_list/Random.chopro" "notes/set_list/Random.html"
+          git add random.log "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf" 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "No random set list changes to commit"
