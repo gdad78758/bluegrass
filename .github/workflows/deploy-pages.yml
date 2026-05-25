@@ -242,7 +242,11 @@ jobs:
 
       - name: Generate HTML files
         run: |
-          genlist --no-intro --filter none notes/set_list songs.html
+          # cd to folder with special HTMLheader.txt
+          cd notes/set_list
+          genlist --no-intro --filter none . ../../songs.html
+          cd ../..
+
           genlist --no-intro --filter none music GeneratedSongsList.html
           genlist --no-intro --filter none Christmas Christmas.html
           genlist --no-intro --filter none Practice_Tracks Practice.html
