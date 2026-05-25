@@ -603,6 +603,13 @@ hr.content-divider {
         margin: 24px auto 16px;
     }
 
+    .gemini-logo-link.gemini-logo-inline {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        vertical-align: middle;
+    }
+
     .gemini-logo-center {
         transform: none;
         left: auto;
