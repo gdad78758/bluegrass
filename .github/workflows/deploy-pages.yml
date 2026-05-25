@@ -44,7 +44,7 @@ jobs:
 
         
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           
@@ -332,7 +332,7 @@ jobs:
           echo "PDFs generated using [genpdf-butler](https://github.com/TuesdayUkes/genpdf-butler)" >> docs/index.md
           
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
