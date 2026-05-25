@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow, noarchive">
 	<title>Bluegrass &#8211; Bluegrass in Austin, Texas</title>
-	<link rel="stylesheet" href="assets/css/main.css?v=2026-03-08-1903">
+	<link rel="stylesheet" href="assets/css/main.css?v=2026-05-25-1115">
 </head>
 <body>
 <div id="page" class="site">
-	<p><a class="about-link home-pill" href="index.html">Home</a></p>
+	<p><a class="about-link home-pill" href="index.html">Home</a> 
+	<a href="private_links.html" class="gemini-logo-link gemini-logo-inline" aria-label="Go to links"><img id="gemini-logo" src="assets/GeminiCircleLogo.webp" alt="Gemini Logo"></a></p>
