@@ -78,6 +78,8 @@ def find_random_files(folders: list[Path], count: int) -> list[Path]:
                 continue
             if path.name.startswith("00"):
                 continue
+            if path.stem.lower() == "random":
+                continue
             if path.suffix.lower() == ".chopro":
                 candidates.append(path)
     if len(candidates) < count:
