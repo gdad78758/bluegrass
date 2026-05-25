@@ -244,7 +244,7 @@ jobs:
         run: |
           # cd to folder with special HTMLheader.txt
           cd notes/set_list
-          genlist --no-intro --filter none . ../../songs.html
+          genlist --no-intro --filter none . songs.html
           cd ../..
 
           genlist --no-intro --filter none music GeneratedSongsList.html
