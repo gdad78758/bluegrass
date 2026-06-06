@@ -57,13 +57,19 @@ def build_set_list(files: list[Path]) -> str:
 
 def find_files_from_list(list_path: Path, set_list_folder: Path) -> list[Path]:
     """Return ordered .chopro files based on titles listed in list_path."""
+    # Build a recursive index once so titles can resolve to files in subfolders.
+    chopro_index: dict[str, Path] = {}
+    for path in sorted(set_list_folder.rglob("*.chopro"), key=lambda p: str(p).lower()):
+        key = path.stem.casefold()
+        chopro_index.setdefault(key, path)
+
     files: list[Path] = []
     for line in list_path.read_text(encoding="utf-8", errors="replace").splitlines():
         title = line.strip()
         if not title:
             continue
-        chopro = set_list_folder / f"{title}.chopro"
-        if chopro.is_file():
+        chopro = chopro_index.get(title.casefold())
+        if chopro:
             files.append(chopro)
     return files
 
