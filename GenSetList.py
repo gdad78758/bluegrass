@@ -164,7 +164,7 @@ def main() -> int:
             return 1
     elif args.random:
         christmas_files = find_random_files([folder / "Christmas"], 2)
-        set_list_files = find_random_files([folder / "notes" / "set_list"], 5)
+        set_list_files = find_random_files([folder / "notes" / "set_list" / "Finished"], 5)
         if not christmas_files or not set_list_files:
             print("Not enough .chopro files found for random selection.")
             return 1
