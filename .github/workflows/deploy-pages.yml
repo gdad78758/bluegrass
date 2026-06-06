@@ -203,7 +203,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Add any new or modified PDF files
-          git add *.pdf **/*.pdf 2>/dev/null || true
+          shopt -s globstar
+          git add **/*.pdf 2>/dev/null || true
           # Keep generated set list PDF out of the repo
           git reset -- "notes/set_list/Finished Set List.pdf" 2>/dev/null || true
           git reset -- "notes/set_list/Working Songs.pdf" 2>/dev/null || true
