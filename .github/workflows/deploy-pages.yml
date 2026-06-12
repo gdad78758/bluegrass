@@ -239,10 +239,27 @@ jobs:
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Generating random set list ==="
-          python GenSetList.py --random -o "notes/set_list/Random.chopro"
-          # stage generated random list since the following genpdf will revert the .chopro file
-          git add .
-          genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
+          # Promote next week's list to this week's list on each run.
+          if [ -f "notes/set_list/Random Next.chopro" ]; then
+            mv -f "notes/set_list/Random Next.chopro" "notes/set_list/Random.chopro"
+            [ -f "notes/set_list/Random Next.html" ] && mv -f "notes/set_list/Random Next.html" "notes/set_list/Random.html"
+            [ -f "notes/set_list/Random Next.pdf" ] && mv -f "notes/set_list/Random Next.pdf" "notes/set_list/Random.pdf"
+          else
+            # Bootstrap: if there is no Random Next yet, generate this week's Random list now.
+            python GenSetList.py --random -o "notes/set_list/Random.chopro"
+            # stage generated random list since the following genpdf will revert the .chopro file
+            git add "notes/set_list/Random.chopro" "notes/set_list/Random.html" random.log 2>/dev/null || true
+            genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
+          fi
+
+          # Ensure promoted Random files are included in commit if they changed by rename.
+          git add "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf" random.log 2>/dev/null || true
+
+          # Generate next week's random set list.
+          python GenSetList.py --random -o "notes/set_list/Random Next.chopro"
+          # stage generated random next list since the following genpdf will revert the .chopro file
+          git add "notes/set_list/Random Next.chopro" "notes/set_list/Random Next.html" random.log 2>/dev/null || true
+          genpdf --force --pagesize a5 "notes/set_list/Random Next.chopro"
 
       - name: Commit random log and files
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
@@ -252,12 +269,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add random.log "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf"
+          git add random.log \
+            "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf" \
+            "notes/set_list/Random Next.chopro" "notes/set_list/Random Next.html" "notes/set_list/Random Next.pdf"
 
           if git diff --staged --quiet; then
             echo "No random set list changes to commit"
           else
-            git commit -m "Update random set list"
+            git commit -m "Update random set lists"
             git push origin ${{ github.ref_name }}
             echo "Random set list committed and pushed"
           fi
