@@ -342,6 +342,11 @@ jobs:
           mkdir -p docs
           # Copy generated HTML and PDF files to docs directory for publishing
           cp *.html docs/ 2>/dev/null || true
+
+          # Publish random.log without including all .log files.
+          if [ -f "random.log" ]; then
+            cp random.log docs/random.log
+          fi
           
           # Copy all music and media files referenced by GenList.py
           find . \( -name "*.chopro" -o -name "*.cho" -o -name "*.pdf" -o -name "*.PDF" -o -name "*.mscz" -o -name "*.urltxt" -o -name "*.aif" -o -name "*.txt" -o -name "*.mp3" -o -name "*.html" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" -o -name "*.ico" -o -name "*.m4a" \) | while read -r file; do
