@@ -639,6 +639,37 @@ table {
     width: 100%;
 }
 
+#dataTable {
+    table-layout: fixed;
+}
+
+#dataTable th,
+#dataTable td {
+    padding: 0.45rem 0.55rem;
+    vertical-align: top;
+}
+
+#dataTable th:nth-child(1),
+#dataTable td:nth-child(1) {
+    width: 3.5rem;
+    text-align: right;
+    white-space: nowrap;
+}
+
+#dataTable th:nth-child(2),
+#dataTable td:nth-child(2) {
+    width: 42%;
+    text-align: left;
+}
+
+#dataTable th:nth-child(3),
+#dataTable td:nth-child(3) {
+    width: auto;
+    text-align: left;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
 table tbody tr:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.15);
 }
