@@ -13,6 +13,7 @@ from pathlib import Path
 DEFAULT_OUTPUT = "Finished Set List.chopro"
 DEFAULT_LIST = Path("notes") / "set_list" / "setlist.txt"
 NUMBER_PREFIX = re.compile(r"^(\d{2})(?!\d)")
+MULTISPACE_OR_DASH = re.compile(r"[\s-]+")
 
 
 def find_input_files(folder: Path, output_name: str) -> list[Path]:
@@ -93,12 +94,33 @@ def find_random_files(folders: list[Path], count: int) -> list[Path]:
     return random.sample(candidates, count)
 
 
+def song_slug(stem: str) -> str:
+    """Convert a display title to the slug format used in song query strings."""
+    normalized = re.sub(r"\s*-\s*", "-", stem.strip())
+    return MULTISPACE_OR_DASH.sub("-", normalized)
+
+
+def song_list_href(path: Path) -> str:
+    parent = path.parent.name.casefold()
+    if parent == "christmas":
+        return "Christmas.html"
+    return "notes/set_list/songs.html"
+
+
 def log_random_selection(log_path: Path, files: list[Path]) -> None:
     stamp = datetime.now().strftime("%Y-%m-%d")
-    titles = [path.stem for path in files]
-    lines = [f"{stamp}"] + [f"- {title}" for title in titles]
-    with log_path.open("a", encoding="utf-8", errors="replace") as handle:
-        handle.write("\n".join(lines) + "\n")
+    lines = [f"<h2>{stamp}</h2>"]
+    for path in files:
+        title = path.stem
+        slug = song_slug(title)
+        href = song_list_href(path)
+        lines.append(f"<a href={href}?cb={stamp}&song={slug}>{title}</a> <br>")
+
+    block = "\n".join(lines) + "\n"
+    existing = ""
+    if log_path.is_file():
+        existing = log_path.read_text(encoding="utf-8", errors="replace")
+    log_path.write_text(block + existing, encoding="utf-8")
 
 
 def write_song_list(output_path: Path, files: list[Path]) -> None:
@@ -175,7 +197,7 @@ def main() -> int:
             print("Not enough .chopro files found for random selection.")
             return 1
         files = christmas_files + set_list_files
-        log_random_selection(folder / "random.log", files)
+        log_random_selection(folder / "random_log.html", files)
     else:
         files = find_input_files(folder, args.output)
     if not files:
