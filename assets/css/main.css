@@ -14,7 +14,7 @@
     --hover-bg: rgba(203, 211, 223, 0.2);
     --hover-border: rgba(226, 232, 240, 0.8);
     --control-bg-strong: rgba(40, 46, 61, 0.9);
-    --table-row-bg: rgba(0, 0, 0, 0.35);
+    --table-row-bg: rgba(0, 0, 0, 0.15);
 }
 
 html {
@@ -671,7 +671,7 @@ table {
 }
 
 table tbody tr:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 table tbody tr:nth-child(even) {
