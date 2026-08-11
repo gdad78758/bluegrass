@@ -266,6 +266,8 @@ jobs:
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           python GenSetList.py --random -o "notes/set_list/Random.chopro"
+          rm notes/set_list/Random.chopro
+          rm notes/set_list/Random.html
 
           git add random_log.html 2>/dev/null || true
 
