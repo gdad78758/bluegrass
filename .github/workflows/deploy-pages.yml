@@ -274,19 +274,14 @@ jobs:
           else
             # Bootstrap: if there is no Random Next yet, generate this week's Random list now.
             python GenSetList.py --random -o "notes/set_list/Random.chopro"
-            # stage generated random list since the following genpdf will revert the .chopro file
-            git add "notes/set_list/Random.chopro" "notes/set_list/Random.html" random.log 2>/dev/null || true
-            genpdf --force --pagesize a5 "notes/set_list/Random.chopro"
+            git add random_log.html 2>/dev/null || true
           fi
 
-          # Ensure promoted Random files are included in commit if they changed by rename.
-          git add "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf" random.log 2>/dev/null || true
+          git add random_log.html 2>/dev/null || true
 
           # Generate next week's random set list.
           python GenSetList.py --random -o "notes/set_list/Random Next.chopro"
-          # stage generated random next list since the following genpdf will revert the .chopro file
-          git add "notes/set_list/Random Next.chopro" "notes/set_list/Random Next.html" random.log 2>/dev/null || true
-          genpdf --force --pagesize a5 "notes/set_list/Random Next.chopro"
+          git add random_log.html 2>/dev/null || true
 
       - name: Commit random log and files
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
@@ -296,9 +291,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add random.log \
-            "notes/set_list/Random.chopro" "notes/set_list/Random.html" "notes/set_list/Random.pdf" \
-            "notes/set_list/Random Next.chopro" "notes/set_list/Random Next.html" "notes/set_list/Random Next.pdf"
+          git add random_log.html
 
           if git diff --staged --quiet; then
             echo "No random set list changes to commit"
@@ -343,10 +336,7 @@ jobs:
           # Copy generated HTML and PDF files to docs directory for publishing
           cp *.html docs/ 2>/dev/null || true
 
-          # Publish random.log without including all .log files.
-          if [ -f "random.log" ]; then
-            cp random.log docs/random.log
-          fi
+          # random_log.html is already copied by the *.html glob above
           
           # Copy all music and media files referenced by GenList.py
           find . \( -name "*.chopro" -o -name "*.cho" -o -name "*.pdf" -o -name "*.PDF" -o -name "*.mscz" -o -name "*.urltxt" -o -name "*.aif" -o -name "*.txt" -o -name "*.mp3" -o -name "*.html" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" -o -name "*.ico" -o -name "*.m4a" \) | while read -r file; do
