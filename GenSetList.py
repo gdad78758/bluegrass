@@ -138,7 +138,14 @@ def log_random_selection(log_path: Path, files: list[Path]) -> None:
         lines.append(f"<a href={href}?cb={stamp}&song={slug}>{title}</a> <br>")
 
     block = "\n".join(lines) + "\n"
-    log_path.write_text(block + existing, encoding="utf-8")
+    # Insert after <body> if present, otherwise prepend to the whole file.
+    body_tag = "<body>"
+    if body_tag in existing:
+        idx = existing.index(body_tag) + len(body_tag)
+        output = existing[:idx] + "\n" + block + existing[idx:]
+    else:
+        output = block + existing
+    log_path.write_text(output, encoding="utf-8")
 
 
 def write_song_list(output_path: Path, files: list[Path]) -> None:
