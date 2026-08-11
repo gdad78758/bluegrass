@@ -40,9 +40,7 @@ jobs:
         with:
           fetch-depth: 0  # Fetch full history for git diff comparisons
           token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authenticated operations
-        
 
-        
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
@@ -57,6 +55,11 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           ~/.local/bin/pipx install --force genlist-butler
 
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Update CSS cache-busting parameters
         run: |
           if git diff-tree --no-commit-id -r HEAD --name-only | grep -q "assets/css/main.css"; then
@@ -64,8 +67,6 @@ jobs:
             TIMESTAMP=$(date +%Y-%m-%d-%H%M)
             grep -rl "main\.css?v=" --include="*.html" --include="*.txt" . \
               | xargs sed -E -i "s/main\.css\?v=[0-9-]+/main.css?v=${TIMESTAMP}/g"
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add -A
             if git diff --staged --quiet; then
               echo "No cache-busting changes needed"
@@ -224,13 +225,9 @@ jobs:
           genpdf --force --pagesize a5 "notes/set_list/Working Songs.chopro"
           
       - name: Commit generated PDFs to repository
-        if: steps.check-pdfs.outputs.need_generation == 'true'
+        if: steps.check-pdfs.outputs.need_generation == 'true' || steps.check-setlist.outputs.need_setlist_pdf == 'true'
         run: |
           echo "=== Committing generated PDFs ==="
-          
-          # Configure git for the GitHub Actions bot
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Add any new or modified PDF files
           shopt -s globstar
@@ -252,32 +249,17 @@ jobs:
             echo "PDFs committed and pushed to repository"
           fi
 
-      - name: Install ChordPro and genpdf-butler for random list
-        if: (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)) && steps.check-pdfs.outputs.need_generation != 'true' && steps.check-setlist.outputs.need_setlist_pdf != 'true'
-        run: |
-          echo "=== Installing ChordPro and genpdf-butler for random list ==="
-          sudo apt-get update
-          sudo apt-get install -y cpanminus build-essential libpod-parser-perl libharfbuzz-dev libcairo2-dev
-          sudo cpanm --notest HarfBuzz::Shaper
-          sudo cpanm --notest App::Music::ChordPro@6.090.0
-          pip install genpdf-butler
-
-      - name: Generate random set list and PDF
+      - name: Generate random set list
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           python GenSetList.py --random -o "notes/set_list/Random.chopro"
           rm notes/set_list/Random.chopro
           rm notes/set_list/Random.html
 
-          git add random_log.html 2>/dev/null || true
-
       - name: Commit random log and files
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
           echo "=== Committing random set list files ==="
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add random_log.html
 
@@ -307,8 +289,6 @@ jobs:
           echo "=== Updating cache-busting parameters in private_links.html ==="
           TIMESTAMP=$(date +%Y-%m-%d-%H%M)
           sed -E -i "s/\.html\?v=[0-9-]+/.html?v=${TIMESTAMP}/g" private_links.html
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add private_links.html
           if git diff --staged --quiet; then
             echo "No changes to private_links.html"
@@ -356,7 +336,7 @@ jobs:
           echo "- [Notes List](songs.html)" >> docs/index.md
           echo "- [Songs List](GeneratedSongsList.html)" >> docs/index.md
           echo "- [Christmas Songs](Christmas.html)" >> docs/index.md
-          echo "- [Katy Lessons](KatyLessons.html)" >> docs/index.md
+          echo "- [Katy Lessons](KatysLesson.html)" >> docs/index.md
           echo "" >> docs/index.md
           echo "## Tools Used" >> docs/index.md
           echo "PDFs generated using [genpdf-butler](https://github.com/TuesdayUkes/genpdf-butler)" >> docs/index.md
