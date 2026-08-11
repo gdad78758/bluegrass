@@ -265,22 +265,8 @@ jobs:
       - name: Generate random set list and PDF
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.random)
         run: |
-          echo "=== Generating random set list ==="
-          # Promote next week's list to this week's list on each run.
-          if [ -f "notes/set_list/Random Next.chopro" ]; then
-            mv -f "notes/set_list/Random Next.chopro" "notes/set_list/Random.chopro"
-            [ -f "notes/set_list/Random Next.html" ] && mv -f "notes/set_list/Random Next.html" "notes/set_list/Random.html"
-            [ -f "notes/set_list/Random Next.pdf" ] && mv -f "notes/set_list/Random Next.pdf" "notes/set_list/Random.pdf"
-          else
-            # Bootstrap: if there is no Random Next yet, generate this week's Random list now.
-            python GenSetList.py --random -o "notes/set_list/Random.chopro"
-            git add random_log.html 2>/dev/null || true
-          fi
+          python GenSetList.py --random -o "notes/set_list/Random.chopro"
 
-          git add random_log.html 2>/dev/null || true
-
-          # Generate next week's random set list.
-          python GenSetList.py --random -o "notes/set_list/Random Next.chopro"
           git add random_log.html 2>/dev/null || true
 
       - name: Commit random log and files

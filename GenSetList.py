@@ -6,7 +6,7 @@ from __future__ import annotations
 import argparse
 import random
 import re
-from datetime import datetime
+from datetime import date, timedelta
 from pathlib import Path
 
 
@@ -107,8 +107,29 @@ def song_list_href(path: Path) -> str:
     return "notes/set_list/songs.html"
 
 
+H2_DATE = re.compile(r"<h2>(\d{4}-\d{2}-\d{2})</h2>")
+
+
+def next_sunday_after(d: date) -> date:
+    """Return the Sunday that immediately follows d (never d itself)."""
+    days_until_sunday = (6 - d.weekday()) % 7 or 7  # weekday: Mon=0 … Sun=6
+    return d + timedelta(days=days_until_sunday)
+
+
 def log_random_selection(log_path: Path, files: list[Path]) -> None:
-    stamp = datetime.now().strftime("%Y-%m-%d")
+    existing = ""
+    if log_path.is_file():
+        existing = log_path.read_text(encoding="utf-8", errors="replace")
+
+    today = date.today()
+    m = H2_DATE.search(existing)
+    if m:
+        candidate = next_sunday_after(date.fromisoformat(m.group(1)))
+    else:
+        candidate = None
+    if candidate is None or candidate <= today:
+        candidate = next_sunday_after(today)
+    stamp = candidate.isoformat()
     lines = [f"<h2>{stamp}</h2>"]
     for path in files:
         title = path.stem
@@ -117,9 +138,6 @@ def log_random_selection(log_path: Path, files: list[Path]) -> None:
         lines.append(f"<a href={href}?cb={stamp}&song={slug}>{title}</a> <br>")
 
     block = "\n".join(lines) + "\n"
-    existing = ""
-    if log_path.is_file():
-        existing = log_path.read_text(encoding="utf-8", errors="replace")
     log_path.write_text(block + existing, encoding="utf-8")
 
 
