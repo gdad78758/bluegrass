@@ -275,14 +275,14 @@ jobs:
         run: |
           # cd to folder with special HTMLheader.txt
           cd notes/set_list
-          genlist --no-intro --filter none . songs.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --filter none . songs.html
           cd ../..
 
-          genlist --no-intro --filter none music GeneratedSongsList.html
-          genlist --no-intro --filter none Christmas Christmas.html
-          genlist --no-intro --filter none Practice_Tracks Practice.html
-          genlist --no-intro --filter none 'Katy Lesson' KatysLesson.html
-          genlist --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --filter none music GeneratedSongsList.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --filter none Christmas Christmas.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --filter none Practice_Tracks Practice.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --filter none 'Katy Lesson' KatysLesson.html
+          genlist --no-onlyeasy --no-includelyrics --no-intro --no-line-numbers --filter none EddieLessons EddieLessons.html
 
       - name: Update cache-busting parameters in private_links.html
         run: |
