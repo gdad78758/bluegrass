@@ -138,8 +138,9 @@ and walk [A]through those pearly gates (STOP)
 (All Sing - Slowly - All play final E-Hold)
 Feels like Texas to [E-Hold]meeee.
 {new_song}
-{title: Pancho and Lefty v-01/15/26}
+{title:Pancho and Lefty v-09/23/26}
 {key:C}
+{tempo:114}
 {time:4/4}
 
 artist: Emmylou Harris, writer: Townes Van Zant
@@ -173,7 +174,15 @@ There [F] ain't nobody [Am] knows (2,3,4,5,6,7,8)
 
 (All sing)
 [F] All the Federales say, we [C] could have had him [F] any day
-[Am] We only let him [F]slip [C]a-  [G]way, out of [F] kindness I sup-[Am] pose (2,3,4,1,2,3,*)  
+[Am] We only let him [F]slip [C]a-  [G]way, out of [F] kindness I sup-[Am] pose (2,3,4,1,2,3,*) 
+
+(Instrumental break)
+/&blue: *[G][C] Lefty he can't sing the blues, [G] all night long like he used to
+/&blue:[F] The dust that Pancho bit down south, [C] ended up in [G] Lefty's mouth
+/&blue:[F] The day they laid poor Pancho low, [C] Lefty split for [F] Ohio
+/&blue:[Am] Where he got the [F]bread [C]to  [G]go, 
+/&blue: There [F] ain't nobody [Am] knows (2,3,4,5,6,7,8) 
+ 
 
 (Verse 4 - Paulette sings)
  *[G][C] The poets tell how Pancho fell, [G] Lefty's living in a cheap hotel
@@ -193,7 +202,7 @@ And [F] now he's growing [Am] old (2,3,4,5,6,7,8)
 
 
 {new_song}
-{t:Way Over Yonder in the Minor Key - v09/05/26}
+{t:Way Over Yonder in the Minor Key - v09/23/26}
 {st: Woody Guthrie (Words) - Billy Braggs (Music) Terri Hendrix (Recording)}
 (https://www.youtube.com/watch?v=r1bk0lbSU-Y)
 {key: Am}
@@ -253,7 +262,7 @@ No there [G] ain't nobody that can sing like [Am]me
 (Single strums)
 [C-Hold] Now I have walked a long long [F-Hold]ways
 
-(Resume strumming-slowly build-up)
+(Resume strumming - slowly build-up and increase volume)
 [F] And I still look back to my tanglewood [C]days
 [C] I've led others since then to [F]stray
 [F] Saying ain't nobody that can sing like [Am]me
@@ -341,12 +350,17 @@ Cause [D]Time Has Changed [A]Eve - ry [D-Hold]Thing
 
 
 {new_song}
-{title: Feelin' Good Again v07/14/26}
+{title: Feelin' Good Again v09/23/26}
 {subtitle: Robert Earl Keen, 1998}
 {key: F}
 
- Intro: [F]////   [Am]////    [Dm]////    [C]////   x2
-
+        (Just Dan)
+ Intro: [F]////   [Am]////    [Dm]////    [C]////
+  
+        (Dan and Gary)
+        [F]////   [Am]////    [Dm]////    [C]////  
+ 
+(All instruments join in)
  [F]Standin' down on Main Street [Am]across from Mr. Blues
  In my [Dm]faded leather jacket and my [C]weathered Brogan shoes
  A [F]chill north wind was blowing but the [Am]spring was coming on
@@ -354,7 +368,9 @@ Cause [D]Time Has Changed [A]Eve - ry [D-Hold]Thing
  So I [Bb]strolled across old Main Street, walked [C]down a flight of stairs
  [F]Stepped into the hall and saw [Bb]all my friends were there
  [F]A neon sign was flashing "[C]Welcome come on in"
- It [Bb]feels so good [C]feelin' good [F]again  ///   [Am]////    [Dm]////    [C]////
+ It [Bb]feels so good [C]feelin' good [F*]again  
+
+      [F*]////   [Am]////    [Dm]////    [C]//// 
 
  My [F]favorite band was playing an [Am]Otis Redding song
  [Dm]When they sang the chorus every[C]body sang along
@@ -363,10 +379,12 @@ Cause [D]Time Has Changed [A]Eve - ry [D-Hold]Thing
  And I [Bb]wished I had some money with [C]which to buy a round
  [F]I wished I'd cashed my paycheck [Bb]before I came to town
  [F]I reached into my pocket found three [C]twenties and a ten
- It [Bb]feels so good [C]feelin' good [F*]again
-
+ It [Bb]feels so good [C]feelin' good [F*]again  
+ 
 (Short Instrumental)
-[F*]////   [Am]////    [Dm]////    [C]//// x2
+     [F]////   [Am]////    [Dm]////    [C]////
+
+     [F]////   [Am]////    [Dm]////    [C]////   
 
  [F]There was old man Perkins [Am]sittin' on his stool
  Watchin' [Dm]Butch and Jimmy John talkin' [C]loud and playing pool
@@ -375,15 +393,19 @@ Cause [D]Time Has Changed [A]Eve - ry [D-Hold]Thing
  And I [Bb]wanted you to see them all, I [C]wished that you were there
  I [F]looked across the room and saw you [Bb]standing on the stair
  [F]And when I caught your eye I saw you [C]break into a grin
- It [Bb]feels so good [C]feelin' good [F]again  ///   [Am]////    [Dm]////    [C]////
+ It [Bb]feels so good [C]feelin' good [F*]again  
 
+      [F*]////   [Am]////    [Dm]////    [C]////
+ 
  I [Bb]wanted you to see them all, I [C]wished that you were there
  [F]I looked across the room and saw you [Bb]standin' on the stair
  [F]And when I caught your eye I saw you [C]break into a grin
  It [Bb]feels so good [C]feelin' good [F]again
  It [Bb]feels so good [C]feelin' good [F*]again
-
- [F*]////   [Am]////    [Dm]////    [C]////  x2  [F-Hold]
+ 
+      [F*]////   [Am]////    [Dm]////    [C]//// 
+       
+      [F]////   [Am]////    [Dm]////    [C]////   [F-Hold]
 {new_song}
 {title:Blue Ridge Cabin Home v-01/25/26}
 {key:G}
@@ -461,7 +483,7 @@ Far [D]away near my Blue Ridge mountain [G]home
 
 (Larry plays doodley-do!)
 {new_song}
-{t: Texas Love Song - 08/17/26}
+{t: Texas Love Song - 09/23/26}
 {st: Words and music by Slaid Cleaves}
 
 Key: G
@@ -469,14 +491,16 @@ Time: 4/4
 
 *Verse 1
 
-(slowly, 1 strum per chord)
+(Dan Only, 1 strum per chord)
+
 For [G] you, I'd give up [D]all my time
 [G]Searching for the [C]perfect rhyme
 And [G]this is one that certainly per[D]plexes [D7]
 For [G]you, I would spend [D]all my days
 [G]Thinking up all the [C]crazy ways
 
-{comment (faster, d-u-d-u-d-u pattern)}
+(Everyone joins in - faster)
+
 I [G]love you even [D]more than I love [G]Texas
 
 *Verse 2 
@@ -497,6 +521,7 @@ But the [G]best thing in this [C]state is you
 I [G]love you even [D]more than I love [G]Texas
 
 *Instrumental
+
 /&blue:Your [G]wit's as sharp as a [D]prickly pear
 /&blue:The [G]sun shines in your [C]golden hair
 /&blue:Your [G]smile hits me right in the solar [D]plexus[D7]
@@ -529,11 +554,11 @@ But the [G]best thing in this [C]state is you
 I [G]love you even [D]more than I love [G]Texas
 
 *Outro 
-{comment: (slow again, one strum per chord)}
+(slow again, one strum per chord)
 And [G]if you make me [D]leave this state
 I'll [G]groan but I won't [C]hesitate
 
-{comment: (pick up pace)}
+(pick up pace)
 'Cause I [G]love you even [D]more than I love [C]Texas (yodel if you dare)[G]
 {new_song}
 {title:Ghost Riders in the Sky v-04/20/26}
@@ -746,6 +771,38 @@ It's a Texas armadillo, whenever he thinks
 RIP riff
 
 "Poor little critter"
+{new_song}
+{t: Your Cheating Heart - 09/23/26}
+{Hank Williams}
+
+(Count - 1,2,3,4,1,....)
+
+(Intro: Brian)
+&Blue:/Your cheatin' [G7]heart will tell on [C]you
+
+Verse 1:
+Your cheatin' [C]heart will make you [F]weep
+You'll cry and [G7]cry and try to [C]sleep
+But sleep won't [C]come the whole night [F]through
+Your cheatin' [G7]heart will tell on [C]you
+
+Chorus:
+When tears come [F]down like fallin' [C]rain
+You'll toss a-[D7]round and call my [G]name
+You'll walk the [C]floor the way I [F]do
+Your cheatin' [G7]heart will tell on [C]you
+
+Verse 2:
+Your cheatin' [C]heart will pine some [F]day
+And crave the [G7]love you threw [C]away
+The time will [C]come when you'll be [F]blue
+Your cheatin' [G7]heart will tell on [C]you
+
+Chorus:
+When tears come [F]down like fallin' [C]rain
+You'll toss a-[D7]round and call my [G7]name
+You'll walk the [C]floor the way I [F]do
+Your cheatin' [G7]heart will tell on [C]you [G7]   [C]
 {new_song}
 {t: The Last Moonshiner - vII 09/07/26}
 {st: Buddy Melton & Milan Miller - arranged for uke by Paul}
