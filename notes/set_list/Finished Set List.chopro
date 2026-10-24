@@ -708,12 +708,9 @@ I'm only [Em]going [F#7]over [Bm]home
 
 
 {new_song}
-{t: Texas Armadillo - v02/27/26}
+{t: Texas Armadillo}
 {st: Dale Watson}
 
-(Intro Lick- Gary)
-
-(Verse 1 - Paul)
 [D] Ridin' down 290, the fog was thick
 I didn't see what happened, it happened so quick
 [G] I felt a thump, I heard a squish
@@ -721,29 +718,27 @@ I didn't see what happened, it happened so quick
 [A] Jumped out of my truck and to my surprise
 [D] (stop) A damned armadillo was [D] stuck to my tire
 
-(Chorus - All)
 [G] Well, ain't it the luck, it happens all the time
 [D] Never seen one make it to the other side
 [E7] The chicken will cross that road for fun
 [A] (stop) To prove to the 'dilo that [A] it could be done
 
-(Verse 2 - Paul)
 [D] If ever was a creature born with a jinx
 It's a Texas armadillo, whenever he thinks
 [G] "That road ain't so wide", "Hey, that truck ain't so fast"
-[D] Well, that kinda thinking always ends in a "SPLAT!"
+[D] Well, that kinda thinking always ends in a splat
 [A] It ain't their fault, they're made that way
 [D] (stop) Persistent armadillos 'til their [D] dying day
 
-(Instrumental break - Gary)
-/&blue: [D] Ridin' down 290, the fog was thick
-/&blue: I didn't see what happened, it happened so quick
-/&blue: [G] I felt a thump, I heard a squish
-/&blue: [D] I hit the brakes about went in the ditch
-/&blue: [A] Jumped out of my truck and to my surprise
-/&blue: [D] (stop) A damned armadillo was stuck to my tire
+{textcolour: blue}
+[D] Ridin' down 290, the fog was thick
+I didn't see what happened, it happened so quick
+[G] I felt a thump, I heard a squish
+[D] I hit the brakes about went in the ditch
+[A] Jumped out of my truck and to my surprise
+[D] (stop) A damned armadillo was [D] stuck to my tire
+{textcolour}
 
-(Verse 3 - Paul)
 [D] If your ridin' down any old Texas road
 You see an armadillo walking on the shoulder
 [G] It is true, as sure as you're born
@@ -751,26 +746,20 @@ You see an armadillo walking on the shoulder
 [A] If he's got his mind to try to make it across
 [D] (stop) He'll try just that no matter [D] what the cost
 
-(Chorus - All)
 [G] Well, ain't it the luck, it happens all the time
 [D] Never seen one make it to the other side
 [E7] The chicken will cross that road for fun
 [A] (stop) To prove to the 'dilo that [A] it could be done
 
-(Verse 4 - Paul)
 [D] If ever was a creature born with a jinx
 It's a Texas armadillo, whenever he thinks
 [G] "That road ain't so wide", "That truck ain't so fast"
-[D] That kinda thinking always ends in a "SPLAT!"
+[D] That kinda thinking always ends in a splat
 [A] It ain't their fault, they're made that way
 [D] (stop) Persistent armadillos 'til their [D] dying day
 
-[A] It ain't their fault, they're made that way...
-
-[D-Stop]
-RIP riff
-
-"Poor little critter"
+[A] It ain't their fault, they're made that way
+[D] (stop) Persistent armadillos 'til their [D] dying day
 {new_song}
 {t: Your Cheating Heart - 09/23/26}
 {Hank Williams}
