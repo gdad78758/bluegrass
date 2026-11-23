@@ -365,5 +365,65 @@
 	    },
 	},
     },
+
+  // ChordPro Preprocessor Config for OnSong Compatibility
+  "parser": {
+    "preprocess": {
+      "songline": [
+        // 1. Convert OnSong musical instruction lines (;Comment) to ChordPro {comment}
+        {
+          "pattern": "^;\\s*(.*)$",
+          "replace": "{comment: $1}"
+        },
+        // 2. Convert inline text colors (<&blue:word>)
+        {
+          "pattern": "<&([a-zA-Z0-9#]+):([^>]+)>",
+          "replace": "<span color=\"$1\">$2</span>"
+        },
+        // 3. Convert inline highlights (<>yellow:word>)
+        {
+          "pattern": "<>([a-zA-Z0-9#]+):([^>]+)>",
+          "replace": "<span bgcolor=\"$1\">$2</span>"
+        },
+        // 4. Convert stacked italics BEFORE text color (/&blue: Line)
+        {
+          "pattern": "^/&([a-zA-Z0-9#]+):\\s*(.*)$",
+          "replace": "<i><span color=\"$1\">$2</span></i>"
+        },
+        // 5. Convert stacked italics AFTER text color (&blue/ or &blue:/ Line)
+        {
+          "pattern": "^&([a-zA-Z0-9#]+):?/\\s*(.*)$",
+          "replace": "<i><span color=\"$1\">$2</span></i>"
+        },
+        // 6. Convert stacked italics BEFORE highlight (/>yellow: Line)
+        {
+          "pattern": "^/>([a-zA-Z0-9#]+):\\s*(.*)$",
+          "replace": "<i><span bgcolor=\"$1\">$2</span></i>"
+        },
+        // 7. Convert stacked italics AFTER highlight (>yellow/ or >yellow:/ Line)
+        {
+          "pattern": "^>([a-zA-Z0-9#]+):?/\\s*(.*)$",
+          "replace": "<i><span bgcolor=\"$1\">$2</span></i>"
+        },
+        // 8. Convert standalone line-level text color prefixes (&blue: Line)
+        {
+          "pattern": "^&([a-zA-Z0-9#]+):\\s*(.*)$",
+          "replace": "<span color=\"$1\">$2</span>"
+        },
+        // 9. Convert standalone line-level highlight prefixes (>yellow: Line)
+        {
+          "pattern": "^>([a-zA-Z0-9#]+):\\s*(.*)$",
+          "replace": "<span bgcolor=\"$1\">$2</span>"
+        },
+        // 10. Convert standalone line-level italics (/Line)
+        {
+          "pattern": "^/\\s*(.*)$",
+          "replace": "<i>$1</i>"
+        }
+      ]
+    }
+  }
+
+
 }
 // End of config.
