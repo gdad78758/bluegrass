@@ -420,6 +420,24 @@
           "pattern": "^/\\s*(.*)$",
           "replace": "<i>$1</i>"
         }
+      ],
+      // Display key, tempo, and time metadata as comments in generated charts.
+      "directive": [
+        {
+          "select": "^key\\s*:",
+          "pattern": "^key\\s*:\\s*(.*?)\\s*$",
+          "replace": "comment: Key: $1"
+        },
+        {
+          "select": "^tempo\\s*:",
+          "pattern": "^tempo\\s*:\\s*(.*?)\\s*$",
+          "replace": "comment: Tempo: $1"
+        },
+        {
+          "select": "^time\\s*:",
+          "pattern": "^time\\s*:\\s*(.*?)\\s*$",
+          "replace": "comment: Time: $1"
+        }
       ]
     }
   }
