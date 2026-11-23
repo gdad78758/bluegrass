@@ -60,6 +60,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Configure ChordPro
+        run: |
+          mkdir -p "$HOME/.config/chordpro"
+          ln -sf "$GITHUB_WORKSPACE/myconfig.json" "$HOME/.config/chordpro/chordpro.json"
+          echo "ChordPro will use the repository's myconfig.json"
+
       - name: Update CSS cache-busting parameters
         run: |
           if git diff-tree --no-commit-id -r HEAD --name-only | grep -q "assets/css/main.css"; then

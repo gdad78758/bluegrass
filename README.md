@@ -34,6 +34,8 @@ The GitHub Pages workflow (`.github/workflows/deploy-pages.yml`) regenerates the
 
 For manual PDF generation, install ChordPro and `genpdf-butler`, then run `genpdf --pagesize a5 "<file>.chopro"` from the repository root. For set-list PDFs, use the `--force` commands above so the generated PDFs reflect the latest set-list contents.
 
+The GitHub Pages workflow configures ChordPro to load the repository's `myconfig.json` when it generates PDFs.
+
 ## Random weekly set list
 
 The workflow can also generate a random selection of two songs from `Christmas/` and five from `notes/set_list/Finished/`. It runs on the weekly schedule in `.github/workflows/deploy-pages.yml` or can be started manually from the GitHub Actions tab with **Generate random set list** enabled. The selection is recorded in `random_log.html`; temporary generated set-list files are removed by the workflow.

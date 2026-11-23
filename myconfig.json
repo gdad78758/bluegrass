@@ -345,25 +345,7 @@
 
 	"papersize" : "a4",
 
-	"fontdir" : [ "C:\\WIndows\\Fonts"],
-
 //  "papersize" : [600,1650],
-"fontconfig" :
-	{
-	"sans" : {
-		""            : "DejaVuSans.ttf",
-		"bold"        : "DejaVuSans-Bold.ttf",
-		"italic"      : "DejaVuSans-Oblique.ttf",
-		"bolditalic"  : "DejaVuSans-BoldOblique.ttf",
-	},
-	"mono, monospace" : {
-        ""            : "Courier",
-        "bold"        : "Courier-Bold",
-        "italic"      : "Courier-Italic",
-        "bolditalic"  : "Courier-BoldItalic",
-    },
-
-	},
 
 	// Fonts.
 	"fonts" : {
